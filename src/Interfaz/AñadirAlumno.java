@@ -1,20 +1,23 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Interfaz;
+
+import java.awt.Color;
 
 /**
  *
  * @author Frank
  */
-public class AñadirAlumno extends javax.swing.JPanel {
+public class AñadirAlumno extends javax.swing.JFrame {
 
     /**
-     * Creates new form AñadirProgrma
+     * Creates new form AAA
      */
     public AñadirAlumno() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -60,8 +63,7 @@ public class AñadirAlumno extends javax.swing.JPanel {
         Usuario = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setMinimumSize(new java.awt.Dimension(1050, 650));
-        setPreferredSize(new java.awt.Dimension(1050, 650));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PanelPrincipal.setBackground(new java.awt.Color(209, 209, 209));
         PanelPrincipal.setMinimumSize(new java.awt.Dimension(1050, 650));
@@ -73,6 +75,17 @@ public class AñadirAlumno extends javax.swing.JPanel {
         CancelarBoton1.setForeground(new java.awt.Color(255, 255, 255));
         CancelarBoton1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CancelarBoton1.setText("Cancelar");
+        CancelarBoton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CancelarBoton1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CancelarBoton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CancelarBoton1MouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout CancelarPanelLayout = new javax.swing.GroupLayout(CancelarPanel);
         CancelarPanel.setLayout(CancelarPanelLayout);
@@ -93,6 +106,17 @@ public class AñadirAlumno extends javax.swing.JPanel {
         GuardarBoton.setForeground(new java.awt.Color(255, 255, 255));
         GuardarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         GuardarBoton.setText("Guardar");
+        GuardarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GuardarBotonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                GuardarBotonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                GuardarBotonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout GuardarPanelLayout = new javax.swing.GroupLayout(GuardarPanel);
         GuardarPanel.setLayout(GuardarPanelLayout);
@@ -392,8 +416,8 @@ public class AñadirAlumno extends javax.swing.JPanel {
 
         PanelPrincipal.add(Fotografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 120, 240, 260));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -402,6 +426,8 @@ public class AñadirAlumno extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void FechaNacimientoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaNacimientoCampoActionPerformed
@@ -424,22 +450,81 @@ public class AñadirAlumno extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_CICampoActionPerformed
 
-    private void ProgramaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProgramaComboBoxActionPerformed
+    private void CorreoElectronicoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorreoElectronicoCampoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ProgramaComboBoxActionPerformed
-
-    private void TelefonoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefonoCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TelefonoCampoActionPerformed
+    }//GEN-LAST:event_CorreoElectronicoCampoActionPerformed
 
     private void DireccionCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionCampoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DireccionCampoActionPerformed
 
-    private void CorreoElectronicoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorreoElectronicoCampoActionPerformed
+    private void TelefonoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefonoCampoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CorreoElectronicoCampoActionPerformed
+    }//GEN-LAST:event_TelefonoCampoActionPerformed
 
+    private void ProgramaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProgramaComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProgramaComboBoxActionPerformed
+
+    private void CancelarBoton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarBoton1MouseClicked
+        dispose();
+    }//GEN-LAST:event_CancelarBoton1MouseClicked
+
+    private void CancelarBoton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarBoton1MouseEntered
+        CancelarPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_CancelarBoton1MouseEntered
+
+    private void CancelarBoton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarBoton1MouseExited
+        CancelarPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_CancelarBoton1MouseExited
+
+    private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GuardarBotonMouseClicked
+
+    private void GuardarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseEntered
+        GuardarPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_GuardarBotonMouseEntered
+
+    private void GuardarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseExited
+        GuardarPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_GuardarBotonMouseExited
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AñadirAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AñadirAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AñadirAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AñadirAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AñadirAlumno().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ApellidoMaterno;

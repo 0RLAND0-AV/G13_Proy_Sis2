@@ -1,20 +1,23 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Interfaz;
+
+import java.awt.Color;
 
 /**
  *
  * @author Frank
  */
-public class AñadirProgrma extends javax.swing.JPanel {
+public class EditarPrograma extends javax.swing.JFrame {
 
     /**
-     * Creates new form AñadirProgrma
+     * Creates new form A
      */
-    public AñadirProgrma() {
+    public EditarPrograma() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -49,12 +52,14 @@ public class AñadirProgrma extends javax.swing.JPanel {
         GuardarPanel = new javax.swing.JPanel();
         GuardarBoton = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         PanelPrincipal.setBackground(new java.awt.Color(209, 209, 209));
         PanelPrincipal.setMinimumSize(new java.awt.Dimension(1050, 650));
         PanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Titulo.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        Titulo.setText("Añadir un programa");
+        Titulo.setText("Editar un programa");
         PanelPrincipal.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 530, 60));
 
         Nombre.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -122,7 +127,6 @@ public class AñadirProgrma extends javax.swing.JPanel {
         PanelPrincipal.add(FechaFinCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 210, 30));
 
         HorarioCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        HorarioCampo.setEnabled(false);
         HorarioCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         HorarioCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,6 +171,17 @@ public class AñadirProgrma extends javax.swing.JPanel {
         CancelarBoton.setForeground(new java.awt.Color(255, 255, 255));
         CancelarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CancelarBoton.setText("Cancelar");
+        CancelarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CancelarBotonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CancelarBotonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CancelarBotonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout CancelarPanelLayout = new javax.swing.GroupLayout(CancelarPanel);
         CancelarPanel.setLayout(CancelarPanelLayout);
@@ -193,6 +208,14 @@ public class AñadirProgrma extends javax.swing.JPanel {
         GuardarBoton.setForeground(new java.awt.Color(255, 255, 255));
         GuardarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         GuardarBoton.setText("Guardar");
+        GuardarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                GuardarBotonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                GuardarBotonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout GuardarPanelLayout = new javax.swing.GroupLayout(GuardarPanel);
         GuardarPanel.setLayout(GuardarPanelLayout);
@@ -213,8 +236,8 @@ public class AñadirProgrma extends javax.swing.JPanel {
 
         PanelPrincipal.add(GuardarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 540, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1050, Short.MAX_VALUE)
@@ -223,6 +246,8 @@ public class AñadirProgrma extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void DetallesCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetallesCampoActionPerformed
@@ -257,6 +282,61 @@ public class AñadirProgrma extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_InstructorComboBoxActionPerformed
 
+    private void CancelarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarBotonMouseClicked
+        dispose();
+    }//GEN-LAST:event_CancelarBotonMouseClicked
+
+    private void CancelarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarBotonMouseEntered
+        CancelarPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_CancelarBotonMouseEntered
+
+    private void CancelarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarBotonMouseExited
+        CancelarPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_CancelarBotonMouseExited
+
+    private void GuardarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseEntered
+        GuardarPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_GuardarBotonMouseEntered
+
+    private void GuardarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseExited
+        GuardarPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_GuardarBotonMouseExited
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(EditarPrograma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(EditarPrograma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(EditarPrograma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(EditarPrograma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new EditarPrograma().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CancelarBoton;

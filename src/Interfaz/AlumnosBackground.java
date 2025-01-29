@@ -4,6 +4,8 @@
  */
 package Interfaz;
 
+import java.awt.Color;
+
 /**
  *
  * @author jhona
@@ -15,6 +17,7 @@ public class AlumnosBackground extends javax.swing.JPanel {
      */
     public AlumnosBackground() {
         initComponents();
+
     }
 
     /**
@@ -41,6 +44,7 @@ public class AlumnosBackground extends javax.swing.JPanel {
         setBackground(new java.awt.Color(209, 209, 209));
         setMinimumSize(new java.awt.Dimension(900, 600));
         setPreferredSize(new java.awt.Dimension(900, 720));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         EliminarPanel.setBackground(new java.awt.Color(80, 200, 120));
 
@@ -48,6 +52,17 @@ public class AlumnosBackground extends javax.swing.JPanel {
         ElimnarBoton.setForeground(new java.awt.Color(255, 255, 255));
         ElimnarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ElimnarBoton.setText("ELIMINAR");
+        ElimnarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ElimnarBotonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ElimnarBotonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ElimnarBotonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout EliminarPanelLayout = new javax.swing.GroupLayout(EliminarPanel);
         EliminarPanel.setLayout(EliminarPanelLayout);
@@ -55,8 +70,8 @@ public class AlumnosBackground extends javax.swing.JPanel {
             EliminarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EliminarPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ElimnarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(ElimnarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         EliminarPanelLayout.setVerticalGroup(
             EliminarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -66,12 +81,25 @@ public class AlumnosBackground extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        add(EliminarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 615, -1, -1));
+
         EditarPanel.setBackground(new java.awt.Color(80, 200, 120));
 
         EditarBoton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         EditarBoton.setForeground(new java.awt.Color(255, 255, 255));
         EditarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         EditarBoton.setText("EDITAR");
+        EditarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditarBotonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EditarBotonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                EditarBotonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout EditarPanelLayout = new javax.swing.GroupLayout(EditarPanel);
         EditarPanel.setLayout(EditarPanelLayout);
@@ -90,6 +118,8 @@ public class AlumnosBackground extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        add(EditarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 615, -1, -1));
+
         AgregarPanel.setBackground(new java.awt.Color(80, 200, 120));
 
         AgreagarBoton.setBackground(new java.awt.Color(255, 255, 255));
@@ -97,6 +127,17 @@ public class AlumnosBackground extends javax.swing.JPanel {
         AgreagarBoton.setForeground(new java.awt.Color(255, 255, 255));
         AgreagarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AgreagarBoton.setText("AGREGAR");
+        AgreagarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AgreagarBotonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AgreagarBotonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AgreagarBotonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout AgregarPanelLayout = new javax.swing.GroupLayout(AgregarPanel);
         AgregarPanel.setLayout(AgregarPanelLayout);
@@ -115,10 +156,13 @@ public class AlumnosBackground extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        add(AgregarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(695, 615, -1, -1));
+
         Alumnostxt.setBackground(new java.awt.Color(55, 67, 66));
         Alumnostxt.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Alumnostxt.setForeground(new java.awt.Color(55, 67, 66));
         Alumnostxt.setText("Alumnos");
+        add(Alumnostxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 46, -1, 65));
 
         TablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -153,57 +197,55 @@ public class AlumnosBackground extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(TablaAlumnos);
 
-        BuscadorAlumnos.setText("jTextField1");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 780, 442));
+
+        BuscadorAlumnos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        add(BuscadorAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 46, 250, 50));
 
         Busqueda.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Busqueda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Busqueda.setText("o");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
-                                .addComponent(EliminarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
-                                .addComponent(EditarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
-                                .addComponent(AgregarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(55, 55, 55))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Alumnostxt)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BuscadorAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Alumnostxt, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(BuscadorAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(EditarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AgregarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EliminarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55))
-        );
+        add(Busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 30, 51, 50));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AgreagarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgreagarBotonMouseClicked
+        AñadirAlumno ventanaEmergente = new AñadirAlumno();
+        ventanaEmergente.setVisible(true);
+    }//GEN-LAST:event_AgreagarBotonMouseClicked
+
+    private void EditarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarBotonMouseClicked
+        EditarAlumno ventanaEmergente = new EditarAlumno();
+        ventanaEmergente.setVisible(true);
+    }//GEN-LAST:event_EditarBotonMouseClicked
+
+    private void ElimnarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ElimnarBotonMouseClicked
+        AlertaEliminar ventanaEmergente = new AlertaEliminar();
+        ventanaEmergente.setVisible(true);
+    }//GEN-LAST:event_ElimnarBotonMouseClicked
+
+    private void ElimnarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ElimnarBotonMouseEntered
+         EliminarPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_ElimnarBotonMouseEntered
+
+    private void ElimnarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ElimnarBotonMouseExited
+        EliminarPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_ElimnarBotonMouseExited
+
+    private void EditarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarBotonMouseEntered
+         EditarPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_EditarBotonMouseEntered
+
+    private void EditarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarBotonMouseExited
+        EditarPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_EditarBotonMouseExited
+
+    private void AgreagarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgreagarBotonMouseEntered
+         AgregarPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_AgreagarBotonMouseEntered
+
+    private void AgreagarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgreagarBotonMouseExited
+        AgregarPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_AgreagarBotonMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

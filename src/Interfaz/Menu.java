@@ -18,6 +18,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -150,17 +151,11 @@ public class Menu extends javax.swing.JFrame {
         InstructoresPanel.setLayout(InstructoresPanelLayout);
         InstructoresPanelLayout.setHorizontalGroup(
             InstructoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(InstructoresPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(BotonInstructores, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(BotonInstructores, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
         );
         InstructoresPanelLayout.setVerticalGroup(
             InstructoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(InstructoresPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(BotonInstructores, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(BotonInstructores, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
         );
 
         PanelMenuLateral.add(InstructoresPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, -1, -1));
@@ -174,6 +169,12 @@ public class Menu extends javax.swing.JFrame {
         BotonAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BotonAlumnosMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BotonAlumnosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BotonAlumnosMouseExited(evt);
             }
         });
 
@@ -202,6 +203,14 @@ public class Menu extends javax.swing.JFrame {
         BotonCertificaciones.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         BotonCertificaciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         BotonCertificaciones.setText("CERTIFICACIONES");
+        BotonCertificaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BotonCertificacionesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BotonCertificacionesMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout CertificacionesPanelLayout = new javax.swing.GroupLayout(CertificacionesPanel);
         CertificacionesPanel.setLayout(CertificacionesPanelLayout);
@@ -225,6 +234,14 @@ public class Menu extends javax.swing.JFrame {
         BotonMaterial.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         BotonMaterial.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         BotonMaterial.setText("MATERIAL");
+        BotonMaterial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BotonMaterialMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BotonMaterialMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout MaterialPanelLayout = new javax.swing.GroupLayout(MaterialPanel);
         MaterialPanel.setLayout(MaterialPanelLayout);
@@ -251,6 +268,14 @@ public class Menu extends javax.swing.JFrame {
         BotonInformes.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         BotonInformes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         BotonInformes.setText("INFORMES");
+        BotonInformes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BotonInformesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BotonInformesMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout InformesPanelLayout = new javax.swing.GroupLayout(InformesPanel);
         InformesPanel.setLayout(InformesPanelLayout);
@@ -377,6 +402,38 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         InstructoresPanel.setBackground(new Color (80,200,120));
     }//GEN-LAST:event_BotonInstructoresMouseExited
+
+    private void BotonAlumnosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonAlumnosMouseEntered
+        AlumnosPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_BotonAlumnosMouseEntered
+
+    private void BotonAlumnosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonAlumnosMouseExited
+        AlumnosPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_BotonAlumnosMouseExited
+
+    private void BotonMaterialMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonMaterialMouseEntered
+        MaterialPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_BotonMaterialMouseEntered
+
+    private void BotonMaterialMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonMaterialMouseExited
+        MaterialPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_BotonMaterialMouseExited
+
+    private void BotonCertificacionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonCertificacionesMouseEntered
+        CertificacionesPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_BotonCertificacionesMouseEntered
+
+    private void BotonCertificacionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonCertificacionesMouseExited
+        CertificacionesPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_BotonCertificacionesMouseExited
+
+    private void BotonInformesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonInformesMouseEntered
+         InformesPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_BotonInformesMouseEntered
+
+    private void BotonInformesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonInformesMouseExited
+        InformesPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_BotonInformesMouseExited
 
     /**
      * @param args the command line arguments
