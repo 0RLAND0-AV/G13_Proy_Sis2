@@ -4,6 +4,8 @@
  */
 package Interfaz;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Frank
@@ -256,7 +258,12 @@ public class EditarProgrma1 extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_InstructorComboBoxActionPerformed
 
-
+    public void InstructoresComboBox(ArrayList<String>instructores){
+        for(String nombreInstructor:instructores){
+            InstructorComboBox.addItem(nombreInstructor);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CancelarBoton;
     private javax.swing.JPanel CancelarPanel;
