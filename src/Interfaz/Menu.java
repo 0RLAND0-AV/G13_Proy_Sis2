@@ -4,6 +4,9 @@
  */
 package Interfaz;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+
 /**
  *
  * @author jhona
@@ -26,50 +29,354 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        PanelMenuLateral = new javax.swing.JPanel();
+        InicioPanel = new javax.swing.JPanel();
+        BotonInicio = new javax.swing.JLabel();
+        ProgramasPanel = new javax.swing.JPanel();
+        BotonProgramas = new javax.swing.JLabel();
+        InstructoresPanel = new javax.swing.JPanel();
+        BotonInstructores = new javax.swing.JLabel();
+        AlumnosPanel = new javax.swing.JPanel();
+        BotonAlumnos = new javax.swing.JLabel();
+        CertificacionesPanel = new javax.swing.JPanel();
+        BotonCertificaciones = new javax.swing.JLabel();
+        MaterialPanel = new javax.swing.JPanel();
+        BotonMaterial = new javax.swing.JLabel();
+        InformesPanel = new javax.swing.JPanel();
+        BotonInformes = new javax.swing.JLabel();
+        HeaderPanel = new javax.swing.JPanel();
+        PanelCambiante = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1200, 800));
+        setMinimumSize(new java.awt.Dimension(1200, 800));
+        setPreferredSize(new java.awt.Dimension(1200, 800));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 691, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 128, Short.MAX_VALUE)
-        );
+        PanelMenuLateral.setBackground(new java.awt.Color(80, 200, 120));
+        PanelMenuLateral.setMinimumSize(new java.awt.Dimension(300, 800));
+        PanelMenuLateral.setPreferredSize(new java.awt.Dimension(320, 800));
+        PanelMenuLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel1.setText("Esta es la ventana de menu");
+        InicioPanel.setBackground(new java.awt.Color(80, 200, 120));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        BotonInicio.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BotonInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BotonInicio.setText("INICIO");
+        BotonInicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BotonInicioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BotonInicioMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout InicioPanelLayout = new javax.swing.GroupLayout(InicioPanel);
+        InicioPanel.setLayout(InicioPanelLayout);
+        InicioPanelLayout.setHorizontalGroup(
+            InicioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InicioPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotonInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        InicioPanelLayout.setVerticalGroup(
+            InicioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InicioPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotonInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        PanelMenuLateral.add(InicioPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 320, -1));
+
+        ProgramasPanel.setBackground(new java.awt.Color(80, 200, 120));
+        ProgramasPanel.setPreferredSize(new java.awt.Dimension(320, 85));
+
+        BotonProgramas.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BotonProgramas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BotonProgramas.setText("PROGRAMAS");
+        BotonProgramas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonProgramasMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BotonProgramasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BotonProgramasMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ProgramasPanelLayout = new javax.swing.GroupLayout(ProgramasPanel);
+        ProgramasPanel.setLayout(ProgramasPanelLayout);
+        ProgramasPanelLayout.setHorizontalGroup(
+            ProgramasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ProgramasPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotonProgramas, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        ProgramasPanelLayout.setVerticalGroup(
+            ProgramasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ProgramasPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotonProgramas, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        PanelMenuLateral.add(ProgramasPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 320, -1));
+
+        InstructoresPanel.setBackground(new java.awt.Color(80, 200, 120));
+        InstructoresPanel.setPreferredSize(new java.awt.Dimension(320, 85));
+
+        BotonInstructores.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BotonInstructores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BotonInstructores.setText("INSTRUCTORES");
+        BotonInstructores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonInstructoresMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BotonInstructoresMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BotonInstructoresMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout InstructoresPanelLayout = new javax.swing.GroupLayout(InstructoresPanel);
+        InstructoresPanel.setLayout(InstructoresPanelLayout);
+        InstructoresPanelLayout.setHorizontalGroup(
+            InstructoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InstructoresPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotonInstructores, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        InstructoresPanelLayout.setVerticalGroup(
+            InstructoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InstructoresPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotonInstructores, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        PanelMenuLateral.add(InstructoresPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, -1, -1));
+
+        AlumnosPanel.setBackground(new java.awt.Color(80, 200, 120));
+        AlumnosPanel.setPreferredSize(new java.awt.Dimension(320, 85));
+
+        BotonAlumnos.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BotonAlumnos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BotonAlumnos.setText("ALUMNOS");
+        BotonAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonAlumnosMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AlumnosPanelLayout = new javax.swing.GroupLayout(AlumnosPanel);
+        AlumnosPanel.setLayout(AlumnosPanelLayout);
+        AlumnosPanelLayout.setHorizontalGroup(
+            AlumnosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AlumnosPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotonAlumnos, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        AlumnosPanelLayout.setVerticalGroup(
+            AlumnosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AlumnosPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotonAlumnos, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        PanelMenuLateral.add(AlumnosPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, -1, -1));
+
+        CertificacionesPanel.setBackground(new java.awt.Color(80, 200, 120));
+        CertificacionesPanel.setPreferredSize(new java.awt.Dimension(320, 85));
+
+        BotonCertificaciones.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BotonCertificaciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BotonCertificaciones.setText("CERTIFICACIONES");
+
+        javax.swing.GroupLayout CertificacionesPanelLayout = new javax.swing.GroupLayout(CertificacionesPanel);
+        CertificacionesPanel.setLayout(CertificacionesPanelLayout);
+        CertificacionesPanelLayout.setHorizontalGroup(
+            CertificacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(BotonCertificaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+        );
+        CertificacionesPanelLayout.setVerticalGroup(
+            CertificacionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CertificacionesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotonCertificaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        PanelMenuLateral.add(CertificacionesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, -1, -1));
+
+        MaterialPanel.setBackground(new java.awt.Color(80, 200, 120));
+        MaterialPanel.setPreferredSize(new java.awt.Dimension(320, 85));
+
+        BotonMaterial.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BotonMaterial.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BotonMaterial.setText("MATERIAL");
+
+        javax.swing.GroupLayout MaterialPanelLayout = new javax.swing.GroupLayout(MaterialPanel);
+        MaterialPanel.setLayout(MaterialPanelLayout);
+        MaterialPanelLayout.setHorizontalGroup(
+            MaterialPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MaterialPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotonMaterial, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        MaterialPanelLayout.setVerticalGroup(
+            MaterialPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MaterialPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotonMaterial, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        PanelMenuLateral.add(MaterialPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, -1, -1));
+
+        InformesPanel.setBackground(new java.awt.Color(80, 200, 120));
+        InformesPanel.setPreferredSize(new java.awt.Dimension(320, 85));
+
+        BotonInformes.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BotonInformes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BotonInformes.setText("INFORMES");
+
+        javax.swing.GroupLayout InformesPanelLayout = new javax.swing.GroupLayout(InformesPanel);
+        InformesPanel.setLayout(InformesPanelLayout);
+        InformesPanelLayout.setHorizontalGroup(
+            InformesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InformesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotonInformes, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        InformesPanelLayout.setVerticalGroup(
+            InformesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InformesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotonInformes, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        PanelMenuLateral.add(InformesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 320, -1));
+
+        getContentPane().add(PanelMenuLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, -1));
+
+        HeaderPanel.setBackground(new java.awt.Color(0, 0, 0));
+        HeaderPanel.setMinimumSize(new java.awt.Dimension(880, 100));
+        HeaderPanel.setPreferredSize(new java.awt.Dimension(880, 100));
+
+        javax.swing.GroupLayout HeaderPanelLayout = new javax.swing.GroupLayout(HeaderPanel);
+        HeaderPanel.setLayout(HeaderPanelLayout);
+        HeaderPanelLayout.setHorizontalGroup(
+            HeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 890, Short.MAX_VALUE)
+        );
+        HeaderPanelLayout.setVerticalGroup(
+            HeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(HeaderPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 890, 70));
+
+        PanelCambiante.setBackground(new java.awt.Color(255, 51, 204));
+        PanelCambiante.setMinimumSize(new java.awt.Dimension(900, 720));
+
+        javax.swing.GroupLayout PanelCambianteLayout = new javax.swing.GroupLayout(PanelCambiante);
+        PanelCambiante.setLayout(PanelCambianteLayout);
+        PanelCambianteLayout.setHorizontalGroup(
+            PanelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+        );
+        PanelCambianteLayout.setVerticalGroup(
+            PanelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 730, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(PanelCambiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 890, 730));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BotonProgramasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonProgramasMouseClicked
+        // TODO add your handling code here:
+        ProgramasBackground pb = new ProgramasBackground();
+        pb.setSize(900, 720);
+        pb.setLocation(0, 0);
+        
+        PanelCambiante.removeAll();
+        PanelCambiante.add(pb, BorderLayout.CENTER);
+        PanelCambiante.revalidate();
+        PanelCambiante.repaint();
+        
+        
+    }//GEN-LAST:event_BotonProgramasMouseClicked
+
+    private void BotonInstructoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonInstructoresMouseClicked
+        // TODO add your handling code here:
+        InstructoresBackground ib = new InstructoresBackground();
+        ib.setSize(900, 720);
+        ib.setLocation(0, 0);
+        
+        PanelCambiante.removeAll();
+        PanelCambiante.add(ib, BorderLayout.CENTER);
+        PanelCambiante.revalidate();
+        PanelCambiante.repaint();
+    }//GEN-LAST:event_BotonInstructoresMouseClicked
+
+    private void BotonAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonAlumnosMouseClicked
+        // TODO add your handling code here:
+        AlumnosBackground ab = new AlumnosBackground();
+        ab.setSize(900, 720);
+        ab.setLocation(0, 0);
+        
+        PanelCambiante.removeAll();
+        PanelCambiante.add(ab, BorderLayout.CENTER);
+        PanelCambiante.revalidate();
+        PanelCambiante.repaint();
+    }//GEN-LAST:event_BotonAlumnosMouseClicked
+
+    private void BotonInicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonInicioMouseEntered
+        // TODO add your handling code here:
+        InicioPanel.setBackground(new Color (32,67,114));
+        //InicioPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_BotonInicioMouseEntered
+
+    private void BotonInicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonInicioMouseExited
+        // TODO add your handling code here:
+        InicioPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_BotonInicioMouseExited
+
+    private void BotonProgramasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonProgramasMouseEntered
+        // TODO add your handling code here:
+        ProgramasPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_BotonProgramasMouseEntered
+
+    private void BotonProgramasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonProgramasMouseExited
+        // TODO add your handling code here:
+        ProgramasPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_BotonProgramasMouseExited
+
+    private void BotonInstructoresMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonInstructoresMouseEntered
+        // TODO add your handling code here:
+        InstructoresPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_BotonInstructoresMouseEntered
+
+    private void BotonInstructoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonInstructoresMouseExited
+        // TODO add your handling code here:
+        InstructoresPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_BotonInstructoresMouseExited
 
     /**
      * @param args the command line arguments
@@ -107,7 +414,22 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel AlumnosPanel;
+    private javax.swing.JLabel BotonAlumnos;
+    private javax.swing.JLabel BotonCertificaciones;
+    private javax.swing.JLabel BotonInformes;
+    private javax.swing.JLabel BotonInicio;
+    private javax.swing.JLabel BotonInstructores;
+    private javax.swing.JLabel BotonMaterial;
+    private javax.swing.JLabel BotonProgramas;
+    private javax.swing.JPanel CertificacionesPanel;
+    private javax.swing.JPanel HeaderPanel;
+    private javax.swing.JPanel InformesPanel;
+    private javax.swing.JPanel InicioPanel;
+    private javax.swing.JPanel InstructoresPanel;
+    private javax.swing.JPanel MaterialPanel;
+    private javax.swing.JPanel PanelCambiante;
+    private javax.swing.JPanel PanelMenuLateral;
+    private javax.swing.JPanel ProgramasPanel;
     // End of variables declaration//GEN-END:variables
 }
