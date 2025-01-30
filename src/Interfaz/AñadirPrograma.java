@@ -4,6 +4,7 @@
  */
 package Interfaz;
 
+import ControladorBD.QuerysProgramas;
 import java.awt.Color;
 
 /**
@@ -205,6 +206,9 @@ public class AñadirPrograma extends javax.swing.JFrame {
 
         GuardarPanel.setBackground(new java.awt.Color(80, 200, 120));
         GuardarPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GuardarPanelMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 GuardarPanelMouseEntered(evt);
             }
@@ -215,11 +219,25 @@ public class AñadirPrograma extends javax.swing.JFrame {
         GuardarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         GuardarBoton.setText("Guardar");
         GuardarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GuardarBotonMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 GuardarBotonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 GuardarBotonMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                GuardarBotonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                GuardarBotonMouseReleased(evt);
+            }
+        });
+        GuardarBoton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                GuardarBotonKeyPressed(evt);
             }
         });
 
@@ -290,6 +308,7 @@ public class AñadirPrograma extends javax.swing.JFrame {
 
     private void CancelarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarBotonMouseClicked
         dispose();
+        
     }//GEN-LAST:event_CancelarBotonMouseClicked
 
     private void CancelarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarBotonMouseEntered
@@ -306,11 +325,38 @@ public class AñadirPrograma extends javax.swing.JFrame {
 
     private void GuardarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseEntered
         GuardarPanel.setBackground(new Color (32,67,114));
+        
     }//GEN-LAST:event_GuardarBotonMouseEntered
 
     private void GuardarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseExited
         GuardarPanel.setBackground(new Color (80,200,120));
     }//GEN-LAST:event_GuardarBotonMouseExited
+
+    private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
+        // TODO add your handling code here:
+        QuerysProgramas qp= new QuerysProgramas();
+        qp.insertarPrograma(NombreCampo.getText(), FechaInicioCampo.getText(), FechaInicioCampo.getText(),Integer.parseInt(CostoCampo.getText().trim()) , null, DetallesCampo.getText(), Integer.parseInt(MaximoInscritosCampo.getText().trim()), 1);
+        dispose();
+    }//GEN-LAST:event_GuardarBotonMouseClicked
+
+    private void GuardarPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarPanelMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_GuardarPanelMouseClicked
+
+    private void GuardarBotonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMousePressed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_GuardarBotonMousePressed
+
+    private void GuardarBotonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseReleased
+        // TODO add your handling code here:
+  
+    }//GEN-LAST:event_GuardarBotonMouseReleased
+
+    private void GuardarBotonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_GuardarBotonKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GuardarBotonKeyPressed
 
     /**
      * @param args the command line arguments

@@ -21,8 +21,8 @@ public void insertarInstructor(String nombre, String apellidoPaterno, String ape
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     // Consulta para insertar en la tabla instructores, con ID_Especialidad como NULL
-    String sqlInstructor = "INSERT INTO instructor (ID_Persona, ID_Especialidad, Usuario, Contraseña) " +
-                           "VALUES (?, NULL, NULL, NULL)"; // Dejamos ID_Especialidad como NULL
+    String sqlInstructor = "INSERT INTO instructor (ID_Persona, ID_Especialidad, Usuario, Contraseña,ID_Programa) " +
+                           "VALUES (?, NULL, NULL, NULL,NULL)"; // Dejamos ID_Especialidad como NULL
 
     ConexionBD conexionBD = new ConexionBD();
     conexionBD.conectar();
@@ -166,15 +166,15 @@ public static void main(String[] args) {
     QuerysInstructores dao = new QuerysInstructores();
 
     // Insertar un instructor sin especialidad (ID_Especialidad será NULL)
-    /*dao.insertarInstructor("Juan", "Pérez", "González", "123456789", "98765432", "1985-05-15", 
-                           "Calle Ficticia 123", "juan.perez@mail.com");*/
+    dao.insertarInstructor("Juan", "Pérez", "González", "123456789", "98765432", "1985-05-15", 
+                           "Calle Ficticia 123", "juan.perez@mail.com");
 
     // Actualizar un instructor con ID_Instructor 1 (asegúrate de que el instructor con este ID exista)
     /*dao.actualizarInstructor(5, "Juan", "Pérez", "González", "987654321", "98765432", "1985-05-15", 
                              "Calle Real 456", "juan.perez.updated@mail.com");*/
 
     // Eliminar un instructor con ID_Instructor 1 (asegúrate de que el instructor con este ID exista)
-    dao.eliminarInstructor(5);
+    //dao.eliminarInstructor(5);
 }
 
 

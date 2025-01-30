@@ -4,6 +4,7 @@
  */
 package Interfaz;
 
+import ControladorBD.QuerysAlumnos;
 import java.awt.Color;
 
 /**
@@ -480,6 +481,9 @@ public class AñadirAlumno extends javax.swing.JFrame {
 
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
         // TODO add your handling code here:
+        QuerysAlumnos qi= new QuerysAlumnos();
+        qi.insertarAlumno(NombreCampo.getText(), ApellidoPaternoCampo.getText(), ApellidoMaternoCampo.getText(), TelefonoCampo.getText(), CICampo.getText(), FechaNacimientoCampo.getText(), DireccionCampo.getText(), CorreoElectronicoCampo.getText(),1);
+        dispose();
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
     private void GuardarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseEntered

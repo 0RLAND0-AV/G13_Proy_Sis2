@@ -228,9 +228,8 @@ public class ProgramasBackground extends javax.swing.JPanel {
     }//GEN-LAST:event_AgregarBotonMouseExited
 
     private void AgregarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarBotonMouseClicked
-        AñadirInstructo as = new AñadirInstructo();
-        as.setVisible(true);
-        
+        AñadirPrograma ap= new AñadirPrograma();
+        ap.setVisible(true);
     }//GEN-LAST:event_AgregarBotonMouseClicked
 
     private void EliminarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarBotonMouseClicked

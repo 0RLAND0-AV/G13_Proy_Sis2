@@ -4,6 +4,7 @@
  */
 package Interfaz;
 
+import ControladorBD.QuerysInstructores;
 import java.awt.Color;
 
 /**
@@ -108,6 +109,9 @@ public class AñadirInstructo extends javax.swing.JFrame {
         GuardarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         GuardarBoton.setText("Guardar");
         GuardarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GuardarBotonMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 GuardarBotonMouseEntered(evt);
             }
@@ -490,6 +494,13 @@ public class AñadirInstructo extends javax.swing.JFrame {
     private void GuardarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseExited
         GuardarPanel.setBackground(new Color (80,200,120));
     }//GEN-LAST:event_GuardarBotonMouseExited
+
+    private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
+        // TODO add your handling code here:
+        QuerysInstructores qi= new QuerysInstructores();
+        qi.insertarInstructor(NombreCampo.getText(), ApellidoPaternoCampo.getText(), ApellidoMaternoCampo.getText(), TelefonoCampo.getText(), CICampo.getText(), FechaNacimientoCampo.getText(), DireccionCampo.getText(), CorreoElectronicoCampo.getText());
+        dispose();
+    }//GEN-LAST:event_GuardarBotonMouseClicked
 
     /**
      * @param args the command line arguments
