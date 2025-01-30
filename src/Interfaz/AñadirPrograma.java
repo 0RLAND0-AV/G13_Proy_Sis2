@@ -364,7 +364,7 @@ public class AñadirPrograma extends javax.swing.JFrame {
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
         // TODO add your handling code here:
         QuerysProgramas qp= new QuerysProgramas();
-        qp.insertarPrograma(NombreCampo.getText(), FechaInicioCampo.getText(), FechaInicioCampo.getText(),Integer.parseInt(CostoCampo.getText().trim()) , null, DetallesCampo.getText(), Integer.parseInt(MaximoInscritosCampo.getText().trim()), 1);
+        qp.insertarPrograma(NombreCampo.getText(), FechaInicioCampo.getText(), FechaFinCampo.getText(),Integer.parseInt(CostoCampo.getText().trim()) , null, DetallesCampo.getText(), Integer.parseInt(MaximoInscritosCampo.getText().trim()), 1);
         dispose();
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
