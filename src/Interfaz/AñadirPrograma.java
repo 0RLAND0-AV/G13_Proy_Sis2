@@ -6,6 +6,7 @@ package Interfaz;
 
 import ControladorBD.QuerysProgramas;
 import java.awt.Color;
+import java.util.ArrayList;
 
 /**
  *
@@ -337,6 +338,7 @@ public class AñadirPrograma extends javax.swing.JFrame {
         QuerysProgramas qp= new QuerysProgramas();
         qp.insertarPrograma(NombreCampo.getText(), FechaInicioCampo.getText(), FechaInicioCampo.getText(),Integer.parseInt(CostoCampo.getText().trim()) , null, DetallesCampo.getText(), Integer.parseInt(MaximoInscritosCampo.getText().trim()), 1);
         dispose();
+        
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
     private void GuardarPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarPanelMouseClicked
@@ -357,7 +359,7 @@ public class AñadirPrograma extends javax.swing.JFrame {
     private void GuardarBotonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_GuardarBotonKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_GuardarBotonKeyPressed
-
+    
     /**
      * @param args the command line arguments
      */

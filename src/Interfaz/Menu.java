@@ -337,6 +337,7 @@ public class Menu extends javax.swing.JFrame {
     private void BotonProgramasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonProgramasMouseClicked
         // TODO add your handling code here:
         ProgramasBackground pb = new ProgramasBackground();
+        //pb.llenarTabla();
         pb.setSize(900, 720);
         pb.setLocation(0, 0);
         

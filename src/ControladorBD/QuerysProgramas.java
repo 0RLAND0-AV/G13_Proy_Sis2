@@ -9,10 +9,13 @@ package ControladorBD;
  * @author M.S.I
  */
 
+import com.mysql.cj.xdevapi.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class QuerysProgramas {
 
@@ -140,6 +143,39 @@ public void eliminarPrograma(int ID_Programa) {
     }
 }
 
+public ArrayList<Programas> obtenerDatosDeLosProgramas(){
+    String sql="SELECT ID_Programa, Nombre, Horario, Fecha_inicio, Fecha_fin FROM programa";
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+    ArrayList<Programas> programasExistentes=new ArrayList<>();
+    try (Connection conn = conexionBD.getConexion()) {
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet resultSet=stmt.executeQuery(sql);
+        
+        while(resultSet.next()){
+            int id=resultSet.getInt("ID_Programa");
+            String sql2="SELECT COUNT(*) FROM inscripcion WHERE"+id;
+            PreparedStatement stmt2 = conn.prepareStatement(sql2);
+            ResultSet result2=stmt2.executeQuery(sql2);
+            int inscritos=0;
+            if(result2.next())inscritos=result2.getInt("total");
+            result2.close();;
+            String nombre=resultSet.getString("Nombre");
+            String horario=resultSet.getTime("Horario").toString();
+            Date inicio=resultSet.getDate("Fecha_inicio");
+            Date fin=resultSet.getDate("Fecha_fin");
+            Programas programa=new Programas(id,nombre,inscritos,horario,inicio.after(fin));
+            programasExistentes.add(programa);
+        }
+    } catch (SQLException e) {
+        System.out.println("❌ Error al eliminar el programa.");
+        e.printStackTrace();
+    } finally {
+        conexionBD.desconectar();
+    }
+    return programasExistentes;
+}
+
 
     public static void main(String[] args) {
         // Crear una instancia de la clase donde se encuentran los métodos
@@ -151,13 +187,13 @@ public void eliminarPrograma(int ID_Programa) {
                                       "Este es un programa de prueba", 30, 6);
 
         // Probar el método actualizarPrograma
-        /*System.out.println("\nProbando actualizarPrograma...");
+        System.out.println("\nProbando actualizarPrograma...");
         programaDAO.actualizarPrograma(1, "Programa de Ejemplo Actualizado", "2025-02-01", "2025-04-01", 1200, 
                                        "Lunes a Viernes 09:00-11:00", "Este es un programa actualizado", 35, 1);
 
         // Probar el método eliminarPrograma
         System.out.println("\nProbando eliminarPrograma...");
-        programaDAO.eliminarPrograma(1);*/
+        programaDAO.eliminarPrograma(1);
     }
 }
 

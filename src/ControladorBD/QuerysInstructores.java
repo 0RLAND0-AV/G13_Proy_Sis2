@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class QuerysInstructores {
 public void insertarInstructor(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String ci,
@@ -162,6 +164,9 @@ public void eliminarInstructor(int idInstructor) {
         conexionBD.desconectar(); // Cerrar conexión
     }
 }
+
+
+
 public static void main(String[] args) {
     QuerysInstructores dao = new QuerysInstructores();
 
@@ -170,11 +175,11 @@ public static void main(String[] args) {
                            "Calle Ficticia 123", "juan.perez@mail.com");
 
     // Actualizar un instructor con ID_Instructor 1 (asegúrate de que el instructor con este ID exista)
-    /*dao.actualizarInstructor(5, "Juan", "Pérez", "González", "987654321", "98765432", "1985-05-15", 
-                             "Calle Real 456", "juan.perez.updated@mail.com");*/
+    dao.actualizarInstructor(5, "Juan", "Pérez", "González", "987654321", "98765432", "1985-05-15", 
+                             "Calle Real 456", "juan.perez.updated@mail.com");
 
     // Eliminar un instructor con ID_Instructor 1 (asegúrate de que el instructor con este ID exista)
-    //dao.eliminarInstructor(5);
+    dao.eliminarInstructor(5);
 }
 
 

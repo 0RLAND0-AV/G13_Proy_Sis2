@@ -4,13 +4,17 @@
  */
 package Interfaz;
 
+import ControladorBD.Programas;
+import ControladorBD.QuerysProgramas;
 import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author jhona
  */
 public class ProgramasBackground extends javax.swing.JPanel {
+
 
     /**
      * Creates new form ProgramasBackground
@@ -230,6 +234,7 @@ public class ProgramasBackground extends javax.swing.JPanel {
     private void AgregarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarBotonMouseClicked
         AñadirPrograma ap= new AñadirPrograma();
         ap.setVisible(true);
+        
     }//GEN-LAST:event_AgregarBotonMouseClicked
 
     private void EliminarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarBotonMouseClicked
@@ -242,6 +247,28 @@ public class ProgramasBackground extends javax.swing.JPanel {
         ventanaEmergente.setVisible(true);
     }//GEN-LAST:event_EditarBotonMouseClicked
 
+    /*public void llenarTabla(){
+        QuerysProgramas qr=new QuerysProgramas();
+        DefaultTableModel modelo=new javax.swing.table.DefaultTableModel(new Object[][]{},new String [] {
+                "ID", "Nombre", "Estado", "No. Inscritos", "Horario", "null"
+            }){
+                public boolean isCellEditable(int row,int column){return false;}
+                Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+            };
+        
+        TablaProgramas.setModel(modelo);
+        for(Programas programa:qr.obtenerDatosDeLosProgramas()){
+            modelo.addRow(new Object[]{programa.getId(),programa.getNombre(),programa.getInscritos(),
+                programa.getHorario(),(programa.isEstado())?"Activo":"Inactivo"});
+        }
+        repaint();
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AgregarBoton;

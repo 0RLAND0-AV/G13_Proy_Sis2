@@ -140,9 +140,9 @@ public void eliminarAlumno(int idAlumno) {
         QuerysAlumnos alumnoDAO = new QuerysAlumnos(); 
 
         // Prueba de inserción de un alumno
-        /*System.out.println("\n🔹 Insertando un nuevo alumno...");
+        System.out.println("\n🔹 Insertando un nuevo alumno...");
         alumnoDAO.insertarAlumno("Juan", "Pérez", "Gómez", "789456123", "12345678",
-                "2000-05-10", "Calle Falsa 123", "juan@example.com", 2);*/
+                "2000-05-10", "Calle Falsa 123", "juan@example.com", 2);
 
         // Prueba de actualización de un alumno
         System.out.println("\n🔹 Actualizando alumno con ID 1...");
@@ -150,8 +150,8 @@ public void eliminarAlumno(int idAlumno) {
                 "12345678", "2000-05-10", "Avenida Siempre Viva", "juan_carlos@example.com", 3);
 
         // Prueba de eliminación de un alumno
-        /*System.out.println("\n🔹 Eliminando alumno con ID 1...");
-        alumnoDAO.eliminarAlumno(5);*/
+        System.out.println("\n🔹 Eliminando alumno con ID 1...");
+        alumnoDAO.eliminarAlumno(5);
     }
 }
 
