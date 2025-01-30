@@ -106,6 +106,11 @@ public class EditarPrograma extends javax.swing.JFrame {
                 NombreCampoActionPerformed(evt);
             }
         });
+        NombreCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NombreCampoKeyTyped(evt);
+            }
+        });
         PanelPrincipal.add(NombreCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 210, 30));
 
         FechaInicioCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -113,6 +118,11 @@ public class EditarPrograma extends javax.swing.JFrame {
         FechaInicioCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FechaInicioCampoActionPerformed(evt);
+            }
+        });
+        FechaInicioCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                FechaInicioCampoKeyTyped(evt);
             }
         });
         PanelPrincipal.add(FechaInicioCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 210, 30));
@@ -124,6 +134,11 @@ public class EditarPrograma extends javax.swing.JFrame {
                 FechaFinCampoActionPerformed(evt);
             }
         });
+        FechaFinCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                FechaFinCampoKeyTyped(evt);
+            }
+        });
         PanelPrincipal.add(FechaFinCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 210, 30));
 
         HorarioCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -131,6 +146,11 @@ public class EditarPrograma extends javax.swing.JFrame {
         HorarioCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HorarioCampoActionPerformed(evt);
+            }
+        });
+        HorarioCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                HorarioCampoKeyTyped(evt);
             }
         });
         PanelPrincipal.add(HorarioCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 210, 30));
@@ -142,6 +162,11 @@ public class EditarPrograma extends javax.swing.JFrame {
                 MaximoInscritosCampoActionPerformed(evt);
             }
         });
+        MaximoInscritosCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                MaximoInscritosCampoKeyTyped(evt);
+            }
+        });
         PanelPrincipal.add(MaximoInscritosCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 140, 210, 30));
 
         CostoCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -149,6 +174,11 @@ public class EditarPrograma extends javax.swing.JFrame {
         CostoCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CostoCampoActionPerformed(evt);
+            }
+        });
+        CostoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CostoCampoKeyTyped(evt);
             }
         });
         PanelPrincipal.add(CostoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, 210, 30));
@@ -301,6 +331,36 @@ public class EditarPrograma extends javax.swing.JFrame {
     private void GuardarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseExited
         GuardarPanel.setBackground(new Color (80,200,120));
     }//GEN-LAST:event_GuardarBotonMouseExited
+
+    private void NombreCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.soloLetras(evt);
+    }//GEN-LAST:event_NombreCampoKeyTyped
+
+    private void FechaInicioCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FechaInicioCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.validarFecha(evt, FechaInicioCampo);
+    }//GEN-LAST:event_FechaInicioCampoKeyTyped
+
+    private void FechaFinCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FechaFinCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.validarFecha(evt, FechaFinCampo);
+    }//GEN-LAST:event_FechaFinCampoKeyTyped
+
+    private void MaximoInscritosCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MaximoInscritosCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.soloNumeros(evt);
+    }//GEN-LAST:event_MaximoInscritosCampoKeyTyped
+
+    private void CostoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CostoCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.soloNumeros(evt);
+    }//GEN-LAST:event_CostoCampoKeyTyped
+
+    private void HorarioCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HorarioCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.validarHorario(evt, HorarioCampo);
+    }//GEN-LAST:event_HorarioCampoKeyTyped
 
     /**
      * @param args the command line arguments

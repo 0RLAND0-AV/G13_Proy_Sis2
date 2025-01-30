@@ -161,12 +161,22 @@ public class EditarInstructor extends javax.swing.JFrame {
                 FechaNacimientoCampoActionPerformed(evt);
             }
         });
+        FechaNacimientoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                FechaNacimientoCampoKeyTyped(evt);
+            }
+        });
 
         NombreCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         NombreCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         NombreCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NombreCampoActionPerformed(evt);
+            }
+        });
+        NombreCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NombreCampoKeyTyped(evt);
             }
         });
 
@@ -177,6 +187,11 @@ public class EditarInstructor extends javax.swing.JFrame {
                 ApellidoPaternoCampoActionPerformed(evt);
             }
         });
+        ApellidoPaternoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ApellidoPaternoCampoKeyTyped(evt);
+            }
+        });
 
         ApellidoMaternoCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         ApellidoMaternoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -185,12 +200,22 @@ public class EditarInstructor extends javax.swing.JFrame {
                 ApellidoMaternoCampoActionPerformed(evt);
             }
         });
+        ApellidoMaternoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ApellidoMaternoCampoKeyTyped(evt);
+            }
+        });
 
         CICampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         CICampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         CICampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CICampoActionPerformed(evt);
+            }
+        });
+        CICampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CICampoKeyTyped(evt);
             }
         });
 
@@ -303,6 +328,11 @@ public class EditarInstructor extends javax.swing.JFrame {
         TelefonoCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TelefonoCampoActionPerformed(evt);
+            }
+        });
+        TelefonoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TelefonoCampoKeyTyped(evt);
             }
         });
 
@@ -487,6 +517,36 @@ public class EditarInstructor extends javax.swing.JFrame {
     private void GuardarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseExited
         GuardarPanel.setBackground(new Color (80,200,120));
     }//GEN-LAST:event_GuardarBotonMouseExited
+
+    private void NombreCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.soloLetras(evt);
+    }//GEN-LAST:event_NombreCampoKeyTyped
+
+    private void ApellidoPaternoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidoPaternoCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.soloLetras(evt);
+    }//GEN-LAST:event_ApellidoPaternoCampoKeyTyped
+
+    private void ApellidoMaternoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidoMaternoCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.soloLetras(evt);
+    }//GEN-LAST:event_ApellidoMaternoCampoKeyTyped
+
+    private void CICampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CICampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.soloNumeros(evt);
+    }//GEN-LAST:event_CICampoKeyTyped
+
+    private void FechaNacimientoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FechaNacimientoCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.validarFecha(evt, FechaNacimientoCampo);
+    }//GEN-LAST:event_FechaNacimientoCampoKeyTyped
+
+    private void TelefonoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TelefonoCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.soloNumeros(evt);
+    }//GEN-LAST:event_TelefonoCampoKeyTyped
 
     /**
      * @param args the command line arguments
