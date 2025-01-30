@@ -13,6 +13,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class QuerysProgramas {
 
@@ -53,19 +56,43 @@ public void insertarPrograma(String nombrePrograma, String fechaInicio, String f
                 int filasInstructor = stmtActualizarInstructor.executeUpdate();
 
                 if (filasInstructor > 0) {
+                    mostrarNotificacion("✅ Programa y Instructor registrados con éxito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
                     System.out.println("✅ Instructor con ID " + ID_Instructor + " actualizado con ID_Programa " + idGenerado);
                 } else {
+                    mostrarNotificacion("❌ No se encontró el instructor con ID " + ID_Instructor, "Error", JOptionPane.ERROR_MESSAGE);
                     System.out.println("❌ No se encontró el instructor con ID " + ID_Instructor);
                 }
             }
         }
     } catch (SQLException e) {
+        mostrarNotificacion("❌ Error al insertar el programa", "Error", JOptionPane.ERROR_MESSAGE);
         System.out.println("❌ Error al insertar el programa.");
         e.printStackTrace();
     } finally {
         conexionBD.desconectar();
     }
 }
+
+private void mostrarNotificacion(String mensaje, String titulo, int tipo) {
+    JDialog dialog = new JDialog();
+    dialog.setAlwaysOnTop(true);
+    JOptionPane optionPane = new JOptionPane(mensaje, tipo);
+    dialog.setContentPane(optionPane);
+    dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    dialog.pack();
+    
+    dialog.setLocationRelativeTo(null); // Centrar ventana
+    
+    new Timer().schedule(new TimerTask() {
+        @Override
+        public void run() {
+            dialog.dispose();
+        }
+    }, 2000);  // Cierra la notificación después de 2 segundos
+
+    dialog.setVisible(true);
+}
+
 
 public void actualizarPrograma(int ID_Programa, String nombrePrograma, String fechaInicio, String fechaFin,
                                int costo, String horario, String descripcion, int maxInscritos, int ID_Instructor) {

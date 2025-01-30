@@ -12,17 +12,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class QuerysInstructores {
+
 public void insertarInstructor(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String ci,
                                String fechaNacimiento, String direccion, String correoElectronico) {
-    // Consulta para insertar en la tabla persona
     String sqlPersona = "INSERT INTO persona (nombre, apellido_paterno, apellido_materno, telefono, ci, fecha_nacimiento, direccion, correo_electronico) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-    // Consulta para insertar en la tabla instructores, con ID_Especialidad como NULL
-    String sqlInstructor = "INSERT INTO instructor (ID_Persona, ID_Especialidad, Usuario, Contraseña,ID_Programa) " +
-                           "VALUES (?, NULL, NULL, NULL,NULL)"; // Dejamos ID_Especialidad como NULL
+    String sqlInstructor = "INSERT INTO instructor (ID_Persona, ID_Especialidad, Usuario, Contraseña, ID_Programa) " +
+                           "VALUES (?, NULL, NULL, NULL, NULL)"; 
 
     ConexionBD conexionBD = new ConexionBD();
     conexionBD.conectar();
@@ -31,37 +33,55 @@ public void insertarInstructor(String nombre, String apellidoPaterno, String ape
     try (PreparedStatement stmtPersona = conn.prepareStatement(sqlPersona, PreparedStatement.RETURN_GENERATED_KEYS);
          PreparedStatement stmtInstructor = conn.prepareStatement(sqlInstructor)) {
 
-        // Insertar datos en la tabla persona
         stmtPersona.setString(1, nombre);
         stmtPersona.setString(2, apellidoPaterno);
         stmtPersona.setString(3, apellidoMaterno);
         stmtPersona.setString(4, telefono);
         stmtPersona.setString(5, ci);
-        stmtPersona.setString(6, fechaNacimiento); // Formato: YYYY-MM-DD
+        stmtPersona.setString(6, fechaNacimiento);
         stmtPersona.setString(7, direccion);
         stmtPersona.setString(8, correoElectronico);
 
         int filasAfectadas = stmtPersona.executeUpdate();
         if (filasAfectadas > 0) {
-            // Obtener el ID_Persona generado automáticamente
             ResultSet generatedKeys = stmtPersona.getGeneratedKeys();
             if (generatedKeys.next()) {
                 int idPersona = generatedKeys.getInt(1);
-                System.out.println("✅ Persona agregada con ID_Persona: " + idPersona);
-
-                // Insertar en la tabla instructores con el ID_Persona obtenido y NULL para las demás columnas
-                stmtInstructor.setInt(1, idPersona); // Solo pasamos ID_Persona
+                stmtInstructor.setInt(1, idPersona);
                 stmtInstructor.executeUpdate();
+
+                mostrarNotificacion("✅ Instructor registrado con éxito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("✅ Instructor agregado con ID_Persona: " + idPersona);
             }
         }
     } catch (SQLException e) {
-        System.out.println("❌ Error al insertar el instructor.");
+        mostrarNotificacion("❌ Error al registrar el instructor", "Error", JOptionPane.ERROR_MESSAGE);
         e.printStackTrace();
     } finally {
-        conexionBD.desconectar(); // Cerrar conexión
+        conexionBD.desconectar();
     }
 }
+
+private void mostrarNotificacion(String mensaje, String titulo, int tipo) {
+    JDialog dialog = new JDialog();
+    dialog.setAlwaysOnTop(true);
+    JOptionPane optionPane = new JOptionPane(mensaje, tipo);
+    dialog.setContentPane(optionPane);
+    dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    dialog.pack();
+    
+    dialog.setLocationRelativeTo(null); // Centrar ventana
+    
+    new Timer().schedule(new TimerTask() {
+        @Override
+        public void run() {
+            dialog.dispose();
+        }
+    }, 2000);  // Cierra la notificación después de 2 segundos
+
+    dialog.setVisible(true);
+}
+
 public void actualizarInstructor(int idInstructor, String nombre, String apellidoPaterno, String apellidoMaterno,
                                  String telefono, String ci, String fechaNacimiento, String direccion,
                                  String correoElectronico) {
