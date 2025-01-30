@@ -4,7 +4,15 @@
  */
 package Interfaz;
 
+import ControladorBD.ConexionBD;
 import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+ 
 
 /**
  *
@@ -17,7 +25,7 @@ public class AlumnosBackground extends javax.swing.JPanel {
      */
     public AlumnosBackground() {
         initComponents();
-
+        //iniciarActualizacionAutomatica();
     }
 
     /**
@@ -247,6 +255,116 @@ public class AlumnosBackground extends javax.swing.JPanel {
         AgregarPanel.setBackground(new Color (80,200,120));
     }//GEN-LAST:event_AgreagarBotonMouseExited
 
+    private void iniciarActualizacionAutomatica() {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                actualizarTablaAlumnos();
+            }
+        }, 0, 1000);
+    }
+
+    public void actualizarTablaAlumnos() {
+        System.out.println("🔄 Actualizando tabla de alumnos...");
+
+        ConexionBD conexionBD = new ConexionBD();
+        conexionBD.conectar();
+        Connection conn = conexionBD.getConexion();
+
+        if (conn == null) {
+            System.out.println("❌ Error: No se pudo establecer conexión con la BD.");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) TablaAlumnos.getModel();
+        model.setRowCount(0);
+        System.out.println("🗑️ Tabla de alumnos vaciada.");
+
+        // Consulta con INNER JOIN entre alumno, persona y programa
+        String sql = "SELECT a.ID_Alumno, p.Nombre, p.Apellido_paterno, p.Apellido_materno, " +
+                     "p.Correo_electronico, a.ID_Programa " +
+                     "FROM alumno a " +
+                     "INNER JOIN persona p ON a.ID_Persona = p.ID_Persona";
+
+        List<Object[]> datosAlumnos = new ArrayList<>();
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            System.out.println("📊 Consulta ejecutada.");
+
+            int contador = 0;
+            while (rs.next()) {
+                int idAlumno = rs.getInt("ID_Alumno");
+                String nombreCompleto = rs.getString("Nombre") + " " + rs.getString("Apellido_paterno") + " " + rs.getString("Apellido_materno");
+                String correo = rs.getString("Correo_electronico");
+                int idPrograma = rs.getInt("ID_Programa");
+
+                datosAlumnos.add(new Object[]{ idAlumno, nombreCompleto, idPrograma, correo });
+                contador++;
+            }
+
+            System.out.println("✅ Total de registros obtenidos: " + contador);
+
+        } catch (SQLException e) {
+            System.out.println("❌ Error al ejecutar la consulta.");
+            e.printStackTrace();
+        } finally {
+            conexionBD.desconectar();
+            System.out.println("🔌 Desconectado de la BD.");
+        }
+
+        // Ahora llenamos la tabla usando los datos obtenidos
+        for (Object[] alumno : datosAlumnos) {
+            int idAlumno = (int) alumno[0];
+            String nombreCompleto = (String) alumno[1];
+            int idPrograma = (int) alumno[2];
+            String correo = (String) alumno[3];
+
+            // Obtener el nombre del programa y el horario
+            String[] programaInfo = obtenerProgramaYHorario(idPrograma);
+            String nombrePrograma = programaInfo[0];
+            String horario = programaInfo[1];
+
+            Object[] row = { idAlumno, nombreCompleto, nombrePrograma, correo, horario, false };
+            model.addRow(row);
+        }
+    }
+
+    private String[] obtenerProgramaYHorario(int idPrograma) {
+        String nombrePrograma = "Desconocido";
+        String horario = "No disponible";
+
+        ConexionBD conexionBD = new ConexionBD();
+        conexionBD.conectar();
+        Connection conn = conexionBD.getConexion();
+
+        if (conn == null) {
+            System.out.println("❌ Error: No se pudo obtener conexión en obtenerProgramaYHorario.");
+            return new String[]{nombrePrograma, horario};
+        }
+
+        String sqlPrograma = "SELECT Nombre, Horario FROM programa WHERE ID_Programa = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sqlPrograma)) {
+            stmt.setInt(1, idPrograma);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    nombrePrograma = rs.getString("Nombre");
+                    horario = rs.getString("Horario");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("❌ Error al obtener el nombre del programa y horario.");
+            e.printStackTrace();
+        } finally {
+            conexionBD.desconectar();
+        }
+
+        System.out.println("📌 Nombre del programa obtenido: " + nombrePrograma + " | Horario: " + horario);
+        return new String[]{nombrePrograma, horario};
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AgreagarBoton;

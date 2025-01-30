@@ -242,7 +242,7 @@ public class ProgramasBackground extends javax.swing.JPanel {
         ventanaEmergente.setVisible(true);
     }//GEN-LAST:event_EditarBotonMouseClicked
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AgregarBoton;
     private javax.swing.JPanel AgregarPanel;

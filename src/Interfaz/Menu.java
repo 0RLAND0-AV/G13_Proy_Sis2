@@ -353,6 +353,7 @@ public class Menu extends javax.swing.JFrame {
         InstructoresBackground ib = new InstructoresBackground();
         ib.setSize(900, 720);
         ib.setLocation(0, 0);
+        ib.actualizarTablaInstructores();
         
         PanelCambiante.removeAll();
         PanelCambiante.add(ib, BorderLayout.CENTER);
@@ -365,7 +366,7 @@ public class Menu extends javax.swing.JFrame {
         AlumnosBackground ab = new AlumnosBackground();
         ab.setSize(900, 720);
         ab.setLocation(0, 0);
-        
+        ab.actualizarTablaAlumnos();
         PanelCambiante.removeAll();
         PanelCambiante.add(ab, BorderLayout.CENTER);
         PanelCambiante.revalidate();
