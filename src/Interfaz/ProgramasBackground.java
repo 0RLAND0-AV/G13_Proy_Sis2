@@ -5,7 +5,19 @@
 package Interfaz;
 
 import java.awt.Color;
-
+import ControladorBD.ConexionBD;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import java.util.Timer;
+import java.util.TimerTask;
 /**
  *
  * @author jhona
@@ -17,7 +29,7 @@ public class ProgramasBackground extends javax.swing.JPanel {
      */
     public ProgramasBackground() {
         initComponents();
-
+        actualizarTablaProgramas();
     }
 
     /**
@@ -230,6 +242,7 @@ public class ProgramasBackground extends javax.swing.JPanel {
     private void AgregarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarBotonMouseClicked
         AñadirPrograma ap= new AñadirPrograma();
         ap.setVisible(true);
+        ap.cargarInstructoresEnComboBox();
     }//GEN-LAST:event_AgregarBotonMouseClicked
 
     private void EliminarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarBotonMouseClicked
@@ -241,6 +254,84 @@ public class ProgramasBackground extends javax.swing.JPanel {
         EditarPrograma ventanaEmergente = new EditarPrograma();
         ventanaEmergente.setVisible(true);
     }//GEN-LAST:event_EditarBotonMouseClicked
+
+    public void actualizarTablaProgramas() {
+    System.out.println("🔄 Actualizando tabla de programas...");
+
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+    Connection conn = conexionBD.getConexion();
+
+    if (conn == null) {
+        System.out.println("❌ Error: No se pudo establecer conexión con la BD.");
+        return;
+    }
+
+    DefaultTableModel model = (DefaultTableModel) TablaProgramas.getModel();
+    model.setRowCount(0); // Limpiar la tabla antes de llenarla
+    System.out.println("🗑️ Tabla vaciada.");
+
+    String sql = "SELECT ID_Programa, Nombre, Fecha_Fin, Horario FROM programa";
+
+    // Lista para almacenar los datos antes de llenar la tabla
+    List<Object[]> datosProgramas = new ArrayList<>();
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        System.out.println("📊 Consulta ejecutada.");
+
+        int contador = 0;
+        while (rs.next()) {
+            int idPrograma = rs.getInt("ID_Programa");
+            String nombrePrograma = rs.getString("Nombre");
+            String fechaFin = rs.getString("Fecha_Fin");
+            String horario = rs.getString("Horario");
+
+            // Comprobar el estado de acuerdo a la fecha de fin
+            String estado = determinarEstado(fechaFin);
+
+            // No. Inscritos y "null" lo dejamos como vacíos
+            Object[] fila = { idPrograma, nombrePrograma, estado, null, horario, null };
+            datosProgramas.add(fila);
+            contador++;
+        }
+
+        System.out.println("✅ Total de registros obtenidos: " + contador);
+
+    } catch (SQLException e) {
+        System.out.println("❌ Error al ejecutar la consulta.");
+        e.printStackTrace();
+    } finally {
+        conexionBD.desconectar();
+        System.out.println("🔌 Desconectado de la BD.");
+    }
+
+    // Ahora llenamos la tabla usando los datos obtenidos
+    for (Object[] programa : datosProgramas) {
+        model.addRow(programa);
+    }
+}
+
+private String determinarEstado(String fechaFin) {
+    String estado = "INACTIVO";
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    Date fechaFinDate = null;
+    Date fechaActual = new Date(); // Fecha actual del sistema
+
+    try {
+        fechaFinDate = dateFormat.parse(fechaFin);
+        // Si la fecha de fin es superior a la fecha actual, está activo
+        if (fechaFinDate.after(fechaActual)) {
+            estado = "ACTIVO";
+        }
+    } catch (ParseException e) {
+        System.out.println("❌ Error al parsear la fecha.");
+        e.printStackTrace();
+    }
+
+    return estado;
+}
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

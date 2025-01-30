@@ -339,7 +339,7 @@ public class Menu extends javax.swing.JFrame {
         ProgramasBackground pb = new ProgramasBackground();
         pb.setSize(900, 720);
         pb.setLocation(0, 0);
-        
+        pb.actualizarTablaProgramas();
         PanelCambiante.removeAll();
         PanelCambiante.add(pb, BorderLayout.CENTER);
         PanelCambiante.revalidate();

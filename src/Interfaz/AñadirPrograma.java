@@ -4,8 +4,14 @@
  */
 package Interfaz;
 
+import ControladorBD.ConexionBD;
 import ControladorBD.QuerysProgramas;
 import java.awt.Color;
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -364,7 +370,7 @@ public class AñadirPrograma extends javax.swing.JFrame {
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
         // TODO add your handling code here:
         QuerysProgramas qp= new QuerysProgramas();
-        qp.insertarPrograma(NombreCampo.getText(), FechaInicioCampo.getText(), FechaFinCampo.getText(),Integer.parseInt(CostoCampo.getText().trim()) , null, DetallesCampo.getText(), Integer.parseInt(MaximoInscritosCampo.getText().trim()), 1);
+        qp.insertarPrograma(NombreCampo.getText(), FechaInicioCampo.getText(), FechaFinCampo.getText(),Integer.parseInt(CostoCampo.getText().trim()) , HorarioCampo.getText() , DetallesCampo.getText(), Integer.parseInt(MaximoInscritosCampo.getText().trim()), 10);
         dispose();
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
@@ -452,6 +458,30 @@ public class AñadirPrograma extends javax.swing.JFrame {
             }
         });
     }
+public void cargarInstructoresEnComboBox() {
+    // Crear el ComboBox si no está creado aún
+    InstructorComboBox.removeAllItems(); // Limpiar el ComboBox antes de agregar nuevos elementos
+
+    // Consulta SQL para obtener los nombres completos de los instructores
+    String sql = "SELECT CONCAT(persona.nombre, ' ', persona.apellido_paterno, ' ', persona.apellido_materno) AS nombre_completo " +
+                 "FROM instructor " +
+                 "INNER JOIN persona ON instructor.ID_Persona = persona.ID_Persona";
+
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+    Connection conn = conexionBD.getConexion();
+
+    try (java.sql.Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        while (rs.next()) {
+            String nombreCompleto = rs.getString("nombre_completo");
+            InstructorComboBox.addItem(nombreCompleto); // Añadir el nombre completo al ComboBox
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        conexionBD.desconectar();
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CancelarBoton;
@@ -469,7 +499,7 @@ public class AñadirPrograma extends javax.swing.JFrame {
     private javax.swing.JLabel Horario;
     private java.awt.TextField HorarioCampo;
     private javax.swing.JLabel Instructor;
-    private javax.swing.JComboBox<String> InstructorComboBox;
+    public javax.swing.JComboBox<String> InstructorComboBox;
     private javax.swing.JLabel MaximoInscritos;
     private java.awt.TextField MaximoInscritosCampo;
     private javax.swing.JLabel Nombre;
