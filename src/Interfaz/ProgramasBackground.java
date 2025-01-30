@@ -5,6 +5,9 @@
 package Interfaz;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JTable;
 
 /**
  *
@@ -235,8 +238,21 @@ public class ProgramasBackground extends javax.swing.JPanel {
     private void EliminarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarBotonMouseClicked
         AlertaEliminar ventanaEmergente = new AlertaEliminar();
         ventanaEmergente.setVisible(true);
+        ventanaEmergente.setlistaEliminar(getSelectedIds(TablaProgramas),"Programa");
     }//GEN-LAST:event_EliminarBotonMouseClicked
 
+    public List<Integer> getSelectedIds(JTable table) {
+        List<Integer> selectedIds = new ArrayList<>();
+        for (int i = 0; i < table.getRowCount(); i++) {
+            Boolean isChecked = (Boolean) table.getValueAt(i, 5); // Columna de checkbox
+            if (Boolean.TRUE.equals(isChecked)) {
+                Integer id = (Integer) table.getValueAt(i, 0); // Columna de ID
+                selectedIds.add(id);
+            }
+        }
+        return selectedIds;
+    }
+    
     private void EditarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarBotonMouseClicked
         EditarPrograma ventanaEmergente = new EditarPrograma();
         ventanaEmergente.setVisible(true);

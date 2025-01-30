@@ -4,7 +4,13 @@
  */
 package Interfaz;
 
+import ControladorBD.QuerysAlumnos;
+import ControladorBD.QuerysInstructores;
+import ControladorBD.QuerysProgramas;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,6 +18,8 @@ import java.awt.Color;
  */
 public class AlertaEliminar extends javax.swing.JFrame {
 
+     List<Integer> listaEliminar = new ArrayList<>();
+     private String tipo = "";
     /**
      * Creates new form AlertaEliminar
      */
@@ -19,6 +27,25 @@ public class AlertaEliminar extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    public void setlistaEliminar(List<Integer> selectedIds,String tipo){
+        this.listaEliminar = selectedIds;
+        this.tipo = tipo;
+    }
+    public void ciclo(String a){
+        for (int i = 0; i < listaEliminar.size(); i++) {
+             int numero = listaEliminar.get(i);
+             if(a.equals("Instructor")){
+                 QuerysInstructores ElimI = new QuerysInstructores();
+                 ElimI.eliminarInstructor(numero);
+             }else if(a.equals("Alumno")){
+                 QuerysAlumnos ElimA = new QuerysAlumnos();
+                 ElimA.eliminarAlumno(numero);
+             }else if(a.equals("Programa")){
+                 QuerysProgramas ElimP = new QuerysProgramas();
+                 ElimP.eliminarPrograma(numero);}  
+        }
+    }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -137,7 +164,8 @@ public class AlertaEliminar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SiBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SiBotonMouseClicked
-        
+       ciclo(tipo);
+       dispose();
     }//GEN-LAST:event_SiBotonMouseClicked
 
     private void NoBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NoBotonMouseClicked
