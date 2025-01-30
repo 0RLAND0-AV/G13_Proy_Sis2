@@ -370,7 +370,7 @@ public class AñadirPrograma extends javax.swing.JFrame {
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
         // TODO add your handling code here:
         QuerysProgramas qp= new QuerysProgramas();
-        qp.insertarPrograma(NombreCampo.getText(), FechaInicioCampo.getText(), FechaFinCampo.getText(),Integer.parseInt(CostoCampo.getText().trim()) , HorarioCampo.getText() , DetallesCampo.getText(), Integer.parseInt(MaximoInscritosCampo.getText().trim()), 10);
+        qp.insertarPrograma(NombreCampo.getText(), FechaInicioCampo.getText(), FechaFinCampo.getText(),Integer.parseInt(CostoCampo.getText().trim()) , HorarioCampo.getText() , DetallesCampo.getText(), Integer.parseInt(MaximoInscritosCampo.getText().trim()), obtenerID());
         dispose();
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
@@ -481,7 +481,32 @@ public void cargarInstructoresEnComboBox() {
     } finally {
         conexionBD.desconectar();
     }
+} 
+
+public int obtenerID() {
+    int ID=0;
+    String sql = "SELECT CONCAT(ID_Instructor) AS nombre_completo " +
+                 "FROM instructor " +
+                 "INNER JOIN persona ON instructor.ID_Persona = persona.ID_Persona";
+
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+    Connection conn = conexionBD.getConexion();
+
+    try (java.sql.Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        while (rs.next()) {
+            ID = Integer.parseInt(rs.getString("nombre_completo")); 
+            
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        conexionBD.desconectar();
+    }
+    return ID;
 }
+    
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CancelarBoton;
