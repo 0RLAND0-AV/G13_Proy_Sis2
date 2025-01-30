@@ -5,12 +5,7 @@
 package Interfaz;
 
 import java.awt.Color;
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JTable;
-
-=======
 import ControladorBD.ConexionBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +19,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.util.Timer;
 import java.util.TimerTask;
->>>>>>> Orlando
+
 /**
  *
  * @author jhona
