@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1050, 650]"/>
-    </Property>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1050, 650]"/>
-    </Property>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -24,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="PanelPrincipal" alignment="0" max="32767" attributes="0"/>
+          <Component id="PanelPrincipal" alignment="0" min="-2" pref="1034" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -63,12 +62,20 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="CancelarBoton1" alignment="0" pref="150" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="CancelarBoton1" pref="138" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="CancelarBoton1" alignment="1" pref="50" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="CancelarBoton1" pref="38" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -84,6 +91,11 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CancelarBoton1MouseClicked"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CancelarBoton1MouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CancelarBoton1MouseExited"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -131,6 +143,10 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Guardar"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="GuardarBotonMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="GuardarBotonMouseExited"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -156,8 +172,8 @@
                           <Component id="ApellidoPaterno" alignment="1" max="32767" attributes="0"/>
                           <Component id="ApellidoMaterno" alignment="0" max="32767" attributes="0"/>
                           <Component id="CI" alignment="1" max="32767" attributes="0"/>
-                          <Component id="FechaNacimiento" max="32767" attributes="0"/>
-                          <Component id="Nombre" max="32767" attributes="0"/>
+                          <Component id="FechaNacimiento" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Nombre" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -165,7 +181,7 @@
                           <Component id="FechaNacimientoCampo" alignment="0" max="32767" attributes="0"/>
                           <Component id="CICampo" alignment="0" max="32767" attributes="0"/>
                           <Component id="ApellidoMaternoCampo" alignment="0" max="32767" attributes="0"/>
-                          <Component id="NombreCampo" max="32767" attributes="0"/>
+                          <Component id="NombreCampo" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="13" max="32767" attributes="0"/>
                   </Group>
@@ -178,35 +194,35 @@
                       <Component id="SubtituloDP" min="-2" pref="48" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Nombre" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="Nombre" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                               <Component id="NombreCampo" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ApellidoPaterno" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="ApellidoPaterno" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                               <Component id="ApellidoPaternoCampo" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ApellidoMaterno" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="ApellidoMaterno" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                               <Component id="ApellidoMaternoCampo" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="CI" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="CI" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                               <Component id="CICampo" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="FechaNacimiento" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="FechaNacimiento" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                               <Component id="FechaNacimientoCampo" min="-2" pref="30" max="-2" attributes="0"/>
@@ -340,7 +356,7 @@
               <Font name="Segoe UI" size="48" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="A&#xf1;adir instructor"/>
+            <Property name="text" type="java.lang.String" value="Editar instructor"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -521,7 +537,6 @@
           <SubComponents>
             <Component class="javax.swing.JComboBox" name="especialidadComboBox">
               <Properties>
-                <Property name="editable" type="boolean" value="true"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
@@ -562,7 +577,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace pref="45" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">

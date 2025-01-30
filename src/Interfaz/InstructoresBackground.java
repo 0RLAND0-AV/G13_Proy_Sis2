@@ -4,6 +4,18 @@
  */
 package Interfaz;
 
+import java.awt.Color;
+import ControladorBD.ConexionBD;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  *
  * @author jhona
@@ -15,6 +27,8 @@ public class InstructoresBackground extends javax.swing.JPanel {
      */
     public InstructoresBackground() {
         initComponents();
+        //iniciarActualizacionAutomatica();
+    
     }
 
     /**
@@ -41,6 +55,7 @@ public class InstructoresBackground extends javax.swing.JPanel {
         setBackground(new java.awt.Color(209, 209, 209));
         setMinimumSize(new java.awt.Dimension(900, 600));
         setPreferredSize(new java.awt.Dimension(900, 720));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         EliminarPanel.setBackground(new java.awt.Color(80, 200, 120));
 
@@ -48,6 +63,17 @@ public class InstructoresBackground extends javax.swing.JPanel {
         EliminarBoton.setForeground(new java.awt.Color(255, 255, 255));
         EliminarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         EliminarBoton.setText("ELIMINAR");
+        EliminarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EliminarBotonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EliminarBotonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                EliminarBotonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout EliminarPanelLayout = new javax.swing.GroupLayout(EliminarPanel);
         EliminarPanel.setLayout(EliminarPanelLayout);
@@ -66,12 +92,25 @@ public class InstructoresBackground extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        add(EliminarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 615, -1, -1));
+
         EditarPanel.setBackground(new java.awt.Color(80, 200, 120));
 
         EditarBoton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         EditarBoton.setForeground(new java.awt.Color(255, 255, 255));
         EditarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         EditarBoton.setText("EDITAR");
+        EditarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditarBotonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EditarBotonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                EditarBotonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout EditarPanelLayout = new javax.swing.GroupLayout(EditarPanel);
         EditarPanel.setLayout(EditarPanelLayout);
@@ -90,6 +129,8 @@ public class InstructoresBackground extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        add(EditarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 615, -1, -1));
+
         AgregarPanel.setBackground(new java.awt.Color(80, 200, 120));
 
         AgregarBoton.setBackground(new java.awt.Color(255, 255, 255));
@@ -97,6 +138,17 @@ public class InstructoresBackground extends javax.swing.JPanel {
         AgregarBoton.setForeground(new java.awt.Color(255, 255, 255));
         AgregarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AgregarBoton.setText("AGREGAR");
+        AgregarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AgregarBotonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AgregarBotonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AgregarBotonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout AgregarPanelLayout = new javax.swing.GroupLayout(AgregarPanel);
         AgregarPanel.setLayout(AgregarPanelLayout);
@@ -115,9 +167,12 @@ public class InstructoresBackground extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        add(AgregarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(695, 615, -1, -1));
+
         Intructorestxt.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Intructorestxt.setForeground(new java.awt.Color(55, 67, 66));
         Intructorestxt.setText("Instructores");
+        add(Intructorestxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 46, -1, 65));
 
         TablaInsctructores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,12 +207,25 @@ public class InstructoresBackground extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(TablaInsctructores);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 123, 788, 442));
+
         AgregarEspecialidadPanel.setBackground(new java.awt.Color(80, 200, 120));
 
         AgregarEspecialidadBoton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         AgregarEspecialidadBoton.setForeground(new java.awt.Color(255, 255, 255));
         AgregarEspecialidadBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AgregarEspecialidadBoton.setText("AGREGAR ESPECIALIDAD");
+        AgregarEspecialidadBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AgregarEspecialidadBotonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AgregarEspecialidadBotonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AgregarEspecialidadBotonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout AgregarEspecialidadPanelLayout = new javax.swing.GroupLayout(AgregarEspecialidadPanel);
         AgregarEspecialidadPanel.setLayout(AgregarEspecialidadPanelLayout);
@@ -176,46 +244,169 @@ public class InstructoresBackground extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(Intructorestxt)
-                .addGap(387, 387, 387)
-                .addComponent(AgregarEspecialidadPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 46, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(EliminarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(EditarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(AgregarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(55, 55, 55))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Intructorestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AgregarEspecialidadPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(EditarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AgregarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EliminarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55))
-        );
+        add(AgregarEspecialidadPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(626, 46, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void AgregarEspecialidadBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarEspecialidadBotonMouseClicked
+        AñadirEspecialidad ventanaEmergente = new AñadirEspecialidad();
+        ventanaEmergente.setVisible(true);
+    }//GEN-LAST:event_AgregarEspecialidadBotonMouseClicked
+
+    private void EliminarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarBotonMouseClicked
+        AlertaEliminar ventanaEmergente = new AlertaEliminar();
+        ventanaEmergente.setVisible(true);
+    }//GEN-LAST:event_EliminarBotonMouseClicked
+
+    private void EditarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarBotonMouseClicked
+        EditarInstructor ventanaEmergente = new EditarInstructor();
+        ventanaEmergente.setVisible(true);
+    }//GEN-LAST:event_EditarBotonMouseClicked
+
+    private void AgregarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarBotonMouseClicked
+        AñadirInstructo ventanaEmergente = new AñadirInstructo();
+        ventanaEmergente.setVisible(true);
+    }//GEN-LAST:event_AgregarBotonMouseClicked
+
+    private void AgregarEspecialidadBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarEspecialidadBotonMouseEntered
+         AgregarEspecialidadPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_AgregarEspecialidadBotonMouseEntered
+
+    private void AgregarEspecialidadBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarEspecialidadBotonMouseExited
+         AgregarEspecialidadPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_AgregarEspecialidadBotonMouseExited
+
+    private void AgregarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarBotonMouseEntered
+         AgregarPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_AgregarBotonMouseEntered
+
+    private void AgregarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarBotonMouseExited
+         AgregarPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_AgregarBotonMouseExited
+
+    private void EditarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarBotonMouseEntered
+        EditarPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_EditarBotonMouseEntered
+
+    private void EditarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarBotonMouseExited
+        EditarPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_EditarBotonMouseExited
+
+    private void EliminarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarBotonMouseEntered
+        EliminarPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_EliminarBotonMouseEntered
+
+    private void EliminarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarBotonMouseExited
+        EliminarPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_EliminarBotonMouseExited
+
+    private void iniciarActualizacionAutomatica() {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                actualizarTablaInstructores();
+            }
+        }, 0, 8000);
+    }
+
+     public void actualizarTablaInstructores() {
+        System.out.println("🔄 Actualizando tabla...");
+
+        ConexionBD conexionBD = new ConexionBD();
+        conexionBD.conectar();
+        Connection conn = conexionBD.getConexion();
+
+        if (conn == null) {
+            System.out.println("❌ Error: No se pudo establecer conexión con la BD.");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) TablaInsctructores.getModel();
+        model.setRowCount(0);
+        System.out.println("🗑️ Tabla vaciada.");
+
+        String sql = "SELECT i.ID_Instructor, p.Nombre, p.Apellido_paterno, p.Apellido_materno, " +
+                     "i.ID_Programa, p.Telefono " +
+                     "FROM instructor i " +
+                     "INNER JOIN persona p ON i.ID_Persona = p.ID_Persona " +
+                     "WHERE i.ID_Persona IS NOT NULL";
+
+        // Lista para almacenar los datos antes de llenar la tabla
+        List<Object[]> datosInstructores = new ArrayList<>();
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            System.out.println("📊 Consulta ejecutada.");
+
+            int contador = 0;
+            while (rs.next()) {
+                int idInstructor = rs.getInt("ID_Instructor");
+                String nombreCompleto = rs.getString("Nombre") + " " + rs.getString("Apellido_paterno") + " " + rs.getString("Apellido_materno");
+                int idPrograma = rs.getInt("ID_Programa");
+                String telefono = rs.getString("Telefono");
+
+                datosInstructores.add(new Object[]{ idInstructor, nombreCompleto, idPrograma, telefono });
+                contador++;
+            }
+
+            System.out.println("✅ Total de registros obtenidos: " + contador);
+
+        } catch (SQLException e) {
+            System.out.println("❌ Error al ejecutar la consulta.");
+            e.printStackTrace();
+        } finally {
+            conexionBD.desconectar();
+            System.out.println("🔌 Desconectado de la BD.");
+        }
+
+        // Ahora llenamos la tabla usando los datos obtenidos
+        for (Object[] instructor : datosInstructores) {
+            int idInstructor = (int) instructor[0];
+            String nombreCompleto = (String) instructor[1];
+            int idPrograma = (int) instructor[2];
+            String telefono = (String) instructor[3];
+
+            // Obtener nombre del programa SIN afectar la conexión principal
+            String nombrePrograma = obtenerNombrePrograma(idPrograma);
+
+            Object[] row = { idInstructor, nombreCompleto, nombrePrograma, "", telefono, false };
+            model.addRow(row);
+        }
+    }
+
+    private String obtenerNombrePrograma(int idPrograma) {
+        String nombrePrograma = "Desconocido";
+
+        // Creamos una NUEVA conexión para evitar cerrar el ResultSet principal
+        ConexionBD conexionBD = new ConexionBD();
+        conexionBD.conectar();
+        Connection conn = conexionBD.getConexion();
+
+        if (conn == null) {
+            System.out.println("❌ Error: No se pudo obtener conexión en obtenerNombrePrograma.");
+            return nombrePrograma;
+        }
+
+        String sqlPrograma = "SELECT nombre FROM programa WHERE ID_Programa = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sqlPrograma)) {
+            stmt.setInt(1, idPrograma);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    nombrePrograma = rs.getString("nombre");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("❌ Error al obtener el nombre del programa.");
+            e.printStackTrace();
+        } finally {
+            conexionBD.desconectar();
+        }
+
+        System.out.println("📌 Nombre del programa obtenido: " + nombrePrograma);
+        return nombrePrograma;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AgregarBoton;

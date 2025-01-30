@@ -4,6 +4,16 @@
  */
 package Interfaz;
 
+import ControladorBD.ConexionBD;
+import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+ 
+
 /**
  *
  * @author jhona
@@ -15,6 +25,7 @@ public class AlumnosBackground extends javax.swing.JPanel {
      */
     public AlumnosBackground() {
         initComponents();
+        //iniciarActualizacionAutomatica();
     }
 
     /**
@@ -41,6 +52,7 @@ public class AlumnosBackground extends javax.swing.JPanel {
         setBackground(new java.awt.Color(209, 209, 209));
         setMinimumSize(new java.awt.Dimension(900, 600));
         setPreferredSize(new java.awt.Dimension(900, 720));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         EliminarPanel.setBackground(new java.awt.Color(80, 200, 120));
 
@@ -48,6 +60,17 @@ public class AlumnosBackground extends javax.swing.JPanel {
         ElimnarBoton.setForeground(new java.awt.Color(255, 255, 255));
         ElimnarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ElimnarBoton.setText("ELIMINAR");
+        ElimnarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ElimnarBotonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ElimnarBotonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ElimnarBotonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout EliminarPanelLayout = new javax.swing.GroupLayout(EliminarPanel);
         EliminarPanel.setLayout(EliminarPanelLayout);
@@ -55,8 +78,8 @@ public class AlumnosBackground extends javax.swing.JPanel {
             EliminarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EliminarPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ElimnarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(ElimnarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         EliminarPanelLayout.setVerticalGroup(
             EliminarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -66,12 +89,25 @@ public class AlumnosBackground extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        add(EliminarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 615, -1, -1));
+
         EditarPanel.setBackground(new java.awt.Color(80, 200, 120));
 
         EditarBoton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         EditarBoton.setForeground(new java.awt.Color(255, 255, 255));
         EditarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         EditarBoton.setText("EDITAR");
+        EditarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditarBotonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EditarBotonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                EditarBotonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout EditarPanelLayout = new javax.swing.GroupLayout(EditarPanel);
         EditarPanel.setLayout(EditarPanelLayout);
@@ -90,6 +126,8 @@ public class AlumnosBackground extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        add(EditarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 615, -1, -1));
+
         AgregarPanel.setBackground(new java.awt.Color(80, 200, 120));
 
         AgreagarBoton.setBackground(new java.awt.Color(255, 255, 255));
@@ -97,6 +135,17 @@ public class AlumnosBackground extends javax.swing.JPanel {
         AgreagarBoton.setForeground(new java.awt.Color(255, 255, 255));
         AgreagarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AgreagarBoton.setText("AGREGAR");
+        AgreagarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AgreagarBotonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AgreagarBotonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AgreagarBotonMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout AgregarPanelLayout = new javax.swing.GroupLayout(AgregarPanel);
         AgregarPanel.setLayout(AgregarPanelLayout);
@@ -115,10 +164,13 @@ public class AlumnosBackground extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        add(AgregarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(695, 615, -1, -1));
+
         Alumnostxt.setBackground(new java.awt.Color(55, 67, 66));
         Alumnostxt.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Alumnostxt.setForeground(new java.awt.Color(55, 67, 66));
         Alumnostxt.setText("Alumnos");
+        add(Alumnostxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 46, -1, 65));
 
         TablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -153,58 +205,166 @@ public class AlumnosBackground extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(TablaAlumnos);
 
-        BuscadorAlumnos.setText("jTextField1");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 780, 442));
+
+        BuscadorAlumnos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        add(BuscadorAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 46, 250, 50));
 
         Busqueda.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Busqueda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Busqueda.setText("o");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
-                                .addComponent(EliminarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
-                                .addComponent(EditarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
-                                .addComponent(AgregarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(55, 55, 55))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Alumnostxt)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BuscadorAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Alumnostxt, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(BuscadorAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(EditarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AgregarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EliminarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55))
-        );
+        add(Busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 30, 51, 50));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void AgreagarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgreagarBotonMouseClicked
+        AñadirAlumno ventanaEmergente = new AñadirAlumno();
+        ventanaEmergente.setVisible(true);
+    }//GEN-LAST:event_AgreagarBotonMouseClicked
+
+    private void EditarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarBotonMouseClicked
+        EditarAlumno ventanaEmergente = new EditarAlumno();
+        ventanaEmergente.setVisible(true);
+    }//GEN-LAST:event_EditarBotonMouseClicked
+
+    private void ElimnarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ElimnarBotonMouseClicked
+        AlertaEliminar ventanaEmergente = new AlertaEliminar();
+        ventanaEmergente.setVisible(true);
+    }//GEN-LAST:event_ElimnarBotonMouseClicked
+
+    private void ElimnarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ElimnarBotonMouseEntered
+         EliminarPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_ElimnarBotonMouseEntered
+
+    private void ElimnarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ElimnarBotonMouseExited
+        EliminarPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_ElimnarBotonMouseExited
+
+    private void EditarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarBotonMouseEntered
+         EditarPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_EditarBotonMouseEntered
+
+    private void EditarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarBotonMouseExited
+        EditarPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_EditarBotonMouseExited
+
+    private void AgreagarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgreagarBotonMouseEntered
+         AgregarPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_AgreagarBotonMouseEntered
+
+    private void AgreagarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgreagarBotonMouseExited
+        AgregarPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_AgreagarBotonMouseExited
+
+    private void iniciarActualizacionAutomatica() {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                actualizarTablaAlumnos();
+            }
+        }, 0, 1000);
+    }
+
+    public void actualizarTablaAlumnos() {
+        System.out.println("🔄 Actualizando tabla de alumnos...");
+
+        ConexionBD conexionBD = new ConexionBD();
+        conexionBD.conectar();
+        Connection conn = conexionBD.getConexion();
+
+        if (conn == null) {
+            System.out.println("❌ Error: No se pudo establecer conexión con la BD.");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) TablaAlumnos.getModel();
+        model.setRowCount(0);
+        System.out.println("🗑️ Tabla de alumnos vaciada.");
+
+        // Consulta con INNER JOIN entre alumno, persona y programa
+        String sql = "SELECT a.ID_Alumno, p.Nombre, p.Apellido_paterno, p.Apellido_materno, " +
+                     "p.Correo_electronico, a.ID_Programa " +
+                     "FROM alumno a " +
+                     "INNER JOIN persona p ON a.ID_Persona = p.ID_Persona";
+
+        List<Object[]> datosAlumnos = new ArrayList<>();
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            System.out.println("📊 Consulta ejecutada.");
+
+            int contador = 0;
+            while (rs.next()) {
+                int idAlumno = rs.getInt("ID_Alumno");
+                String nombreCompleto = rs.getString("Nombre") + " " + rs.getString("Apellido_paterno") + " " + rs.getString("Apellido_materno");
+                String correo = rs.getString("Correo_electronico");
+                int idPrograma = rs.getInt("ID_Programa");
+
+                datosAlumnos.add(new Object[]{ idAlumno, nombreCompleto, idPrograma, correo });
+                contador++;
+            }
+
+            System.out.println("✅ Total de registros obtenidos: " + contador);
+
+        } catch (SQLException e) {
+            System.out.println("❌ Error al ejecutar la consulta.");
+            e.printStackTrace();
+        } finally {
+            conexionBD.desconectar();
+            System.out.println("🔌 Desconectado de la BD.");
+        }
+
+        // Ahora llenamos la tabla usando los datos obtenidos
+        for (Object[] alumno : datosAlumnos) {
+            int idAlumno = (int) alumno[0];
+            String nombreCompleto = (String) alumno[1];
+            int idPrograma = (int) alumno[2];
+            String correo = (String) alumno[3];
+
+            // Obtener el nombre del programa y el horario
+            String[] programaInfo = obtenerProgramaYHorario(idPrograma);
+            String nombrePrograma = programaInfo[0];
+            String horario = programaInfo[1];
+
+            Object[] row = { idAlumno, nombreCompleto, nombrePrograma, correo, horario, false };
+            model.addRow(row);
+        }
+    }
+
+    private String[] obtenerProgramaYHorario(int idPrograma) {
+        String nombrePrograma = "Desconocido";
+        String horario = "No disponible";
+
+        ConexionBD conexionBD = new ConexionBD();
+        conexionBD.conectar();
+        Connection conn = conexionBD.getConexion();
+
+        if (conn == null) {
+            System.out.println("❌ Error: No se pudo obtener conexión en obtenerProgramaYHorario.");
+            return new String[]{nombrePrograma, horario};
+        }
+
+        String sqlPrograma = "SELECT Nombre, Horario FROM programa WHERE ID_Programa = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sqlPrograma)) {
+            stmt.setInt(1, idPrograma);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    nombrePrograma = rs.getString("Nombre");
+                    horario = rs.getString("Horario");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("❌ Error al obtener el nombre del programa y horario.");
+            e.printStackTrace();
+        } finally {
+            conexionBD.desconectar();
+        }
+
+        System.out.println("📌 Nombre del programa obtenido: " + nombrePrograma + " | Horario: " + horario);
+        return new String[]{nombrePrograma, horario};
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AgreagarBoton;

@@ -15,6 +15,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -41,7 +42,6 @@ public class Login extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
         setMaximumSize(new java.awt.Dimension(1200, 800));
         setMinimumSize(new java.awt.Dimension(1200, 800));
-        setPreferredSize(new java.awt.Dimension(1200, 800));
         setResizable(false);
         setSize(new java.awt.Dimension(1200, 800));
 
