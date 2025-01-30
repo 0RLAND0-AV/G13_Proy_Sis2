@@ -12,19 +12,24 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import javax.swing.*;
+import java.util.Timer;
+import java.util.TimerTask;
 public class QuerysAlumnos {
+    
 public void insertarAlumno(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String ci,
                            String fechaNacimiento, String direccion, String correoElectronico, int idPrograma) {
     String sqlPersona = "INSERT INTO persona (nombre, apellido_paterno, apellido_materno, telefono, ci, fecha_nacimiento, direccion, correo_electronico) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     String sqlAlumno = "INSERT INTO alumno (ID_Persona, ID_Programa) VALUES (?, ?)";
+    
     ConexionBD conexionBD = new ConexionBD();
     conexionBD.conectar();
     Connection conn = conexionBD.getConexion();
-    
+
     try (PreparedStatement stmtPersona = conn.prepareStatement(sqlPersona, PreparedStatement.RETURN_GENERATED_KEYS);
          PreparedStatement stmtAlumno = conn.prepareStatement(sqlAlumno)) {
+        
         stmtPersona.setString(1, nombre);
         stmtPersona.setString(2, apellidoPaterno);
         stmtPersona.setString(3, apellidoMaterno);
@@ -42,15 +47,41 @@ public void insertarAlumno(String nombre, String apellidoPaterno, String apellid
                 stmtAlumno.setInt(1, idPersona);
                 stmtAlumno.setInt(2, idPrograma);
                 stmtAlumno.executeUpdate();
+
+                mostrarNotificacion("✅ Alumno registrado con éxito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("✅ Alumno agregado con ID_Persona: " + idPersona);
             }
         }
     } catch (SQLException e) {
+        mostrarNotificacion("❌ Error al registrar el alumno", "Error", JOptionPane.ERROR_MESSAGE);
         e.printStackTrace();
     } finally {
         conexionBD.desconectar();
     }
 }
+
+private void mostrarNotificacion(String mensaje, String titulo, int tipo) {
+    JDialog dialog = new JDialog();
+    dialog.setAlwaysOnTop(true);
+    JOptionPane optionPane = new JOptionPane(mensaje, tipo);
+    dialog.setContentPane(optionPane);
+    dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    dialog.pack();
+    
+    // Centrar la ventana en pantalla
+    dialog.setLocationRelativeTo(null);
+    
+    // Usar un Timer para cerrar automáticamente después de 2 segundos
+    new Timer().schedule(new TimerTask() {
+        @Override
+        public void run() {
+            dialog.dispose();
+        }
+    }, 2000);  // 2000 ms = 2 segundos
+    
+    dialog.setVisible(true);
+}
+
 
 public void actualizarAlumno(int idAlumno, String nombre, String apellidoPaterno, String apellidoMaterno,
                              String telefono, String ci, String fechaNacimiento, String direccion,
