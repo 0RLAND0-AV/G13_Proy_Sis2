@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Interfaz;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
@@ -78,61 +79,41 @@ public class Validaciones {
 
 // Validar que una fecha ingresada tenga el formato correcto
      public static void validarFecha(KeyEvent evt, TextField txt) {
-        String texto = txt.getText();
+     String texto = txt.getText();
+        int cursor = txt.getCaretPosition();
         char c = evt.getKeyChar();
-
-        // No mostrar mensaje de error al borrar
-        if (c == KeyEvent.VK_BACK_SPACE && texto.length() > 0) {
-            return; // Permite borrar sin mostrar errores
-        }
-
-        // Solo permitir números y el guion '-'
-        if ((c != '-' && !Character.isDigit(c)) || texto.length() > 9) {
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "Solo se permiten números y '-' en formato yyyy-MM-dd.");
-            return;
-        }
-
-        // Validar la posición del guion '-'
-        if ((texto.length() == 4 || texto.length() == 7) && c != '-') {
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "El guion '-' debe ir en la posición correcta (yyyy-MM-dd).");
-            return;
-        }
-
-        // Validación de año, mes y día
-        if (texto.length() == 5 || texto.length() == 8) {
-            try {
-                if (texto.length() >= 5) {
-                    int year = Integer.parseInt(texto.substring(0, 4));
-                    if (year < 1000 || year > 9999) {
-                        evt.consume();
-                        JOptionPane.showMessageDialog(null, "El año debe ser un valor válido entre 1000 y 9999.");
-                        return;
-                    }
-                }
-
-                if (texto.length() >= 7) {
-                    // Validación del mes entre 01 y 12
-                    int month = Integer.parseInt(texto.substring(5, 7));
-                    if (month < 1 || month > 12) {
-                        evt.consume();
-                        JOptionPane.showMessageDialog(null, "El mes debe estar entre 01 y 12.");
-                        return;
-                    }
-
-                    // Validación del día entre 01 y 31
-                    if (texto.length() == 10) {
-                        int day = Integer.parseInt(texto.substring(8, 10));
-                        if (day < 1 || day > 31) {
-                            evt.consume();
-                            JOptionPane.showMessageDialog(null, "El día debe estar entre 01 y 31.");
-                        }
-                    }
-                }
-            } catch (NumberFormatException e) {
-                // Si ocurre un error al convertir a número, no hacemos nada
+        if (c == KeyEvent.VK_BACK_SPACE) {
+            txt.setForeground(Color.BLACK);
+        return;
+    }       
+        switch (texto.length()) {
+            case 4 -> {
+                int año = Integer.parseInt(texto);
+                if(año>=2025 || año<=1950){
+                    txt.setForeground(Color.red);
+                    evt.consume();
+                    return;}
+                txt.setText(texto.substring(0, 4) + "-" + texto.substring(4));
+                txt.setCaretPosition(cursor + 1);
             }
+            case 7 -> {
+                int mes = Integer.parseInt(texto.substring(5, 7));
+                if(mes>=13 || mes==0){
+                    txt.setForeground(Color.red);
+                    evt.consume();
+                    return;}
+                txt.setText(texto.substring(0, 7) + "-" + texto.substring(7));   
+                txt.setCaretPosition(cursor + 1);
+            }
+
+            case 10 -> {
+                int dias = Integer.parseInt(texto.substring(8, 10));
+                //JOptionPane.showMessageDialog(null, dias);
+                if(dias>31) txt.setForeground(Color.red);
+                evt.consume();}
+            default -> {
+            }
+           
         }
-    }
+     }   
 }

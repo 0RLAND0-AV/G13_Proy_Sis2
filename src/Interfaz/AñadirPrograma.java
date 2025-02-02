@@ -63,6 +63,11 @@ public class AñadirPrograma extends javax.swing.JFrame {
 
         PanelPrincipal.setBackground(new java.awt.Color(209, 209, 209));
         PanelPrincipal.setMinimumSize(new java.awt.Dimension(1050, 650));
+        PanelPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelPrincipalMouseClicked(evt);
+            }
+        });
         PanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Titulo.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
@@ -94,7 +99,7 @@ public class AñadirPrograma extends javax.swing.JFrame {
         PanelPrincipal.add(Costo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, 200, 50));
 
         Instructor.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        Instructor.setText("Instructor");
+        Instructor.setText("Instructior");
         PanelPrincipal.add(Instructor, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 200, 50));
 
         DetallesCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -240,14 +245,6 @@ public class AñadirPrograma extends javax.swing.JFrame {
         PanelPrincipal.add(CancelarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 540, 150, 50));
 
         GuardarPanel.setBackground(new java.awt.Color(80, 200, 120));
-        GuardarPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                GuardarPanelMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                GuardarPanelMouseEntered(evt);
-            }
-        });
 
         GuardarBoton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         GuardarBoton.setForeground(new java.awt.Color(255, 255, 255));
@@ -262,17 +259,6 @@ public class AñadirPrograma extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 GuardarBotonMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                GuardarBotonMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                GuardarBotonMouseReleased(evt);
-            }
-        });
-        GuardarBoton.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                GuardarBotonKeyPressed(evt);
             }
         });
 
@@ -317,25 +303,55 @@ public class AñadirPrograma extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NombreCampoActionPerformed
 
+    private void NombreCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.soloLetras(evt);
+    }//GEN-LAST:event_NombreCampoKeyTyped
+
     private void FechaInicioCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaInicioCampoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FechaInicioCampoActionPerformed
+
+    private void FechaInicioCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FechaInicioCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.validarFecha(evt, FechaInicioCampo);
+    }//GEN-LAST:event_FechaInicioCampoKeyTyped
 
     private void FechaFinCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaFinCampoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FechaFinCampoActionPerformed
 
+    private void FechaFinCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FechaFinCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.validarFecha(evt, FechaFinCampo);
+    }//GEN-LAST:event_FechaFinCampoKeyTyped
+
     private void HorarioCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HorarioCampoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_HorarioCampoActionPerformed
+
+    private void HorarioCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HorarioCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.validarHorario(evt, HorarioCampo);
+    }//GEN-LAST:event_HorarioCampoKeyTyped
 
     private void MaximoInscritosCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaximoInscritosCampoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MaximoInscritosCampoActionPerformed
 
+    private void MaximoInscritosCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MaximoInscritosCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.soloNumeros(evt);
+    }//GEN-LAST:event_MaximoInscritosCampoKeyTyped
+
     private void CostoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CostoCampoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CostoCampoActionPerformed
+
+    private void CostoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CostoCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.soloNumeros(evt);
+    }//GEN-LAST:event_CostoCampoKeyTyped
 
     private void InstructorComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstructorComboBoxActionPerformed
         // TODO add your handling code here:
@@ -343,7 +359,6 @@ public class AñadirPrograma extends javax.swing.JFrame {
 
     private void CancelarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarBotonMouseClicked
         dispose();
-        
     }//GEN-LAST:event_CancelarBotonMouseClicked
 
     private void CancelarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarBotonMouseEntered
@@ -354,74 +369,23 @@ public class AñadirPrograma extends javax.swing.JFrame {
         CancelarPanel.setBackground(new Color (80,200,120));
     }//GEN-LAST:event_CancelarBotonMouseExited
 
-    private void GuardarPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarPanelMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_GuardarPanelMouseEntered
-
     private void GuardarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseEntered
         GuardarPanel.setBackground(new Color (32,67,114));
-        
     }//GEN-LAST:event_GuardarBotonMouseEntered
 
     private void GuardarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseExited
         GuardarPanel.setBackground(new Color (80,200,120));
     }//GEN-LAST:event_GuardarBotonMouseExited
 
-    private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
+    private void PanelPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelPrincipalMouseClicked
         // TODO add your handling code here:
+    }//GEN-LAST:event_PanelPrincipalMouseClicked
+
+    private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
         QuerysProgramas qp= new QuerysProgramas();
         qp.insertarPrograma(NombreCampo.getText(), FechaInicioCampo.getText(), FechaFinCampo.getText(),Integer.parseInt(CostoCampo.getText().trim()) , HorarioCampo.getText() , DetallesCampo.getText(), Integer.parseInt(MaximoInscritosCampo.getText().trim()), obtenerID());
         dispose();
     }//GEN-LAST:event_GuardarBotonMouseClicked
-
-    private void GuardarPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarPanelMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_GuardarPanelMouseClicked
-
-    private void GuardarBotonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMousePressed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_GuardarBotonMousePressed
-
-    private void GuardarBotonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseReleased
-        // TODO add your handling code here:
-  
-    }//GEN-LAST:event_GuardarBotonMouseReleased
-
-    private void GuardarBotonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_GuardarBotonKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_GuardarBotonKeyPressed
-
-    private void NombreCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.soloLetras(evt);
-    }//GEN-LAST:event_NombreCampoKeyTyped
-
-    private void FechaInicioCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FechaInicioCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.validarFecha(evt, FechaInicioCampo);
-    }//GEN-LAST:event_FechaInicioCampoKeyTyped
-
-    private void MaximoInscritosCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MaximoInscritosCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.soloNumeros(evt);
-    }//GEN-LAST:event_MaximoInscritosCampoKeyTyped
-
-    private void CostoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CostoCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.soloNumeros(evt);
-    }//GEN-LAST:event_CostoCampoKeyTyped
-
-    private void HorarioCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HorarioCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.validarHorario(evt, HorarioCampo);
-    }//GEN-LAST:event_HorarioCampoKeyTyped
-
-    private void FechaFinCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FechaFinCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.validarFecha(evt, FechaFinCampo);
-    }//GEN-LAST:event_FechaFinCampoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -458,6 +422,7 @@ public class AñadirPrograma extends javax.swing.JFrame {
             }
         });
     }
+
 public void cargarInstructoresEnComboBox() {
     // Crear el ComboBox si no está creado aún
     InstructorComboBox.removeAllItems(); // Limpiar el ComboBox antes de agregar nuevos elementos
@@ -505,7 +470,8 @@ public int obtenerID() {
     }
     return ID;
 }
-    
+
+           
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -524,7 +490,7 @@ public int obtenerID() {
     private javax.swing.JLabel Horario;
     private java.awt.TextField HorarioCampo;
     private javax.swing.JLabel Instructor;
-    public javax.swing.JComboBox<String> InstructorComboBox;
+    private javax.swing.JComboBox<String> InstructorComboBox;
     private javax.swing.JLabel MaximoInscritos;
     private java.awt.TextField MaximoInscritosCampo;
     private javax.swing.JLabel Nombre;

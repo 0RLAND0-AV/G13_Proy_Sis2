@@ -6,6 +6,8 @@ package Interfaz;
 
 import ControladorBD.QuerysAlumnos;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -532,32 +534,28 @@ public class AñadirAlumno extends javax.swing.JFrame {
     }//GEN-LAST:event_NombreCampoKeyPressed
 
     private void ApellidoPaternoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidoPaternoCampoKeyTyped
-        // TODO add your handling code here:
         Validaciones.soloLetras(evt);
     }//GEN-LAST:event_ApellidoPaternoCampoKeyTyped
 
     private void NombreCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreCampoKeyTyped
-        // TODO add your handling code here:
         Validaciones.soloLetras(evt);
+        
     }//GEN-LAST:event_NombreCampoKeyTyped
 
     private void ApellidoMaternoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidoMaternoCampoKeyTyped
-        // TODO add your handling code here:
         Validaciones.soloLetras(evt);
     }//GEN-LAST:event_ApellidoMaternoCampoKeyTyped
 
     private void CICampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CICampoKeyTyped
-        // TODO add your handling code here:
         Validaciones.soloNumeros(evt);
     }//GEN-LAST:event_CICampoKeyTyped
-
+   
     private void FechaNacimientoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FechaNacimientoCampoKeyTyped
-        // TODO add your handling code here:
+        Validaciones.soloNumeros(evt);
         Validaciones.validarFecha(evt, FechaNacimientoCampo);
     }//GEN-LAST:event_FechaNacimientoCampoKeyTyped
-
+//Validaciones.validarFecha(evt, FechaNacimientoCampo); //
     private void TelefonoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TelefonoCampoKeyTyped
-        // TODO add your handling code here:
         Validaciones.soloNumeros(evt);
     }//GEN-LAST:event_TelefonoCampoKeyTyped
 
