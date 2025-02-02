@@ -7,21 +7,21 @@ import java.awt.Color;
 import java.awt.Image;
 import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.awt.TextField;
 import java.io.File;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
  * @author Frank
  */
 public class Validaciones {
-    // Permitir solo letras y espacios
+    /*// Permitir solo letras y espacios
     public static void soloLetras(KeyEvent evt) {     
         char c = evt.getKeyChar();
         
@@ -52,9 +52,9 @@ public class Validaciones {
             JOptionPane.showMessageDialog(null, "Solo se permiten números");
         }
     }   
-
+*/
 // Validar que el horario tenga el formato correcto
-   public static void validarHorario(KeyEvent evt, TextField txt) {
+   public static void validarHorario(KeyEvent evt, JTextField txt) {
         String texto = txt.getText();
         char c = evt.getKeyChar();
 
@@ -87,42 +87,43 @@ public class Validaciones {
     }   
 
 // Validar que una fecha ingresada tenga el formato correcto
-     public static void validarFecha(KeyEvent evt, TextField txt) {
-     String texto = txt.getText();
-        int cursor = txt.getCaretPosition();
+     public static void validarFecha(KeyEvent evt, JTextField txt) {
+         SoloNumeros(txt, "yyyy-mm-dd");
+         String texto = txt.getText();
         char c = evt.getKeyChar();
-        if (c == KeyEvent.VK_BACK_SPACE) {
+        int num = texto.length();
+            if (c == KeyEvent.VK_BACK_SPACE) {
             txt.setForeground(Color.BLACK);
         return;
-    }       
-        switch (texto.length()) {
+        }        
+        switch (num) {
             case 4 -> {
                 int año = Integer.parseInt(texto);
-                if(año>=2025 || año<=1950){
+                if(año<=1950 || año>=2025){
                     txt.setForeground(Color.red);
                     evt.consume();
-                    return;}
-                txt.setText(texto.substring(0, 4) + "-" + texto.substring(4));
-                txt.setCaretPosition(cursor + 1);
+                    return;
+                }   txt.setText(txt.getText()+"-");
             }
             case 7 -> {
                 int mes = Integer.parseInt(texto.substring(5, 7));
-                if(mes>=13 || mes==0){
+                if(mes<=0 || mes>=13){
                     txt.setForeground(Color.red);
                     evt.consume();
-                    return;}
-                txt.setText(texto.substring(0, 7) + "-" + texto.substring(7));   
-                txt.setCaretPosition(cursor + 1);
+                    return;
+                }   txt.setText(txt.getText()+"-");
             }
-
             case 10 -> {
-                int dias = Integer.parseInt(texto.substring(8, 10));
-                //JOptionPane.showMessageDialog(null, dias);
-                if(dias>31) txt.setForeground(Color.red);
-                evt.consume();}
+                int dia = Integer.parseInt(texto.substring(8, 10));
+                if(dia<=0 || dia>=32){
+                    txt.setForeground(Color.red);
+                    evt.consume();
+                    return;
+                }   evt.consume();
+                
+            }
             default -> {
             }
-           
         }
      }   
     
@@ -149,5 +150,81 @@ public class Validaciones {
     }
     }
 
+         // Método genérico para validar que el campo solo tenga texto
+    public static void SoloTexto(JTextField textField, String mensajeEjemplo) {
+        
+        textField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                validarCampo(textField, mensajeEjemplo);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                validarCampo(textField, mensajeEjemplo);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                validarCampo(textField, mensajeEjemplo);
+            }
+
+            private void validarCampo(JTextField field, String mensajeEjemplo) {
+                String texto = field.getText();
+                field.setToolTipText("Ingrese su " + mensajeEjemplo + "  (solo texto)");
+                // Verificar si hay números en el texto
+                if (texto.matches(".*\\d.*")) {
+                    // Si hay un número, mostrar el error y poner el borde y texto en rojo
+                    field.setBorder(BorderFactory.createLineBorder(Color.RED, 2)); // Borde rojo
+                    field.setForeground(Color.RED); // Texto rojo
+                    field.setToolTipText("Error: El campo solo acepta texto.");
+                } else{
+                    // Si no hay números, restaurar el estado normal
+                    field.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1)); // Borde original
+                    field.setForeground(Color.BLACK); // Texto negro
+                    field.setToolTipText("Ejemplo: " + mensajeEjemplo + "  (solo texto)"); // Tooltip con el mensaje personalizado
+                }
+            }
+        });
+    }
+    
+    // Método genérico para validar que el campo solo tenga números
+    public static void SoloNumeros(JTextField textField, String mensajeEjemplo) {
+        textField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                validarCampo(textField, mensajeEjemplo);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                validarCampo(textField, mensajeEjemplo);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                validarCampo(textField, mensajeEjemplo);
+            }
+
+            private void validarCampo(JTextField field, String mensajeEjemplo) {
+                String texto = field.getText();
+
+                // Verificar si el texto contiene algo que no sea un número
+                if (!texto.matches("\\d*")) {
+                    // Si contiene algo que no es un número, mostrar el error y poner el borde y texto en rojo
+                    field.setBorder(BorderFactory.createLineBorder(Color.RED, 2)); // Borde rojo
+                    field.setForeground(Color.RED); // Texto rojo
+                    field.setToolTipText("Error:  El campo solo acepta números.");
+                } else {
+                    // Si el texto solo tiene números, restaurar el estado normal
+                    field.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1)); // Borde original
+                    field.setForeground(Color.BLACK); // Texto negro
+                    field.setToolTipText("Ejemplo: " + mensajeEjemplo + " (solo números)"); // Tooltip con el mensaje personalizado
+                }
+            }
+        });
+    }
+    
+    
 }
 

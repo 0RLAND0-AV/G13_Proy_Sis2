@@ -167,22 +167,22 @@ private String getNombreProgramaById(int idPrograma) {
         ApellidoPaterno = new javax.swing.JLabel();
         ApellidoMaterno = new javax.swing.JLabel();
         CI = new javax.swing.JLabel();
-        FechaNacimientoCampo = new java.awt.TextField();
-        NombreCampo = new java.awt.TextField();
-        ApellidoPaternoCampo = new java.awt.TextField();
-        ApellidoMaternoCampo = new java.awt.TextField();
-        CICampo = new java.awt.TextField();
         FechaNacimiento = new javax.swing.JLabel();
         SubtituloDP = new javax.swing.JLabel();
+        NombreCampo = new javax.swing.JTextField();
+        ApellidoPaternoCampo = new javax.swing.JTextField();
+        ApellidoMaternoCampo = new javax.swing.JTextField();
+        CICampo = new javax.swing.JTextField();
+        FechaNacimientoCampo = new javax.swing.JTextField();
         Titulo = new javax.swing.JLabel();
         Telefono = new javax.swing.JLabel();
         Direccion = new javax.swing.JLabel();
         CorreoElectronico = new javax.swing.JLabel();
         DatosContactoPanel = new javax.swing.JPanel();
         SubTituloDC = new javax.swing.JLabel();
-        CorreoElectronicoCampo = new java.awt.TextField();
-        DireccionCampo = new java.awt.TextField();
-        TelefonoCampo = new java.awt.TextField();
+        CorreoElectronicoCampo = new javax.swing.JTextField();
+        DireccionCampo = new javax.swing.JTextField();
+        TelefonoCampo = new javax.swing.JTextField();
         Programapanel = new javax.swing.JPanel();
         ProgramaComboBox = new javax.swing.JComboBox<>();
         Programa = new javax.swing.JLabel();
@@ -267,146 +267,67 @@ private String getNombreProgramaById(int idPrograma) {
         PanelPrincipal.add(GuardarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 560, -1, -1));
 
         DatosPersonalesPanel.setBackground(new java.awt.Color(232, 227, 223));
+        DatosPersonalesPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Nombre.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Nombre.setText("Nombre:");
+        DatosPersonalesPanel.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 60, 241, 50));
 
         ApellidoPaterno.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         ApellidoPaterno.setText("Apellido paterno:");
+        DatosPersonalesPanel.add(ApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 110, 241, 50));
 
         ApellidoMaterno.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         ApellidoMaterno.setText("Apellido materno:");
+        DatosPersonalesPanel.add(ApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 160, 241, 50));
 
         CI.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         CI.setText("CI:");
+        DatosPersonalesPanel.add(CI, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 210, 241, 50));
 
-        FechaNacimientoCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        FechaNacimientoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        FechaNacimientoCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FechaNacimientoCampoActionPerformed(evt);
-            }
-        });
-        FechaNacimientoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                FechaNacimientoCampoKeyTyped(evt);
-            }
-        });
+        FechaNacimiento.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        FechaNacimiento.setText("Fecha de nacimiento:");
+        DatosPersonalesPanel.add(FechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 260, -1, 50));
 
-        NombreCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        SubtituloDP.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        SubtituloDP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        SubtituloDP.setText("Datos Personales");
+        DatosPersonalesPanel.add(SubtituloDP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 470, 48));
+
         NombreCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        NombreCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreCampoActionPerformed(evt);
-            }
-        });
         NombreCampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 NombreCampoKeyTyped(evt);
             }
         });
+        DatosPersonalesPanel.add(NombreCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 200, 30));
 
-        ApellidoPaternoCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         ApellidoPaternoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        ApellidoPaternoCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ApellidoPaternoCampoActionPerformed(evt);
-            }
-        });
         ApellidoPaternoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 ApellidoPaternoCampoKeyTyped(evt);
             }
         });
+        DatosPersonalesPanel.add(ApellidoPaternoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 200, 30));
 
-        ApellidoMaternoCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         ApellidoMaternoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        ApellidoMaternoCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ApellidoMaternoCampoActionPerformed(evt);
-            }
-        });
         ApellidoMaternoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 ApellidoMaternoCampoKeyTyped(evt);
             }
         });
+        DatosPersonalesPanel.add(ApellidoMaternoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 200, 30));
 
-        CICampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         CICampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        CICampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CICampoActionPerformed(evt);
-            }
-        });
         CICampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 CICampoKeyTyped(evt);
             }
         });
+        DatosPersonalesPanel.add(CICampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 200, 30));
 
-        FechaNacimiento.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        FechaNacimiento.setText("Fecha de nacimiento:");
-
-        SubtituloDP.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        SubtituloDP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        SubtituloDP.setText("Datos Personales");
-
-        javax.swing.GroupLayout DatosPersonalesPanelLayout = new javax.swing.GroupLayout(DatosPersonalesPanel);
-        DatosPersonalesPanel.setLayout(DatosPersonalesPanelLayout);
-        DatosPersonalesPanelLayout.setHorizontalGroup(
-            DatosPersonalesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SubtituloDP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(DatosPersonalesPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(DatosPersonalesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ApellidoPaterno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ApellidoMaterno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CI, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(FechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(DatosPersonalesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(ApellidoPaternoCampo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(FechaNacimientoCampo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CICampo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ApellidoMaternoCampo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(NombreCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(13, Short.MAX_VALUE))
-        );
-        DatosPersonalesPanelLayout.setVerticalGroup(
-            DatosPersonalesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosPersonalesPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(SubtituloDP, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(DatosPersonalesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(DatosPersonalesPanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(NombreCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(DatosPersonalesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ApellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(DatosPersonalesPanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(ApellidoPaternoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(DatosPersonalesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ApellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(DatosPersonalesPanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(ApellidoMaternoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(DatosPersonalesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CI, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(DatosPersonalesPanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(CICampo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(DatosPersonalesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(FechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(DatosPersonalesPanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(FechaNacimientoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
+        FechaNacimientoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        DatosPersonalesPanel.add(FechaNacimientoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 200, 30));
 
         PanelPrincipal.add(DatosPersonalesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 470, 330));
 
@@ -428,66 +349,26 @@ private String getNombreProgramaById(int idPrograma) {
         PanelPrincipal.add(CorreoElectronico, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, 250, 50));
 
         DatosContactoPanel.setBackground(new java.awt.Color(232, 227, 223));
+        DatosContactoPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         SubTituloDC.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         SubTituloDC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SubTituloDC.setText("Datos Contacto");
+        DatosContactoPanel.add(SubTituloDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 470, 48));
 
-        CorreoElectronicoCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         CorreoElectronicoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        CorreoElectronicoCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CorreoElectronicoCampoActionPerformed(evt);
-            }
-        });
+        DatosContactoPanel.add(CorreoElectronicoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 200, 30));
 
-        DireccionCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         DireccionCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        DireccionCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DireccionCampoActionPerformed(evt);
-            }
-        });
+        DatosContactoPanel.add(DireccionCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 200, 30));
 
-        TelefonoCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         TelefonoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        TelefonoCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TelefonoCampoActionPerformed(evt);
-            }
-        });
         TelefonoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 TelefonoCampoKeyTyped(evt);
             }
         });
-
-        javax.swing.GroupLayout DatosContactoPanelLayout = new javax.swing.GroupLayout(DatosContactoPanel);
-        DatosContactoPanel.setLayout(DatosContactoPanelLayout);
-        DatosContactoPanelLayout.setHorizontalGroup(
-            DatosContactoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SubTituloDC, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DatosContactoPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(DatosContactoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TelefonoCampo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DireccionCampo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CorreoElectronicoCampo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        DatosContactoPanelLayout.setVerticalGroup(
-            DatosContactoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DatosContactoPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(SubTituloDC, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(TelefonoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
-                .addComponent(DireccionCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(CorreoElectronicoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
+        DatosContactoPanel.add(TelefonoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 200, 30));
 
         PanelPrincipal.add(DatosContactoPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 470, 230));
 
@@ -582,38 +463,6 @@ private String getNombreProgramaById(int idPrograma) {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void FechaNacimientoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaNacimientoCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FechaNacimientoCampoActionPerformed
-
-    private void NombreCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreCampoActionPerformed
-
-    private void ApellidoPaternoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApellidoPaternoCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ApellidoPaternoCampoActionPerformed
-
-    private void ApellidoMaternoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApellidoMaternoCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ApellidoMaternoCampoActionPerformed
-
-    private void CICampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CICampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CICampoActionPerformed
-
-    private void CorreoElectronicoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorreoElectronicoCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CorreoElectronicoCampoActionPerformed
-
-    private void DireccionCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DireccionCampoActionPerformed
-
-    private void TelefonoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefonoCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TelefonoCampoActionPerformed
-
     private void ProgramaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProgramaComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ProgramaComboBoxActionPerformed
@@ -638,36 +487,6 @@ private String getNombreProgramaById(int idPrograma) {
         GuardarPanel.setBackground(new Color (80,200,120));
     }//GEN-LAST:event_GuardarBotonMouseExited
 
-    private void NombreCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.soloLetras(evt);
-    }//GEN-LAST:event_NombreCampoKeyTyped
-
-    private void ApellidoPaternoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidoPaternoCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.soloLetras(evt);
-    }//GEN-LAST:event_ApellidoPaternoCampoKeyTyped
-
-    private void ApellidoMaternoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidoMaternoCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.soloLetras(evt);
-    }//GEN-LAST:event_ApellidoMaternoCampoKeyTyped
-
-    private void CICampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CICampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.soloNumeros(evt);
-    }//GEN-LAST:event_CICampoKeyTyped
-
-    private void FechaNacimientoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FechaNacimientoCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.validarFecha(evt, FechaNacimientoCampo);
-    }//GEN-LAST:event_FechaNacimientoCampoKeyTyped
-
-    private void TelefonoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TelefonoCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.soloNumeros(evt);
-    }//GEN-LAST:event_TelefonoCampoKeyTyped
-
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
         // TODO add your handling code here:
         // TODO add your handling code here:
@@ -688,6 +507,31 @@ private String getNombreProgramaById(int idPrograma) {
     private void AñadirFotografiaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AñadirFotografiaMouseExited
         AñadirFotografia.setForeground(Color.BLACK);
     }//GEN-LAST:event_AñadirFotografiaMouseExited
+
+    private void NombreCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.SoloTexto(NombreCampo, "Jose, Maria, etc.");
+    }//GEN-LAST:event_NombreCampoKeyTyped
+
+    private void ApellidoPaternoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidoPaternoCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.SoloTexto(ApellidoPaternoCampo, "Paredes, Gomes, Mamani, etc.");
+    }//GEN-LAST:event_ApellidoPaternoCampoKeyTyped
+
+    private void ApellidoMaternoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidoMaternoCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.SoloTexto(ApellidoMaternoCampo, "Paredes, Gomes, Mamani, etc.");
+    }//GEN-LAST:event_ApellidoMaternoCampoKeyTyped
+
+    private void CICampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CICampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.SoloNumeros(CICampo, "15124342");
+    }//GEN-LAST:event_CICampoKeyTyped
+
+    private void TelefonoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TelefonoCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.SoloNumeros(TelefonoCampo, "63422343");
+    }//GEN-LAST:event_TelefonoCampoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -758,28 +602,28 @@ private int obtenerIDPrograma() {
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ApellidoMaterno;
-    public java.awt.TextField ApellidoMaternoCampo;
+    private javax.swing.JTextField ApellidoMaternoCampo;
     private javax.swing.JLabel ApellidoPaterno;
-    public java.awt.TextField ApellidoPaternoCampo;
+    private javax.swing.JTextField ApellidoPaternoCampo;
     private javax.swing.JLabel AñadirFotografia;
     private javax.swing.JLabel CI;
-    public java.awt.TextField CICampo;
+    private javax.swing.JTextField CICampo;
     private javax.swing.JLabel CancelarBoton1;
     private javax.swing.JPanel CancelarPanel;
     private javax.swing.JLabel CorreoElectronico;
-    public java.awt.TextField CorreoElectronicoCampo;
+    private javax.swing.JTextField CorreoElectronicoCampo;
     private javax.swing.JPanel DatosContactoPanel;
     private javax.swing.JPanel DatosPersonalesPanel;
     private javax.swing.JLabel Direccion;
-    public java.awt.TextField DireccionCampo;
+    private javax.swing.JTextField DireccionCampo;
     private javax.swing.JLabel FechaNacimiento;
-    public java.awt.TextField FechaNacimientoCampo;
+    private javax.swing.JTextField FechaNacimientoCampo;
     private javax.swing.JPanel Fotografia;
     private javax.swing.JLabel FotografiaCampo;
     private javax.swing.JLabel GuardarBoton;
     private javax.swing.JPanel GuardarPanel;
     private javax.swing.JLabel Nombre;
-    public java.awt.TextField NombreCampo;
+    private javax.swing.JTextField NombreCampo;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JLabel Programa;
     public javax.swing.JComboBox<String> ProgramaComboBox;
@@ -787,7 +631,7 @@ private int obtenerIDPrograma() {
     private javax.swing.JLabel SubTituloDC;
     private javax.swing.JLabel SubtituloDP;
     private javax.swing.JLabel Telefono;
-    public java.awt.TextField TelefonoCampo;
+    private javax.swing.JTextField TelefonoCampo;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Usuario;
     private javax.swing.JPanel UsuarioPanel;

@@ -43,19 +43,20 @@ public class AñadirPrograma extends javax.swing.JFrame {
         MaximoInscritos = new javax.swing.JLabel();
         Costo = new javax.swing.JLabel();
         Instructor = new javax.swing.JLabel();
-        DetallesCampo = new java.awt.TextField();
-        NombreCampo = new java.awt.TextField();
-        FechaInicioCampo = new java.awt.TextField();
-        FechaFinCampo = new java.awt.TextField();
-        HorarioCampo = new java.awt.TextField();
-        MaximoInscritosCampo = new java.awt.TextField();
-        CostoCampo = new java.awt.TextField();
         Detalles = new javax.swing.JLabel();
         InstructorComboBox = new javax.swing.JComboBox<>();
         CancelarPanel = new javax.swing.JPanel();
         CancelarBoton = new javax.swing.JLabel();
         GuardarPanel = new javax.swing.JPanel();
         GuardarBoton = new javax.swing.JLabel();
+        NombreCampo = new javax.swing.JTextField();
+        FechaInicioCampo = new javax.swing.JTextField();
+        MaximoInscritosCampo = new javax.swing.JTextField();
+        HorarioCampo = new javax.swing.JTextField();
+        CostoCampo = new javax.swing.JTextField();
+        FechaFinCampo = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        DetallesCampo = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,99 +95,6 @@ public class AñadirPrograma extends javax.swing.JFrame {
         Instructor.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Instructor.setText("Instructor");
         PanelPrincipal.add(Instructor, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 200, 50));
-
-        DetallesCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        DetallesCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        DetallesCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DetallesCampoActionPerformed(evt);
-            }
-        });
-        PanelPrincipal.add(DetallesCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, 550, 160));
-
-        NombreCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        NombreCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        NombreCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreCampoActionPerformed(evt);
-            }
-        });
-        NombreCampo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                NombreCampoKeyTyped(evt);
-            }
-        });
-        PanelPrincipal.add(NombreCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 210, 30));
-
-        FechaInicioCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        FechaInicioCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        FechaInicioCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FechaInicioCampoActionPerformed(evt);
-            }
-        });
-        FechaInicioCampo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                FechaInicioCampoKeyTyped(evt);
-            }
-        });
-        PanelPrincipal.add(FechaInicioCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 210, 30));
-
-        FechaFinCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        FechaFinCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        FechaFinCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FechaFinCampoActionPerformed(evt);
-            }
-        });
-        FechaFinCampo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                FechaFinCampoKeyTyped(evt);
-            }
-        });
-        PanelPrincipal.add(FechaFinCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 210, 30));
-
-        HorarioCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        HorarioCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        HorarioCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HorarioCampoActionPerformed(evt);
-            }
-        });
-        HorarioCampo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                HorarioCampoKeyTyped(evt);
-            }
-        });
-        PanelPrincipal.add(HorarioCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 210, 30));
-
-        MaximoInscritosCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        MaximoInscritosCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        MaximoInscritosCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MaximoInscritosCampoActionPerformed(evt);
-            }
-        });
-        MaximoInscritosCampo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                MaximoInscritosCampoKeyTyped(evt);
-            }
-        });
-        PanelPrincipal.add(MaximoInscritosCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 140, 210, 30));
-
-        CostoCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        CostoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        CostoCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CostoCampoActionPerformed(evt);
-            }
-        });
-        CostoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                CostoCampoKeyTyped(evt);
-            }
-        });
-        PanelPrincipal.add(CostoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, 210, 30));
 
         Detalles.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Detalles.setText("Detalles:");
@@ -238,14 +146,6 @@ public class AñadirPrograma extends javax.swing.JFrame {
         PanelPrincipal.add(CancelarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 540, 150, 50));
 
         GuardarPanel.setBackground(new java.awt.Color(80, 200, 120));
-        GuardarPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                GuardarPanelMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                GuardarPanelMouseEntered(evt);
-            }
-        });
 
         GuardarBoton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         GuardarBoton.setForeground(new java.awt.Color(255, 255, 255));
@@ -260,17 +160,6 @@ public class AñadirPrograma extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 GuardarBotonMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                GuardarBotonMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                GuardarBotonMouseReleased(evt);
-            }
-        });
-        GuardarBoton.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                GuardarBotonKeyPressed(evt);
             }
         });
 
@@ -293,6 +182,51 @@ public class AñadirPrograma extends javax.swing.JFrame {
 
         PanelPrincipal.add(GuardarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 540, -1, -1));
 
+        NombreCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        NombreCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NombreCampoKeyTyped(evt);
+            }
+        });
+        PanelPrincipal.add(NombreCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 210, 30));
+
+        FechaInicioCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        PanelPrincipal.add(FechaInicioCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 210, 30));
+
+        MaximoInscritosCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        MaximoInscritosCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                MaximoInscritosCampoKeyTyped(evt);
+            }
+        });
+        PanelPrincipal.add(MaximoInscritosCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 140, 210, 30));
+
+        HorarioCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        PanelPrincipal.add(HorarioCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 210, 30));
+
+        CostoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        CostoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CostoCampoKeyTyped(evt);
+            }
+        });
+        PanelPrincipal.add(CostoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, 210, 30));
+
+        FechaFinCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        FechaFinCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                FechaFinCampoKeyTyped(evt);
+            }
+        });
+        PanelPrincipal.add(FechaFinCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 210, 30));
+
+        DetallesCampo.setColumns(20);
+        DetallesCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        DetallesCampo.setRows(5);
+        jScrollPane1.setViewportView(DetallesCampo);
+
+        PanelPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, 550, 160));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -306,34 +240,6 @@ public class AñadirPrograma extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void DetallesCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetallesCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DetallesCampoActionPerformed
-
-    private void NombreCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreCampoActionPerformed
-
-    private void FechaInicioCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaInicioCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FechaInicioCampoActionPerformed
-
-    private void FechaFinCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaFinCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FechaFinCampoActionPerformed
-
-    private void HorarioCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HorarioCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_HorarioCampoActionPerformed
-
-    private void MaximoInscritosCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaximoInscritosCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MaximoInscritosCampoActionPerformed
-
-    private void CostoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CostoCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CostoCampoActionPerformed
 
     private void InstructorComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstructorComboBoxActionPerformed
         // TODO add your handling code here:
@@ -413,28 +319,18 @@ public class AñadirPrograma extends javax.swing.JFrame {
 
     private void NombreCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreCampoKeyTyped
         // TODO add your handling code here:
-        Validaciones.soloLetras(evt);
+        Validaciones.SoloTexto(NombreCampo, "kun fu, Karte, Jujitsu, etc.");
     }//GEN-LAST:event_NombreCampoKeyTyped
-
-    private void FechaInicioCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FechaInicioCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.validarFecha(evt, FechaInicioCampo);
-    }//GEN-LAST:event_FechaInicioCampoKeyTyped
 
     private void MaximoInscritosCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MaximoInscritosCampoKeyTyped
         // TODO add your handling code here:
-        Validaciones.soloNumeros(evt);
+        Validaciones.SoloNumeros(MaximoInscritosCampo, "20, 50, etc.");
     }//GEN-LAST:event_MaximoInscritosCampoKeyTyped
 
     private void CostoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CostoCampoKeyTyped
         // TODO add your handling code here:
-        Validaciones.soloNumeros(evt);
+        Validaciones.SoloNumeros(CostoCampo, "250, 500, 1000, etc.");
     }//GEN-LAST:event_CostoCampoKeyTyped
-
-    private void HorarioCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HorarioCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.validarHorario(evt, HorarioCampo);
-    }//GEN-LAST:event_HorarioCampoKeyTyped
 
     private void FechaFinCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FechaFinCampoKeyTyped
         // TODO add your handling code here:
@@ -546,24 +442,25 @@ private int obtenerIDInstructor() {
     private javax.swing.JLabel CancelarBoton;
     private javax.swing.JPanel CancelarPanel;
     private javax.swing.JLabel Costo;
-    private java.awt.TextField CostoCampo;
+    private javax.swing.JTextField CostoCampo;
     private javax.swing.JLabel Detalles;
-    private java.awt.TextField DetallesCampo;
+    private javax.swing.JTextArea DetallesCampo;
     private javax.swing.JLabel FechaFin;
-    private java.awt.TextField FechaFinCampo;
+    private javax.swing.JTextField FechaFinCampo;
     private javax.swing.JLabel FechaInicio;
-    private java.awt.TextField FechaInicioCampo;
+    private javax.swing.JTextField FechaInicioCampo;
     private javax.swing.JLabel GuardarBoton;
     private javax.swing.JPanel GuardarPanel;
     private javax.swing.JLabel Horario;
-    private java.awt.TextField HorarioCampo;
+    private javax.swing.JTextField HorarioCampo;
     private javax.swing.JLabel Instructor;
-    public javax.swing.JComboBox<String> InstructorComboBox;
+    private javax.swing.JComboBox<String> InstructorComboBox;
     private javax.swing.JLabel MaximoInscritos;
-    private java.awt.TextField MaximoInscritosCampo;
+    private javax.swing.JTextField MaximoInscritosCampo;
     private javax.swing.JLabel Nombre;
-    private java.awt.TextField NombreCampo;
+    private javax.swing.JTextField NombreCampo;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JLabel Titulo;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

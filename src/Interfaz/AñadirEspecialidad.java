@@ -32,8 +32,6 @@ public class AñadirEspecialidad extends javax.swing.JFrame {
         PanelPrincipal = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
         NivelEspecialidad = new javax.swing.JLabel();
-        DetallesCampo = new java.awt.TextField();
-        NombreCampo = new java.awt.TextField();
         Detalles = new javax.swing.JLabel();
         nivelEspecialidadComboBox = new javax.swing.JComboBox<>();
         CancelarPanel = new javax.swing.JPanel();
@@ -41,6 +39,9 @@ public class AñadirEspecialidad extends javax.swing.JFrame {
         GuardarPanel = new javax.swing.JPanel();
         GuardarBoton = new javax.swing.JLabel();
         Nombre = new javax.swing.JLabel();
+        NombreCampo = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        DetallesCampo = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,24 +57,6 @@ public class AñadirEspecialidad extends javax.swing.JFrame {
         NivelEspecialidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         NivelEspecialidad.setText("Nivel de especializacion:");
         PanelPrincipal.add(NivelEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 290, 50));
-
-        DetallesCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        DetallesCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        DetallesCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DetallesCampoActionPerformed(evt);
-            }
-        });
-        PanelPrincipal.add(DetallesCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 550, 120));
-
-        NombreCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        NombreCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        NombreCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreCampoActionPerformed(evt);
-            }
-        });
-        PanelPrincipal.add(NombreCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, 210, 30));
 
         Detalles.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Detalles.setText("Detalles:");
@@ -163,6 +146,26 @@ public class AñadirEspecialidad extends javax.swing.JFrame {
         Nombre.setText("Nombre:");
         PanelPrincipal.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 290, 50));
 
+        NombreCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        NombreCampo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreCampoActionPerformed(evt);
+            }
+        });
+        NombreCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NombreCampoKeyTyped(evt);
+            }
+        });
+        PanelPrincipal.add(NombreCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, 210, 30));
+
+        DetallesCampo.setColumns(20);
+        DetallesCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        DetallesCampo.setRows(5);
+        jScrollPane1.setViewportView(DetallesCampo);
+
+        PanelPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 550, 120));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -176,14 +179,6 @@ public class AñadirEspecialidad extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void DetallesCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetallesCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DetallesCampoActionPerformed
-
-    private void NombreCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreCampoActionPerformed
 
     private void nivelEspecialidadComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nivelEspecialidadComboBoxActionPerformed
         // TODO add your handling code here:
@@ -208,6 +203,15 @@ public class AñadirEspecialidad extends javax.swing.JFrame {
     private void GuardarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseExited
          GuardarPanel.setBackground(new Color (80,200,120));
     }//GEN-LAST:event_GuardarBotonMouseExited
+
+    private void NombreCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreCampoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreCampoActionPerformed
+
+    private void NombreCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreCampoKeyTyped
+        // TODO add your handling code here:
+        Validaciones.SoloTexto(NombreCampo, "Jose, Maria, etc.");
+    }//GEN-LAST:event_NombreCampoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -249,14 +253,15 @@ public class AñadirEspecialidad extends javax.swing.JFrame {
     private javax.swing.JLabel CancelarBoton;
     private javax.swing.JPanel CancelarPanel;
     private javax.swing.JLabel Detalles;
-    private java.awt.TextField DetallesCampo;
+    private javax.swing.JTextArea DetallesCampo;
     private javax.swing.JLabel GuardarBoton;
     private javax.swing.JPanel GuardarPanel;
     private javax.swing.JLabel NivelEspecialidad;
     private javax.swing.JLabel Nombre;
-    private java.awt.TextField NombreCampo;
+    private javax.swing.JTextField NombreCampo;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JLabel Titulo;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> nivelEspecialidadComboBox;
     // End of variables declaration//GEN-END:variables
 }

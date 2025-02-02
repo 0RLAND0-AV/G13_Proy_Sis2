@@ -36,15 +36,15 @@ public class EditarPrueba extends javax.swing.JFrame {
         Tipo = new javax.swing.JLabel();
         Hora = new javax.swing.JLabel();
         Programa = new javax.swing.JLabel();
-        LugarCampo = new java.awt.TextField();
-        FechaCampo = new java.awt.TextField();
-        HoraCampo = new java.awt.TextField();
         TipoComboBox = new javax.swing.JComboBox<>();
         CancelarPanel = new javax.swing.JPanel();
         CancelarBoton = new javax.swing.JLabel();
         GuardarPanel = new javax.swing.JPanel();
         GuardarBoton = new javax.swing.JLabel();
         ProgramaComboBox1 = new javax.swing.JComboBox<>();
+        LugarCampo = new javax.swing.JTextField();
+        FechaCampo = new javax.swing.JTextField();
+        HoraCampo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,48 +75,6 @@ public class EditarPrueba extends javax.swing.JFrame {
         Programa.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Programa.setText("Programa:");
         PanelPrincipal.add(Programa, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 120, 50));
-
-        LugarCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        LugarCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        LugarCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LugarCampoActionPerformed(evt);
-            }
-        });
-        LugarCampo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                LugarCampoKeyTyped(evt);
-            }
-        });
-        PanelPrincipal.add(LugarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 580, 30));
-
-        FechaCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        FechaCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        FechaCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FechaCampoActionPerformed(evt);
-            }
-        });
-        FechaCampo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                FechaCampoKeyTyped(evt);
-            }
-        });
-        PanelPrincipal.add(FechaCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 210, 30));
-
-        HoraCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        HoraCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        HoraCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HoraCampoActionPerformed(evt);
-            }
-        });
-        HoraCampo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                HoraCampoKeyTyped(evt);
-            }
-        });
-        PanelPrincipal.add(HoraCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, 210, 30));
 
         TipoComboBox.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         TipoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Practica", "Examen" }));
@@ -228,6 +186,25 @@ public class EditarPrueba extends javax.swing.JFrame {
         });
         PanelPrincipal.add(ProgramaComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 330, 210, 30));
 
+        LugarCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LugarCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                LugarCampoKeyTyped(evt);
+            }
+        });
+        PanelPrincipal.add(LugarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 580, 30));
+
+        FechaCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        PanelPrincipal.add(FechaCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 210, 30));
+
+        HoraCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        HoraCampo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HoraCampoActionPerformed(evt);
+            }
+        });
+        PanelPrincipal.add(HoraCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, 210, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -241,33 +218,6 @@ public class EditarPrueba extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void LugarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LugarCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LugarCampoActionPerformed
-
-    private void LugarCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LugarCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.soloLetras(evt);
-    }//GEN-LAST:event_LugarCampoKeyTyped
-
-    private void FechaCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FechaCampoActionPerformed
-
-    private void FechaCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FechaCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.validarFecha(evt, FechaCampo);
-    }//GEN-LAST:event_FechaCampoKeyTyped
-
-    private void HoraCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HoraCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_HoraCampoActionPerformed
-
-    private void HoraCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HoraCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.soloNumeros(evt);
-    }//GEN-LAST:event_HoraCampoKeyTyped
 
     private void TipoComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoComboBoxActionPerformed
         // TODO add your handling code here:
@@ -327,6 +277,14 @@ public class EditarPrueba extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ProgramaComboBox1ActionPerformed
 
+    private void LugarCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LugarCampoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LugarCampoKeyTyped
+
+    private void HoraCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HoraCampoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HoraCampoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -367,13 +325,13 @@ public class EditarPrueba extends javax.swing.JFrame {
     private javax.swing.JLabel CancelarBoton;
     private javax.swing.JPanel CancelarPanel;
     private javax.swing.JLabel Fecha;
-    private java.awt.TextField FechaCampo;
+    private javax.swing.JTextField FechaCampo;
     private javax.swing.JLabel GuardarBoton;
     private javax.swing.JPanel GuardarPanel;
     private javax.swing.JLabel Hora;
-    private java.awt.TextField HoraCampo;
+    private javax.swing.JTextField HoraCampo;
     private javax.swing.JLabel Luagar;
-    private java.awt.TextField LugarCampo;
+    private javax.swing.JTextField LugarCampo;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JLabel Programa;
     public javax.swing.JComboBox<String> ProgramaComboBox1;

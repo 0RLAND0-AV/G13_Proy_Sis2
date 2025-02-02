@@ -31,13 +31,13 @@ public class ListaAlumnos extends javax.swing.JFrame {
 
         PanelPrincipal = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
-        NombreCampo = new java.awt.TextField();
         Nombre = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaProgramas = new javax.swing.JTable();
         SalirPanel = new javax.swing.JPanel();
         SalirBoton = new javax.swing.JLabel();
         Titulo1 = new javax.swing.JLabel();
+        NombreCampo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,15 +48,6 @@ public class ListaAlumnos extends javax.swing.JFrame {
         Titulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Titulo.setText("Programa");
         PanelPrincipal.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 400, 30));
-
-        NombreCampo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        NombreCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        NombreCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreCampoActionPerformed(evt);
-            }
-        });
-        PanelPrincipal.add(NombreCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 310, 40));
 
         Nombre.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Nombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -131,6 +122,14 @@ public class ListaAlumnos extends javax.swing.JFrame {
         Titulo1.setText("Lista de Alumnos:");
         PanelPrincipal.add(Titulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 410, 60));
 
+        NombreCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        NombreCampo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreCampoActionPerformed(evt);
+            }
+        });
+        PanelPrincipal.add(NombreCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 310, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,10 +144,6 @@ public class ListaAlumnos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NombreCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreCampoActionPerformed
-
     private void SalirBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalirBotonMouseClicked
         dispose();
     }//GEN-LAST:event_SalirBotonMouseClicked
@@ -160,6 +155,10 @@ public class ListaAlumnos extends javax.swing.JFrame {
     private void SalirBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalirBotonMouseExited
         SalirPanel.setBackground(new Color (80,200,120));
     }//GEN-LAST:event_SalirBotonMouseExited
+
+    private void NombreCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreCampoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreCampoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,7 +200,7 @@ public class ListaAlumnos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Nombre;
-    private java.awt.TextField NombreCampo;
+    private javax.swing.JTextField NombreCampo;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JLabel SalirBoton;
     private javax.swing.JPanel SalirPanel;
