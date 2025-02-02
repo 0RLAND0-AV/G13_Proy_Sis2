@@ -66,7 +66,8 @@ public class AñadirInstructo extends javax.swing.JFrame {
         Fotografia = new javax.swing.JPanel();
         UsuarioPanel = new javax.swing.JPanel();
         Usuario = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        AñadirFotografia = new javax.swing.JLabel();
+        FotografiaCampo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -409,6 +410,7 @@ public class AñadirInstructo extends javax.swing.JFrame {
         PanelPrincipal.add(EspecialidadPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 410, 400, 60));
 
         Fotografia.setBackground(new java.awt.Color(232, 227, 223));
+        Fotografia.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Usuario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Usuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -425,33 +427,26 @@ public class AñadirInstructo extends javax.swing.JFrame {
             .addComponent(Usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
         );
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("+");
+        Fotografia.add(UsuarioPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 218, -1, -1));
 
-        javax.swing.GroupLayout FotografiaLayout = new javax.swing.GroupLayout(Fotografia);
-        Fotografia.setLayout(FotografiaLayout);
-        FotografiaLayout.setHorizontalGroup(
-            FotografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FotografiaLayout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
-                .addGroup(FotografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FotografiaLayout.createSequentialGroup()
-                        .addComponent(UsuarioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FotografiaLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-        );
-        FotografiaLayout.setVerticalGroup(
-            FotografiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FotografiaLayout.createSequentialGroup()
-                .addContainerGap(182, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(UsuarioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
-        );
+        AñadirFotografia.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        AñadirFotografia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AñadirFotografia.setText("+");
+        AñadirFotografia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AñadirFotografiaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AñadirFotografiaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AñadirFotografiaMouseExited(evt);
+            }
+        });
+        Fotografia.add(AñadirFotografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 30, 30));
+
+        FotografiaCampo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Fotografia.add(FotografiaCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 220, 190));
 
         PanelPrincipal.add(Fotografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 120, 240, 260));
 
@@ -567,6 +562,18 @@ public class AñadirInstructo extends javax.swing.JFrame {
         Validaciones.soloNumeros(evt);
     }//GEN-LAST:event_TelefonoCampoKeyTyped
 
+    private void AñadirFotografiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AñadirFotografiaMouseClicked
+        Validaciones.AñadirFotogra(FotografiaCampo);
+    }//GEN-LAST:event_AñadirFotografiaMouseClicked
+
+    private void AñadirFotografiaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AñadirFotografiaMouseEntered
+        AñadirFotografia.setForeground(Color.white);
+    }//GEN-LAST:event_AñadirFotografiaMouseEntered
+
+    private void AñadirFotografiaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AñadirFotografiaMouseExited
+       AñadirFotografia.setForeground(Color.BLACK);
+    }//GEN-LAST:event_AñadirFotografiaMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -676,6 +683,7 @@ private int obtenerIDEspecialidad() {
     private java.awt.TextField ApellidoMaternoCampo;
     private javax.swing.JLabel ApellidoPaterno;
     private java.awt.TextField ApellidoPaternoCampo;
+    private javax.swing.JLabel AñadirFotografia;
     private javax.swing.JLabel CI;
     private java.awt.TextField CICampo;
     private javax.swing.JLabel CancelarBoton1;
@@ -691,6 +699,7 @@ private int obtenerIDEspecialidad() {
     private javax.swing.JLabel FechaNacimiento;
     private java.awt.TextField FechaNacimientoCampo;
     private javax.swing.JPanel Fotografia;
+    private javax.swing.JLabel FotografiaCampo;
     private javax.swing.JLabel GuardarBoton;
     private javax.swing.JPanel GuardarPanel;
     private javax.swing.JLabel Nombre;
@@ -704,6 +713,5 @@ private int obtenerIDEspecialidad() {
     private javax.swing.JLabel Usuario;
     private javax.swing.JPanel UsuarioPanel;
     public javax.swing.JComboBox<String> especialidadComboBox;
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

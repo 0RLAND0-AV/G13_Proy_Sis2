@@ -4,29 +4,38 @@
  */
 package Interfaz;
 import java.awt.Color;
+import java.awt.Image;
 import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.awt.TextField;
+import java.io.File;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
- * @author jhona
+ * @author Frank
  */
 public class Validaciones {
     // Permitir solo letras y espacios
-    public static void soloLetras(KeyEvent evt) {
+    public static void soloLetras(KeyEvent evt) {     
         char c = evt.getKeyChar();
         
         // No mostrar mensaje de error al borrar
         if (c == KeyEvent.VK_BACK_SPACE ) {
-            return; // Permite borrar sin mostrar errores
+           // txt.setForeground(Color.BLACK);
+            return ; // Permite borrar sin mostrar errores
         }
         
         if (!Character.isLetter(c) && c != ' ') {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Solo se permiten letras");
+          //  txt.setForeground(Color.red);
         }
+
     }
 
     // Permitir solo números enteros positivos
@@ -116,4 +125,29 @@ public class Validaciones {
            
         }
      }   
+    
+     public static void AñadirFotogra(JLabel foto){
+                 JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes", "jpg", "png", "jpeg"));
+        int seleccion = fileChooser.showOpenDialog(foto);
+    
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+        File archivo = fileChooser.getSelectedFile();
+        ImageIcon imagenOriginal = new ImageIcon(archivo.getAbsolutePath());
+
+        // Obtener las dimensiones del JLabel
+        int anchoLabel = foto.getWidth();
+        int altoLabel = foto.getHeight();
+
+        // Escalar la imagen al tamaño del JLabel
+        Image imgEscalada = imagenOriginal.getImage().getScaledInstance(anchoLabel, altoLabel, Image.SCALE_SMOOTH);
+        
+        // Asignar la imagen escalada al JLabel
+        foto.setIcon(new ImageIcon(imgEscalada));
+        foto.revalidate();
+        foto.repaint();
+    }
+    }
+
 }
+
