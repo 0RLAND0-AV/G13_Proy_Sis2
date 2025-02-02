@@ -43,10 +43,11 @@ public class Menu extends javax.swing.JFrame {
         BotonCertificaciones = new javax.swing.JLabel();
         MaterialPanel = new javax.swing.JPanel();
         BotonMaterial = new javax.swing.JLabel();
-        InformesPanel = new javax.swing.JPanel();
-        BotonInformes = new javax.swing.JLabel();
+        CronogramaPanel = new javax.swing.JPanel();
+        BotonCronograma = new javax.swing.JLabel();
         HeaderPanel = new javax.swing.JPanel();
         PanelCambiante = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1200, 800));
@@ -262,39 +263,42 @@ public class Menu extends javax.swing.JFrame {
 
         PanelMenuLateral.add(MaterialPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, -1, -1));
 
-        InformesPanel.setBackground(new java.awt.Color(80, 200, 120));
-        InformesPanel.setPreferredSize(new java.awt.Dimension(320, 85));
+        CronogramaPanel.setBackground(new java.awt.Color(80, 200, 120));
+        CronogramaPanel.setPreferredSize(new java.awt.Dimension(320, 85));
 
-        BotonInformes.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        BotonInformes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        BotonInformes.setText("INFORMES");
-        BotonInformes.addMouseListener(new java.awt.event.MouseAdapter() {
+        BotonCronograma.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BotonCronograma.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BotonCronograma.setText("CRONOGRAMA");
+        BotonCronograma.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonCronogramaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                BotonInformesMouseEntered(evt);
+                BotonCronogramaMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                BotonInformesMouseExited(evt);
+                BotonCronogramaMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout InformesPanelLayout = new javax.swing.GroupLayout(InformesPanel);
-        InformesPanel.setLayout(InformesPanelLayout);
-        InformesPanelLayout.setHorizontalGroup(
-            InformesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(InformesPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout CronogramaPanelLayout = new javax.swing.GroupLayout(CronogramaPanel);
+        CronogramaPanel.setLayout(CronogramaPanelLayout);
+        CronogramaPanelLayout.setHorizontalGroup(
+            CronogramaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CronogramaPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(BotonInformes, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                .addComponent(BotonCronograma, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        InformesPanelLayout.setVerticalGroup(
-            InformesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(InformesPanelLayout.createSequentialGroup()
+        CronogramaPanelLayout.setVerticalGroup(
+            CronogramaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CronogramaPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(BotonInformes, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addComponent(BotonCronograma, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        PanelMenuLateral.add(InformesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 320, -1));
+        PanelMenuLateral.add(CronogramaPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 320, -1));
 
         getContentPane().add(PanelMenuLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, -1));
 
@@ -315,18 +319,26 @@ public class Menu extends javax.swing.JFrame {
 
         getContentPane().add(HeaderPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 890, 70));
 
-        PanelCambiante.setBackground(new java.awt.Color(255, 51, 204));
+        PanelCambiante.setBackground(new java.awt.Color(209, 209, 209));
         PanelCambiante.setMinimumSize(new java.awt.Dimension(900, 720));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Welcome to the Institute");
 
         javax.swing.GroupLayout PanelCambianteLayout = new javax.swing.GroupLayout(PanelCambiante);
         PanelCambiante.setLayout(PanelCambianteLayout);
         PanelCambianteLayout.setHorizontalGroup(
             PanelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(PanelCambianteLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 796, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 104, Short.MAX_VALUE))
         );
         PanelCambianteLayout.setVerticalGroup(
             PanelCambianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 730, Short.MAX_VALUE)
+            .addGroup(PanelCambianteLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 658, Short.MAX_VALUE))
         );
 
         getContentPane().add(PanelCambiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 890, 730));
@@ -428,13 +440,26 @@ public class Menu extends javax.swing.JFrame {
         CertificacionesPanel.setBackground(new Color (80,200,120));
     }//GEN-LAST:event_BotonCertificacionesMouseExited
 
-    private void BotonInformesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonInformesMouseEntered
-         InformesPanel.setBackground(new Color (32,67,114));
-    }//GEN-LAST:event_BotonInformesMouseEntered
+    private void BotonCronogramaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonCronogramaMouseEntered
+         CronogramaPanel.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_BotonCronogramaMouseEntered
 
-    private void BotonInformesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonInformesMouseExited
-        InformesPanel.setBackground(new Color (80,200,120));
-    }//GEN-LAST:event_BotonInformesMouseExited
+    private void BotonCronogramaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonCronogramaMouseExited
+        CronogramaPanel.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_BotonCronogramaMouseExited
+
+    private void BotonCronogramaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonCronogramaMouseClicked
+        CronogramaBackground pb = new CronogramaBackground();
+        pb.setSize(900, 720);
+        pb.setLocation(0, 0);
+
+        
+        PanelCambiante.removeAll();
+        PanelCambiante.add(pb, BorderLayout.CENTER);
+        PanelCambiante.revalidate();
+        PanelCambiante.repaint();
+        
+    }//GEN-LAST:event_BotonCronogramaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -475,19 +500,20 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel AlumnosPanel;
     private javax.swing.JLabel BotonAlumnos;
     private javax.swing.JLabel BotonCertificaciones;
-    private javax.swing.JLabel BotonInformes;
+    private javax.swing.JLabel BotonCronograma;
     private javax.swing.JLabel BotonInicio;
     private javax.swing.JLabel BotonInstructores;
     private javax.swing.JLabel BotonMaterial;
     private javax.swing.JLabel BotonProgramas;
     private javax.swing.JPanel CertificacionesPanel;
+    private javax.swing.JPanel CronogramaPanel;
     private javax.swing.JPanel HeaderPanel;
-    private javax.swing.JPanel InformesPanel;
     private javax.swing.JPanel InicioPanel;
     private javax.swing.JPanel InstructoresPanel;
     private javax.swing.JPanel MaterialPanel;
     private javax.swing.JPanel PanelCambiante;
     private javax.swing.JPanel PanelMenuLateral;
     private javax.swing.JPanel ProgramasPanel;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

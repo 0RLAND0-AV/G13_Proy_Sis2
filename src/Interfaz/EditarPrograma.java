@@ -174,6 +174,11 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
 
         PanelPrincipal.setBackground(new java.awt.Color(209, 209, 209));
         PanelPrincipal.setMinimumSize(new java.awt.Dimension(1050, 650));
+        PanelPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelPrincipalMouseClicked(evt);
+            }
+        });
         PanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Titulo.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
@@ -539,6 +544,10 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
         conexionBD.desconectar();
     }
 }
+
+    private void PanelPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelPrincipalMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PanelPrincipalMouseClicked
 
     /**
      * @param args the command line arguments

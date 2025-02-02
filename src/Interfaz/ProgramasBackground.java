@@ -44,6 +44,7 @@ public class ProgramasBackground extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         EliminarPanel = new javax.swing.JPanel();
         EliminarBoton = new javax.swing.JLabel();
         EditarPanel = new javax.swing.JPanel();
@@ -53,6 +54,10 @@ public class ProgramasBackground extends javax.swing.JPanel {
         programatxt = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaProgramas = new javax.swing.JTable();
+        ListaAlumnosPanle = new javax.swing.JPanel();
+        ListaAlumnosBoton = new javax.swing.JLabel();
+
+        jLabel1.setText("jLabel1");
 
         setBackground(new java.awt.Color(209, 209, 209));
         setMinimumSize(new java.awt.Dimension(900, 600));
@@ -83,18 +88,18 @@ public class ProgramasBackground extends javax.swing.JPanel {
             EliminarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EliminarPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(EliminarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addComponent(EliminarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                 .addContainerGap())
         );
         EliminarPanelLayout.setVerticalGroup(
             EliminarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EliminarPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(EliminarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(EliminarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        add(EliminarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 615, -1, -1));
+        add(EliminarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 610, 160, -1));
 
         EditarPanel.setBackground(new java.awt.Color(80, 200, 120));
 
@@ -120,18 +125,18 @@ public class ProgramasBackground extends javax.swing.JPanel {
             EditarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EditarPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(EditarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addComponent(EditarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                 .addContainerGap())
         );
         EditarPanelLayout.setVerticalGroup(
             EditarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EditarPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(EditarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditarPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(EditarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        add(EditarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 615, -1, -1));
+        add(EditarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 610, 160, -1));
 
         AgregarPanel.setBackground(new java.awt.Color(80, 200, 120));
 
@@ -158,18 +163,18 @@ public class ProgramasBackground extends javax.swing.JPanel {
             AgregarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AgregarPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(AgregarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addComponent(AgregarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                 .addContainerGap())
         );
         AgregarPanelLayout.setVerticalGroup(
             AgregarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AgregarPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(AgregarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(AgregarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        add(AgregarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(695, 615, -1, -1));
+        add(AgregarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 610, 160, -1));
 
         programatxt.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         programatxt.setForeground(new java.awt.Color(55, 67, 66));
@@ -210,6 +215,43 @@ public class ProgramasBackground extends javax.swing.JPanel {
         jScrollPane1.setViewportView(TablaProgramas);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 123, 807, 442));
+
+        ListaAlumnosPanle.setBackground(new java.awt.Color(80, 200, 120));
+
+        ListaAlumnosBoton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ListaAlumnosBoton.setForeground(new java.awt.Color(255, 255, 255));
+        ListaAlumnosBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ListaAlumnosBoton.setText("LISTA ALUMNOS");
+        ListaAlumnosBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ListaAlumnosBotonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ListaAlumnosBotonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ListaAlumnosBotonMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ListaAlumnosPanleLayout = new javax.swing.GroupLayout(ListaAlumnosPanle);
+        ListaAlumnosPanle.setLayout(ListaAlumnosPanleLayout);
+        ListaAlumnosPanleLayout.setHorizontalGroup(
+            ListaAlumnosPanleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ListaAlumnosPanleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ListaAlumnosBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        ListaAlumnosPanleLayout.setVerticalGroup(
+            ListaAlumnosPanleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ListaAlumnosPanleLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ListaAlumnosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        add(ListaAlumnosPanle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 610, 160, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void EliminarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarBotonMouseEntered
@@ -279,6 +321,19 @@ public class ProgramasBackground extends javax.swing.JPanel {
         ventanaEmergente.setVisible(true);
     }
     }//GEN-LAST:event_EditarBotonMouseClicked
+
+    private void ListaAlumnosBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListaAlumnosBotonMouseClicked
+        ListaAlumnos LM = new ListaAlumnos();
+        LM.setVisible(true);
+    }//GEN-LAST:event_ListaAlumnosBotonMouseClicked
+
+    private void ListaAlumnosBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListaAlumnosBotonMouseEntered
+        ListaAlumnosPanle.setBackground(new Color (32,67,114));
+    }//GEN-LAST:event_ListaAlumnosBotonMouseEntered
+
+    private void ListaAlumnosBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListaAlumnosBotonMouseExited
+        ListaAlumnosPanle.setBackground(new Color (80,200,120));
+    }//GEN-LAST:event_ListaAlumnosBotonMouseExited
 
     public void actualizarTablaProgramas() {
     System.out.println("🔄 Actualizando tabla de programas...");
@@ -366,7 +421,10 @@ private String determinarEstado(String fechaFin) {
     private javax.swing.JPanel EditarPanel;
     private javax.swing.JLabel EliminarBoton;
     private javax.swing.JPanel EliminarPanel;
+    private javax.swing.JLabel ListaAlumnosBoton;
+    private javax.swing.JPanel ListaAlumnosPanle;
     private javax.swing.JTable TablaProgramas;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel programatxt;
     // End of variables declaration//GEN-END:variables
