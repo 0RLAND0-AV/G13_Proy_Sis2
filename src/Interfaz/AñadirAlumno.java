@@ -530,11 +530,12 @@ public class AñadirAlumno extends javax.swing.JFrame {
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
     private void GuardarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseEntered
-        GuardarPanel.setBackground(new Color (32,67,114));
+        GuardarPanel.setBackground(new Color (32,67,114));  
     }//GEN-LAST:event_GuardarBotonMouseEntered
 
     private void GuardarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseExited
         GuardarPanel.setBackground(new Color (80,200,120));
+        //
     }//GEN-LAST:event_GuardarBotonMouseExited
 
     private void NombreCampoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreCampoKeyPressed
