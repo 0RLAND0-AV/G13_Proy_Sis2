@@ -4,8 +4,10 @@
  */
 package Interfaz;
 
+import ControladorBD.ConexionBD;
 import ControladorBD.QuerysAlumnos;
 import java.awt.Color;
+import java.sql.*;
 
 /**
  *
@@ -19,6 +21,7 @@ public class AñadirAlumno extends javax.swing.JFrame {
     public AñadirAlumno() {
         initComponents();
         this.setLocationRelativeTo(null);
+        cargarProgramasEnComboBox();
     }
 
     /**
@@ -514,8 +517,9 @@ public class AñadirAlumno extends javax.swing.JFrame {
 
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
         // TODO add your handling code here:
+        int ID_Programa= obtenerIDPrograma();
         QuerysAlumnos qi= new QuerysAlumnos();
-        qi.insertarAlumno(NombreCampo.getText(), ApellidoPaternoCampo.getText(), ApellidoMaternoCampo.getText(), TelefonoCampo.getText(), CICampo.getText(), FechaNacimientoCampo.getText(), DireccionCampo.getText(), CorreoElectronicoCampo.getText(),1);
+        qi.insertarAlumno(NombreCampo.getText(), ApellidoPaternoCampo.getText(), ApellidoMaternoCampo.getText(), TelefonoCampo.getText(), CICampo.getText(), FechaNacimientoCampo.getText(), DireccionCampo.getText(), CorreoElectronicoCampo.getText(),ID_Programa);
         dispose();
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
@@ -596,7 +600,74 @@ public class AñadirAlumno extends javax.swing.JFrame {
             }
         });
     }
+private void cargarProgramasEnComboBox() {
+    // Limpiar el ComboBox antes de agregar nuevos elementos
+    ProgramaComboBox.removeAllItems();
 
+    // Consulta SQL para obtener todos los nombres de los programas
+    String sql = "SELECT Nombre FROM programa";
+
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+    Connection conn = conexionBD.getConexion();
+
+    if (conn != null) {
+        System.out.println("Conexión exitosa a la base de datos.");
+    } else {
+        System.out.println("❌ Error al conectar con la base de datos.");
+        return;
+    }
+
+    try (java.sql.Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        int count = 0;
+        while (rs.next()) {
+            String nombrePrograma = rs.getString("Nombre");
+            System.out.println("Programa: " + nombrePrograma);  // Imprimir cada programa
+            ProgramaComboBox.addItem(nombrePrograma);  // Añadir el nombre del programa al ComboBox
+            count++;
+        }
+        System.out.println("Registros recuperados: " + count);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        conexionBD.desconectar();
+    }
+
+    // Actualizar el ComboBox después de llenarlo
+    ProgramaComboBox.revalidate();
+    ProgramaComboBox.repaint();
+}
+
+private int obtenerIDPrograma() {
+    // Obtener el nombre del programa seleccionado en el JComboBox
+    String nombrePrograma = (String) ProgramaComboBox.getSelectedItem();
+
+    // Consulta SQL para obtener el ID_Programa según el nombre
+    String sql = "SELECT ID_Programa FROM programa WHERE Nombre = ?";
+
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+    Connection conn = conexionBD.getConexion();
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, nombrePrograma);  // Establecer el nombre seleccionado en la consulta
+
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            // Devolver el ID_Programa si se encuentra
+            return rs.getInt("ID_Programa");
+        } else {
+            System.out.println("❌ No se encontró el programa con nombre: " + nombrePrograma);
+            return -1;  // Retorna -1 si no se encuentra
+        }
+    } catch (SQLException e) {
+        System.out.println("❌ Error al obtener el ID_Programa.");
+        e.printStackTrace();
+        return -1;  // Retorna -1 si ocurre un error
+    } finally {
+        conexionBD.desconectar();
+    }
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ApellidoMaterno;
     private java.awt.TextField ApellidoMaternoCampo;
@@ -621,7 +692,7 @@ public class AñadirAlumno extends javax.swing.JFrame {
     private java.awt.TextField NombreCampo;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JLabel Programa;
-    private javax.swing.JComboBox<String> ProgramaComboBox;
+    public javax.swing.JComboBox<String> ProgramaComboBox;
     private javax.swing.JPanel Programapanel;
     private javax.swing.JLabel SubTituloDC;
     private javax.swing.JLabel SubtituloDP;

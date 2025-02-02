@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
  
 
@@ -223,8 +224,18 @@ public class AlumnosBackground extends javax.swing.JPanel {
     }//GEN-LAST:event_AgreagarBotonMouseClicked
 
     private void EditarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarBotonMouseClicked
-        EditarAlumno ventanaEmergente = new EditarAlumno();
+    List<Integer> selectedIds = getSelectedIds(TablaAlumnos);
+
+    if (selectedIds.isEmpty()) { 
+        JOptionPane.showMessageDialog(null, "⚠️ No has seleccionado ningún registro.", "Error", JOptionPane.WARNING_MESSAGE);
+    } else if (selectedIds.size() > 1) { 
+        JOptionPane.showMessageDialog(null, "⚠️ Solo puedes editar un registro a la vez.", "Error", JOptionPane.WARNING_MESSAGE);
+    } else { 
+        int ID_Alumno = selectedIds.get(0);      
+        EditarAlumno ventanaEmergente = new EditarAlumno(ID_Alumno);//COLOCAR EL ID ALUMNO
         ventanaEmergente.setVisible(true);
+    }
+        
     }//GEN-LAST:event_EditarBotonMouseClicked
 
     private void ElimnarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ElimnarBotonMouseClicked

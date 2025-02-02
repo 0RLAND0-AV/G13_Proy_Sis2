@@ -5,8 +5,11 @@
 package Interfaz;
 
 import ControladorBD.QuerysInstructores;
+import java.sql.*;
+import ControladorBD.ConexionBD;
 import java.awt.Color;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
 /**
  *
  * @author Frank
@@ -19,6 +22,7 @@ public class AñadirInstructo extends javax.swing.JFrame {
     public AñadirInstructo() {
         initComponents();
         this.setLocationRelativeTo(null);
+        cargarEspecialidadesEnComboBox();
     }
 
     /**
@@ -527,8 +531,9 @@ public class AñadirInstructo extends javax.swing.JFrame {
 
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
         // TODO add your handling code here:
+        int ID_Especialidad= obtenerIDEspecialidad();
         QuerysInstructores qi= new QuerysInstructores();
-        qi.insertarInstructor(NombreCampo.getText(), ApellidoPaternoCampo.getText(), ApellidoMaternoCampo.getText(), TelefonoCampo.getText(), CICampo.getText(), FechaNacimientoCampo.getText(), DireccionCampo.getText(), CorreoElectronicoCampo.getText());
+        qi.insertarInstructor(NombreCampo.getText(), ApellidoPaternoCampo.getText(), ApellidoMaternoCampo.getText(), TelefonoCampo.getText(), CICampo.getText(), FechaNacimientoCampo.getText(), DireccionCampo.getText(), CorreoElectronicoCampo.getText(),ID_Especialidad);
         dispose();
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
@@ -594,9 +599,77 @@ public class AñadirInstructo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AñadirInstructo().setVisible(true);
+                
             }
         });
     }
+private void cargarEspecialidadesEnComboBox() {
+    // Limpiar el ComboBox antes de agregar nuevos elementos
+    especialidadComboBox.removeAllItems();
+
+    // Consulta SQL para obtener los primeros 10 nombres de las especialidades
+    String sql = "SELECT Nombre FROM especialidad ";  // Limitar a 10 registros
+
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+    Connection conn = conexionBD.getConexion();
+
+    if (conn != null) {
+        System.out.println("Conexión exitosa a la base de datos.");
+    } else {
+        System.out.println("❌ Error al conectar con la base de dakns.");
+        return;
+    }
+
+    try (java.sql.Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        int count = 0;
+        while (rs.next()) {
+            String nombreEspecialidad = rs.getString("Nombre");
+            System.out.println("Especialidad: " + nombreEspecialidad);  // Imprimir cada especialidad
+            especialidadComboBox.addItem(nombreEspecialidad);  // Añadir el nombre de especialidad al ComboBox
+            count++;
+        }
+        System.out.println("Registros recuperados: " + count);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        conexionBD.desconectar();
+    }
+
+    especialidadComboBox.revalidate();
+    especialidadComboBox.repaint();
+}
+
+private int obtenerIDEspecialidad() {
+    // Obtener el nombre de la especialidad seleccionada en el JComboBox
+    String nombreEspecialidad = (String) especialidadComboBox.getSelectedItem();
+
+    // Consulta SQL para obtener el ID_Especialidad según el nombre
+    String sql = "SELECT ID_Especialidad FROM especialidad WHERE Nombre = ?";
+
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+    Connection conn = conexionBD.getConexion();
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, nombreEspecialidad);  // Establecer el nombre seleccionado en la consulta
+
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            // Devolver el ID_Especialidad si se encuentra
+            return rs.getInt("ID_Especialidad");
+        } else {
+            System.out.println("❌ No se encontró la especialidad con nombre: " + nombreEspecialidad);
+            return -1;  // Retorna -1 si no se encuentra
+        }
+    } catch (SQLException e) {
+        System.out.println("❌ Error al obtener el ID_Especialidad.");
+        e.printStackTrace();
+        return -1;  // Retorna -1 si ocurre un error
+    } finally {
+        conexionBD.desconectar();
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ApellidoMaterno;
@@ -630,7 +703,7 @@ public class AñadirInstructo extends javax.swing.JFrame {
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Usuario;
     private javax.swing.JPanel UsuarioPanel;
-    private javax.swing.JComboBox<String> especialidadComboBox;
+    public javax.swing.JComboBox<String> especialidadComboBox;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

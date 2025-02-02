@@ -7,9 +7,7 @@ package Interfaz;
 import ControladorBD.ConexionBD;
 import ControladorBD.QuerysProgramas;
 import java.awt.Color;
-import java.beans.Statement;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -369,9 +367,29 @@ public class AñadirPrograma extends javax.swing.JFrame {
 
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
         // TODO add your handling code here:
-        QuerysProgramas qp= new QuerysProgramas();
-        qp.insertarPrograma(NombreCampo.getText(), FechaInicioCampo.getText(), FechaFinCampo.getText(),Integer.parseInt(CostoCampo.getText().trim()) , HorarioCampo.getText() , DetallesCampo.getText(), Integer.parseInt(MaximoInscritosCampo.getText().trim()), 10);
+        // Obtener el ID_Instructor a partir del nombre seleccionado en el JComboBox
+    int ID_INSTRUCTOR = obtenerIDInstructor();
+
+    // Verificar que se haya obtenido un ID_Instructor válido
+    if (ID_INSTRUCTOR != -1) {
+        // Crear instancia de la clase que maneja la inserción del programa
+        QuerysProgramas qp = new QuerysProgramas();
+
+        // Llamar al método insertarPrograma con todos los parámetros, incluyendo el ID_INSTRUCTOR obtenido
+        qp.insertarPrograma(NombreCampo.getText(), 
+                            FechaInicioCampo.getText(), 
+                            FechaFinCampo.getText(),
+                            Integer.parseInt(CostoCampo.getText().trim()), 
+                            HorarioCampo.getText(), 
+                            DetallesCampo.getText(),
+                            Integer.parseInt(MaximoInscritosCampo.getText().trim()), 
+                            ID_INSTRUCTOR);
+        // Cerrar la ventana actual
         dispose();
+    } else {
+        // Si el ID_Instructor no es válido, mostrar un mensaje de error
+        //JOptionPane.showMessageDialog(null, "❌ Instructor no encontrado. Verifique el nombre.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
     private void GuardarPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarPanelMouseClicked
@@ -482,6 +500,47 @@ public void cargarInstructoresEnComboBox() {
         conexionBD.desconectar();
     }
 }
+
+private int obtenerIDInstructor() {
+    // Obtener el nombre completo seleccionado en el JComboBox
+    String nombreCompleto = (String) InstructorComboBox.getSelectedItem();
+    
+    // Separar el nombre completo en partes (suponiendo que el formato es "Nombre Apellido1 Apellido2")
+    String[] partes = nombreCompleto.split(" ");
+    
+    // Solo tomamos el primer nombre
+    String nombre = partes[0];  // Nombre sin apellidos
+    
+    // Consulta SQL para obtener el ID_Instructor
+    String sql = "SELECT i.ID_Instructor FROM persona p " +
+                 "INNER JOIN instructor i ON p.ID_Persona = i.ID_Persona " +
+                 "WHERE p.nombre = ?";  // Suponemos que 'nombre' es único, si no, agregar más condiciones
+    
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+    Connection conn = conexionBD.getConexion();
+    
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, nombre);  // Establecer el nombre para la consulta
+        
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            // Devolver el ID_Instructor si se encuentra
+            return rs.getInt("ID_Instructor");
+        } else {
+            System.out.println("❌ No se encontró el instructor con nombre: " + nombre);
+            return -1;  // Retorna un valor negativo si no se encuentra
+        }
+    } catch (SQLException e) {
+        System.out.println("❌ Error al obtener el ID_Instructor.");
+        e.printStackTrace();
+        return -1;
+    } finally {
+        conexionBD.desconectar();
+    }
+}
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CancelarBoton;

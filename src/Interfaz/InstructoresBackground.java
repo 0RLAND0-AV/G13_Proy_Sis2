@@ -275,8 +275,18 @@ public class InstructoresBackground extends javax.swing.JPanel {
     }
     
     private void EditarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarBotonMouseClicked
-        EditarInstructor ventanaEmergente = new EditarInstructor();
+            List<Integer> selectedIds = getSelectedIds(TablaInsctructores);
+
+    if (selectedIds.isEmpty()) { 
+        JOptionPane.showMessageDialog(null, "⚠️ No has seleccionado ningún registro.", "Error", JOptionPane.WARNING_MESSAGE);
+    } else if (selectedIds.size() > 1) { 
+        JOptionPane.showMessageDialog(null, "⚠️ Solo puedes editar un registro a la vez.", "Error", JOptionPane.WARNING_MESSAGE);
+    } else { 
+        int ID_Instructor = selectedIds.get(0);      
+        EditarInstructor ventanaEmergente = new EditarInstructor(ID_Instructor);//COLOCAR EL ID ID_Instructor
         ventanaEmergente.setVisible(true);
+    }
+        
     }//GEN-LAST:event_EditarBotonMouseClicked
 
     private void AgregarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarBotonMouseClicked
@@ -326,104 +336,65 @@ public class InstructoresBackground extends javax.swing.JPanel {
         }, 0, 8000);
     }
 
-     public void actualizarTablaInstructores() {
-        System.out.println("🔄 Actualizando tabla...");
+public void actualizarTablaInstructores() {
+    System.out.println("🔄 Actualizando tabla...");
 
-        ConexionBD conexionBD = new ConexionBD();
-        conexionBD.conectar();
-        Connection conn = conexionBD.getConexion();
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+    Connection conn = conexionBD.getConexion();
 
-        if (conn == null) {
-            System.out.println("❌ Error: No se pudo establecer conexión con la BD.");
-            return;
-        }
-
-        DefaultTableModel model = (DefaultTableModel) TablaInsctructores.getModel();
-        model.setRowCount(0);
-        System.out.println("🗑️ Tabla vaciada.");
-
-        String sql = "SELECT i.ID_Instructor, p.Nombre, p.Apellido_paterno, p.Apellido_materno, " +
-                     "i.ID_Programa, p.Telefono " +
-                     "FROM instructor i " +
-                     "INNER JOIN persona p ON i.ID_Persona = p.ID_Persona " +
-                     "WHERE i.ID_Persona IS NOT NULL";
-
-        // Lista para almacenar los datos antes de llenar la tabla
-        List<Object[]> datosInstructores = new ArrayList<>();
-
-        try (PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-
-            System.out.println("📊 Consulta ejecutada.");
-
-            int contador = 0;
-            while (rs.next()) {
-                int idInstructor = rs.getInt("ID_Instructor");
-                String nombreCompleto = rs.getString("Nombre") + " " + rs.getString("Apellido_paterno") + " " + rs.getString("Apellido_materno");
-                int idPrograma = rs.getInt("ID_Programa");
-                String telefono = rs.getString("Telefono");
-
-                datosInstructores.add(new Object[]{ idInstructor, nombreCompleto, idPrograma, telefono });
-                contador++;
-            }
-
-            System.out.println("✅ Total de registros obtenidos: " + contador);
-
-        } catch (SQLException e) {
-            System.out.println("❌ Error al ejecutar la consulta.");
-            e.printStackTrace();
-        } finally {
-            conexionBD.desconectar();
-            System.out.println("🔌 Desconectado de la BD.");
-        }
-
-        // Ahora llenamos la tabla usando los datos obtenidos
-        for (Object[] instructor : datosInstructores) {
-            int idInstructor = (int) instructor[0];
-            String nombreCompleto = (String) instructor[1];
-            int idPrograma = (int) instructor[2];
-            String telefono = (String) instructor[3];
-
-            // Obtener nombre del programa SIN afectar la conexión principal
-            String nombrePrograma = obtenerNombrePrograma(idPrograma);
-
-            Object[] row = { idInstructor, nombreCompleto, nombrePrograma, "", telefono, false };
-            model.addRow(row);
-        }
+    if (conn == null) {
+        System.out.println("❌ Error: No se pudo establecer conexión con la BD.");
+        return;
     }
 
-    private String obtenerNombrePrograma(int idPrograma) {
-        String nombrePrograma = "Desconocido";
+    DefaultTableModel model = (DefaultTableModel) TablaInsctructores.getModel();
+    model.setRowCount(0);
+    System.out.println("🗑️ Tabla vaciada.");
 
-        // Creamos una NUEVA conexión para evitar cerrar el ResultSet principal
-        ConexionBD conexionBD = new ConexionBD();
-        conexionBD.conectar();
-        Connection conn = conexionBD.getConexion();
+    String sql = "SELECT i.ID_Instructor, p.Nombre, p.Apellido_paterno, p.Apellido_materno, " +
+                 "pr.Nombre AS Programa, e.Nombre AS Especialidad, p.Telefono " +
+                 "FROM instructor i " +
+                 "INNER JOIN persona p ON i.ID_Persona = p.ID_Persona " +
+                 "LEFT JOIN programa pr ON pr.ID_Instructor = i.ID_Instructor " +
+                 "LEFT JOIN especialidad e ON i.ID_Especialidad = e.ID_Especialidad " + 
+                 "WHERE i.ID_Persona IS NOT NULL";
 
-        if (conn == null) {
-            System.out.println("❌ Error: No se pudo obtener conexión en obtenerNombrePrograma.");
-            return nombrePrograma;
+    // Lista para almacenar los datos antes de llenar la tabla
+    List<Object[]> datosInstructores = new ArrayList<>();
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        System.out.println("📊 Consulta ejecutada.");
+
+        int contador = 0;
+        while (rs.next()) {
+            int idInstructor = rs.getInt("ID_Instructor");
+            String nombreCompleto = rs.getString("Nombre") + " " + rs.getString("Apellido_paterno") + " " + rs.getString("Apellido_materno");
+            String nombrePrograma = rs.getString("Programa") != null ? rs.getString("Programa") : "Sin programa";
+            String nombreEspecialidad = rs.getString("Especialidad") != null ? rs.getString("Especialidad") : "Sin especialidad";
+            String telefono = rs.getString("Telefono");
+
+            datosInstructores.add(new Object[]{ idInstructor, nombreCompleto, nombrePrograma, nombreEspecialidad, telefono });
+            contador++;
         }
 
-        String sqlPrograma = "SELECT nombre FROM programa WHERE ID_Programa = ?";
+        System.out.println("✅ Total de registros obtenidos: " + contador);
 
-        try (PreparedStatement stmt = conn.prepareStatement(sqlPrograma)) {
-            stmt.setInt(1, idPrograma);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    nombrePrograma = rs.getString("nombre");
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("❌ Error al obtener el nombre del programa.");
-            e.printStackTrace();
-        } finally {
-            conexionBD.desconectar();
-        }
-
-        System.out.println("📌 Nombre del programa obtenido: " + nombrePrograma);
-        return nombrePrograma;
+    } catch (SQLException e) {
+        System.out.println("❌ Error al ejecutar la consulta.");
+        e.printStackTrace();
+    } finally {
+        conexionBD.desconectar();
+        System.out.println("🔌 Desconectado de la BD.");
     }
+
+    // Llenar la tabla con los datos obtenidos
+    for (Object[] instructor : datosInstructores) {
+        model.addRow(new Object[]{ instructor[0], instructor[1], instructor[2], instructor[3], instructor[4], false });
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AgregarBoton;

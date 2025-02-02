@@ -19,12 +19,12 @@ import java.util.TimerTask;
 public class QuerysInstructores {
 
 public void insertarInstructor(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String ci,
-                               String fechaNacimiento, String direccion, String correoElectronico) {
+                               String fechaNacimiento, String direccion, String correoElectronico, int ID_Especialidad) {
     String sqlPersona = "INSERT INTO persona (nombre, apellido_paterno, apellido_materno, telefono, ci, fecha_nacimiento, direccion, correo_electronico) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-    String sqlInstructor = "INSERT INTO instructor (ID_Persona, ID_Especialidad, Usuario, Contraseña, ID_Programa) " +
-                           "VALUES (?, NULL, NULL, NULL, NULL)"; 
+    String sqlInstructor = "INSERT INTO instructor (ID_Persona, ID_Especialidad, Usuario, Contraseña) " + // Sin la columna ID_Programa
+                           "VALUES (?, ?, NULL, NULL)"; // Se deja NULL para los valores de Usuario y Contraseña
 
     ConexionBD conexionBD = new ConexionBD();
     conexionBD.conectar();
@@ -33,6 +33,7 @@ public void insertarInstructor(String nombre, String apellidoPaterno, String ape
     try (PreparedStatement stmtPersona = conn.prepareStatement(sqlPersona, PreparedStatement.RETURN_GENERATED_KEYS);
          PreparedStatement stmtInstructor = conn.prepareStatement(sqlInstructor)) {
 
+        // Setear parámetros para la tabla persona
         stmtPersona.setString(1, nombre);
         stmtPersona.setString(2, apellidoPaterno);
         stmtPersona.setString(3, apellidoMaterno);
@@ -47,7 +48,8 @@ public void insertarInstructor(String nombre, String apellidoPaterno, String ape
             ResultSet generatedKeys = stmtPersona.getGeneratedKeys();
             if (generatedKeys.next()) {
                 int idPersona = generatedKeys.getInt(1);
-                stmtInstructor.setInt(1, idPersona);
+                stmtInstructor.setInt(1, idPersona); // ID_Persona
+                stmtInstructor.setInt(2, ID_Especialidad); // ID_Especialidad
                 stmtInstructor.executeUpdate();
 
                 mostrarNotificacion("✅ Instructor registrado con éxito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
@@ -62,29 +64,11 @@ public void insertarInstructor(String nombre, String apellidoPaterno, String ape
     }
 }
 
-private void mostrarNotificacion(String mensaje, String titulo, int tipo) {
-    JDialog dialog = new JDialog();
-    dialog.setAlwaysOnTop(true);
-    JOptionPane optionPane = new JOptionPane(mensaje, tipo);
-    dialog.setContentPane(optionPane);
-    dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-    dialog.pack();
-    
-    dialog.setLocationRelativeTo(null); // Centrar ventana
-    
-    new Timer().schedule(new TimerTask() {
-        @Override
-        public void run() {
-            dialog.dispose();
-        }
-    }, 2000);  // Cierra la notificación después de 2 segundos
-
-    dialog.setVisible(true);
-}
 
 public void actualizarInstructor(int idInstructor, String nombre, String apellidoPaterno, String apellidoMaterno,
                                  String telefono, String ci, String fechaNacimiento, String direccion,
-                                 String correoElectronico) {
+                                 String correoElectronico, int ID_Especialidad) {
+
     // Consulta para obtener el ID_Persona relacionado con el ID_Instructor
     String sqlInstructor = "SELECT ID_Persona FROM instructor WHERE ID_Instructor = ?";
 
@@ -92,12 +76,16 @@ public void actualizarInstructor(int idInstructor, String nombre, String apellid
     String sqlPersona = "UPDATE persona SET nombre = ?, apellido_paterno = ?, apellido_materno = ?, telefono = ?, " +
                         "ci = ?, fecha_nacimiento = ?, direccion = ?, correo_electronico = ? WHERE ID_Persona = ?";
 
+    // Consulta para actualizar el ID_Especialidad en la tabla instructor
+    String sqlActualizarEspecialidad = "UPDATE instructor SET ID_Especialidad = ? WHERE ID_Instructor = ?";
+
     ConexionBD conexionBD = new ConexionBD();
     conexionBD.conectar();
     Connection conn = conexionBD.getConexion();
 
     try (PreparedStatement stmtInstructorSelect = conn.prepareStatement(sqlInstructor);
-         PreparedStatement stmtPersona = conn.prepareStatement(sqlPersona)) {
+         PreparedStatement stmtPersona = conn.prepareStatement(sqlPersona);
+         PreparedStatement stmtActualizarEspecialidad = conn.prepareStatement(sqlActualizarEspecialidad)) {
 
         // Obtener el ID_Persona asociado al ID_Instructor
         stmtInstructorSelect.setInt(1, idInstructor);
@@ -120,6 +108,12 @@ public void actualizarInstructor(int idInstructor, String nombre, String apellid
             stmtPersona.setInt(9, idPersona);
             stmtPersona.executeUpdate();
             System.out.println("✅ Datos de la persona actualizados correctamente.");
+
+            // Actualizar el ID_Especialidad en la tabla instructor
+            stmtActualizarEspecialidad.setInt(1, ID_Especialidad);
+            stmtActualizarEspecialidad.setInt(2, idInstructor);
+            stmtActualizarEspecialidad.executeUpdate();
+            System.out.println("✅ ID_Especialidad actualizado correctamente.");
         } else {
             System.out.println("❌ No se encontró el instructor con ID_Instructor: " + idInstructor);
         }
@@ -131,6 +125,29 @@ public void actualizarInstructor(int idInstructor, String nombre, String apellid
         conexionBD.desconectar(); // Cerrar conexión
     }
 }
+
+
+
+private void mostrarNotificacion(String mensaje, String titulo, int tipo) {
+    JDialog dialog = new JDialog();
+    dialog.setAlwaysOnTop(true);
+    JOptionPane optionPane = new JOptionPane(mensaje, tipo);
+    dialog.setContentPane(optionPane);
+    dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    dialog.pack();
+    
+    dialog.setLocationRelativeTo(null); // Centrar ventana
+    
+    new Timer().schedule(new TimerTask() {
+        @Override
+        public void run() {
+            dialog.dispose();
+        }
+    }, 2000);  // Cierra la notificación después de 2 segundos
+
+    dialog.setVisible(true);
+}
+
 public void eliminarInstructor(int idInstructor) {
     // Consulta para obtener el ID_Persona relacionado con el ID_Instructor
     String sqlInstructor = "SELECT ID_Persona FROM instructor WHERE ID_Instructor = ?";
@@ -186,7 +203,7 @@ public static void main(String[] args) {
     QuerysInstructores dao = new QuerysInstructores();
 
     // Insertar un instructor sin especialidad (ID_Especialidad será NULL)
-    dao.insertarInstructor("Juan", "Pérez", "González", "123456789", "98765432", "1985-05-15", 
+    /*dao.insertarInstructor("Juan", "Pérez", "González", "123456789", "98765432", "1985-05-15", 
                            "Calle Ficticia 123", "juan.perez@mail.com");
 
     // Actualizar un instructor con ID_Instructor 1 (asegúrate de que el instructor con este ID exista)

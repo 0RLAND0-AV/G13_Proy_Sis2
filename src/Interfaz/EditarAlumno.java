@@ -4,7 +4,14 @@
  */
 package Interfaz;
 
+import ControladorBD.ConexionBD;
+import ControladorBD.QuerysAlumnos;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -15,10 +22,131 @@ public class EditarAlumno extends javax.swing.JFrame {
     /**
      * Creates new form A
      */
-    public EditarAlumno() {
+    private int ID_Alumno;
+    public EditarAlumno(int ID_Alumno) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.ID_Alumno=ID_Alumno;
+        cargarDatosAlumno();
+
     }
+
+private void cargarProgramas(java.sql.Connection conn) {
+    // Consulta para obtener todos los programas
+    String sqlProgramas = "SELECT Nombre FROM programa";
+
+    DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+
+    try (PreparedStatement stmt = conn.prepareStatement(sqlProgramas);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            String nombrePrograma = rs.getString("Nombre");
+            model.addElement(nombrePrograma);  // Agregar el nombre del programa al ComboBox
+        }
+
+        ProgramaComboBox.setModel(model);  // Establecer el modelo del ComboBox
+
+    } catch (SQLException e) {
+        System.out.println("❌ Error al cargar los programas.");
+        e.printStackTrace();
+    }
+}
+
+    
+private void cargarDatosAlumno() {
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+    java.sql.Connection conn = conexionBD.getConexion();
+
+    if (conn == null) {
+        System.out.println("❌ Error: No se pudo conectar a la BD.");
+        return;
+    }
+
+    // Consulta para obtener los datos del alumno y el programa asociado
+    String sqlAlumno = "SELECT p.Nombre, p.Apellido_paterno, p.Apellido_materno, p.Telefono, p.CI, " +
+                   "p.Fecha_nacimiento, p.Direccion, p.Correo_electronico, a.ID_Programa, " +
+                   "COALESCE(pr.Nombre, 'Sin Programa') AS ProgramaNombre " +  
+                   "FROM alumno a " +
+                   "INNER JOIN persona p ON a.ID_Persona = p.ID_Persona " +
+                   "LEFT JOIN programa pr ON a.ID_Programa = pr.ID_Programa " +  // CAMBIO AQUÍ
+                   "WHERE a.ID_Alumno = ?";
+
+
+    try (PreparedStatement stmt = conn.prepareStatement(sqlAlumno)) {
+        stmt.setInt(1, ID_Alumno);  // Establecer el ID_Alumno
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                // Llenar los JTextField con los datos obtenidos
+                NombreCampo.setText(rs.getString("Nombre"));
+                ApellidoPaternoCampo.setText(rs.getString("Apellido_paterno"));
+                ApellidoMaternoCampo.setText(rs.getString("Apellido_materno"));
+                TelefonoCampo.setText(rs.getString("Telefono"));
+                CICampo.setText(rs.getString("CI"));
+                FechaNacimientoCampo.setText(rs.getString("Fecha_nacimiento"));
+                DireccionCampo.setText(rs.getString("Direccion"));
+                CorreoElectronicoCampo.setText(rs.getString("Correo_electronico"));
+
+                // Obtener el ID_Programa del alumno y seleccionar el nombre correcto en el ComboBox
+                int idPrograma = rs.getInt("ID_Programa");
+
+                // Primero cargar todos los programas en el ComboBox
+                cargarProgramas(conn);
+
+                // Luego, seleccionar el programa correspondiente en el ComboBox
+                seleccionarProgramaComboBox(idPrograma);
+            }
+        }
+    } catch (SQLException e) {
+        System.out.println("❌ Error al obtener los datos del alumno.");
+        e.printStackTrace();
+    } finally {
+        conexionBD.desconectar(); // Desconectar de la base de datos
+    }
+}
+
+
+private void seleccionarProgramaComboBox(int idPrograma) {
+    // Buscar el programa correspondiente por ID
+    for (int i = 0; i < ProgramaComboBox.getItemCount(); i++) {
+        String programa = ProgramaComboBox.getItemAt(i);
+        
+        // Hacemos la comparación con el nombre del programa, si lo encontramos, lo seleccionamos
+        if (programa.equals(getNombreProgramaById(idPrograma))) {
+            ProgramaComboBox.setSelectedIndex(i);
+            break;
+        }
+    }
+}
+
+
+private String getNombreProgramaById(int idPrograma) {
+    // Método para obtener el nombre del programa por ID
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+    java.sql.Connection conn = conexionBD.getConexion();
+    String nombrePrograma = "";
+
+    String sql = "SELECT Nombre FROM programa WHERE ID_Programa = ?";
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setInt(1, idPrograma);
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                nombrePrograma = rs.getString("Nombre");
+            }
+        }
+    } catch (SQLException e) {
+        System.out.println("❌ Error al obtener el nombre del programa por ID.");
+        e.printStackTrace();
+    } finally {
+        conexionBD.desconectar();
+    }
+    return nombrePrograma;
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -107,6 +235,9 @@ public class EditarAlumno extends javax.swing.JFrame {
         GuardarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         GuardarBoton.setText("Guardar");
         GuardarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GuardarBotonMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 GuardarBotonMouseEntered(evt);
             }
@@ -542,6 +673,15 @@ public class EditarAlumno extends javax.swing.JFrame {
         Validaciones.soloNumeros(evt);
     }//GEN-LAST:event_TelefonoCampoKeyTyped
 
+    private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        int ID_Programa = obtenerIDPrograma();
+                QuerysAlumnos qi= new QuerysAlumnos();
+        qi.actualizarAlumno(ID_Alumno,NombreCampo.getText(), ApellidoPaternoCampo.getText(), ApellidoMaternoCampo.getText(), TelefonoCampo.getText(), CICampo.getText(), FechaNacimientoCampo.getText(), DireccionCampo.getText(), CorreoElectronicoCampo.getText(),ID_Programa);
+        dispose();
+    }//GEN-LAST:event_GuardarBotonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -569,45 +709,76 @@ public class EditarAlumno extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarAlumno().setVisible(true);
+                new EditarAlumno(1).setVisible(true);
+                
             }
         });
+        
     }
+private int obtenerIDPrograma() {
+    // Obtener el nombre del programa seleccionado en el JComboBox
+    String nombrePrograma = (String) ProgramaComboBox.getSelectedItem();
 
+    // Consulta SQL para obtener el ID_Programa según el nombre
+    String sql = "SELECT ID_Programa FROM programa WHERE Nombre = ?";
+
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+    Connection conn = conexionBD.getConexion();
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, nombrePrograma);  // Establecer el nombre seleccionado en la consulta
+
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            // Devolver el ID_Programa si se encuentra
+            return rs.getInt("ID_Programa");
+        } else {
+            System.out.println("❌ No se encontró el programa con nombre: " + nombrePrograma);
+            return -1;  // Retorna -1 si no se encuentra
+        }
+    } catch (SQLException e) {
+        System.out.println("❌ Error al obtener el ID_Programa.");
+        e.printStackTrace();
+        return -1;  // Retorna -1 si ocurre un error
+    } finally {
+        conexionBD.desconectar();
+    }
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ApellidoMaterno;
-    private java.awt.TextField ApellidoMaternoCampo;
+    public java.awt.TextField ApellidoMaternoCampo;
     private javax.swing.JLabel ApellidoPaterno;
-    private java.awt.TextField ApellidoPaternoCampo;
+    public java.awt.TextField ApellidoPaternoCampo;
     private javax.swing.JLabel CI;
-    private java.awt.TextField CICampo;
+    public java.awt.TextField CICampo;
     private javax.swing.JLabel CancelarBoton1;
     private javax.swing.JPanel CancelarPanel;
     private javax.swing.JLabel CorreoElectronico;
-    private java.awt.TextField CorreoElectronicoCampo;
+    public java.awt.TextField CorreoElectronicoCampo;
     private javax.swing.JPanel DatosContactoPanel;
     private javax.swing.JPanel DatosPersonalesPanel;
     private javax.swing.JLabel Direccion;
-    private java.awt.TextField DireccionCampo;
+    public java.awt.TextField DireccionCampo;
     private javax.swing.JLabel FechaNacimiento;
-    private java.awt.TextField FechaNacimientoCampo;
+    public java.awt.TextField FechaNacimientoCampo;
     private javax.swing.JPanel Fotografia;
     private javax.swing.JLabel GuardarBoton;
     private javax.swing.JPanel GuardarPanel;
     private javax.swing.JLabel Nombre;
-    private java.awt.TextField NombreCampo;
+    public java.awt.TextField NombreCampo;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JLabel Programa;
-    private javax.swing.JComboBox<String> ProgramaComboBox;
+    public javax.swing.JComboBox<String> ProgramaComboBox;
     private javax.swing.JPanel Programapanel;
     private javax.swing.JLabel SubTituloDC;
     private javax.swing.JLabel SubtituloDP;
     private javax.swing.JLabel Telefono;
-    private java.awt.TextField TelefonoCampo;
+    public java.awt.TextField TelefonoCampo;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Usuario;
     private javax.swing.JPanel UsuarioPanel;

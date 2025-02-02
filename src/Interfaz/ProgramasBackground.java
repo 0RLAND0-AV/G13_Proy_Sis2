@@ -19,6 +19,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -266,8 +267,17 @@ public class ProgramasBackground extends javax.swing.JPanel {
     }
     
     private void EditarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarBotonMouseClicked
-        EditarPrograma ventanaEmergente = new EditarPrograma();
+    List<Integer> selectedIds = getSelectedIds(TablaProgramas);
+
+    if (selectedIds.isEmpty()) { 
+        JOptionPane.showMessageDialog(null, "⚠️ No has seleccionado ningún registro.", "Error", JOptionPane.WARNING_MESSAGE);
+    } else if (selectedIds.size() > 1) { 
+        JOptionPane.showMessageDialog(null, "⚠️ Solo puedes editar un registro a la vez.", "Error", JOptionPane.WARNING_MESSAGE);
+    } else { 
+        int ID_Programa = selectedIds.get(0); 
+        EditarPrograma ventanaEmergente = new EditarPrograma(ID_Programa);
         ventanaEmergente.setVisible(true);
+    }
     }//GEN-LAST:event_EditarBotonMouseClicked
 
     public void actualizarTablaProgramas() {

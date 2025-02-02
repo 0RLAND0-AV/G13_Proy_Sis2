@@ -4,21 +4,139 @@
  */
 package Interfaz;
 
+import ControladorBD.ConexionBD;
+import ControladorBD.QuerysProgramas;
 import java.awt.Color;
-
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import javax.swing.*;
 /**
  *
  * @author Frank
  */
 public class EditarPrograma extends javax.swing.JFrame {
 
-    /**
-     * Creates new form A
-     */
-    public EditarPrograma() {
+        // Variable para almacenar el ID del programa
+    private int ID_Programa;
+
+    // Constructor de la clase, que recibe el ID del programa
+    public EditarPrograma(int ID_Programa) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.ID_Programa = ID_Programa; // Guardar el ID en la variable
+        
+        cargarDatosPrograma(); // Llenar los campos con los datos del programa
+        //cargarInstructores();  // Llenar el ComboBox con los instructores
     }
+
+    private void cargarDatosPrograma() {
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+        java.sql.Connection conn = conexionBD.getConexion();
+
+    if (conn == null) {
+        System.out.println("❌ Error: No se pudo conectar a la BD.");
+        return;
+    }
+
+    // Consulta para obtener los datos del programa y el ID del instructor
+    String sqlPrograma = "SELECT Nombre, Fecha_inicio, Fecha_fin, Horario, Costo, ID_Instructor, Descripcion,Max_inscritos " +
+                         "FROM programa WHERE ID_Programa = ?";
+
+    try (PreparedStatement stmt = conn.prepareStatement(sqlPrograma)) {
+        stmt.setInt(1, ID_Programa);
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                // Llenar los campos con los datos obtenidos
+                NombreCampo.setText(rs.getString("Nombre"));
+                FechaInicioCampo.setText(rs.getString("Fecha_inicio"));
+                FechaFinCampo.setText(rs.getString("Fecha_fin"));
+                HorarioCampo.setText(rs.getString("Horario"));
+                int Costo1 = (int) rs.getDouble("Costo");
+                CostoCampo.setText(String.valueOf(Costo1));
+                DetallesCampo.setText(rs.getString("Descripcion"));
+                int maxInscritos = (int) rs.getDouble("Max_inscritos");
+                MaximoInscritosCampo.setText(String.valueOf(maxInscritos));
+                int idInstructorSeleccionado = rs.getInt("ID_Instructor");
+
+                // Llenar el JComboBox de instructores
+                llenarInstructorComboBox(idInstructorSeleccionado);
+            }
+        }
+    } catch (SQLException e) {
+        System.out.println("❌ Error al obtener los datos del programa.");
+        e.printStackTrace();
+    } finally {
+        conexionBD.desconectar();
+    }
+}
+private void llenarInstructorComboBox(int idInstructorSeleccionado) {
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+        java.sql.Connection conn = conexionBD.getConexion();
+
+    if (conn == null) {
+        System.out.println("❌ Error: No se pudo conectar a la BD.");
+        return;
+    }
+
+    // Consulta para obtener el nombre del instructor asignado al programa
+    String sqlInstructorSeleccionado = "SELECT CONCAT(p.Nombre, ' ', p.Apellido_paterno, ' ', p.Apellido_materno) AS NombreCompleto " +
+                                       "FROM instructor i " +
+                                       "INNER JOIN persona p ON i.ID_Persona = p.ID_Persona " +
+                                       "WHERE i.ID_Instructor = ?";
+
+    String nombreInstructorSeleccionado = "";
+
+    try (PreparedStatement stmt = conn.prepareStatement(sqlInstructorSeleccionado)) {
+        stmt.setInt(1, idInstructorSeleccionado);
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                nombreInstructorSeleccionado = rs.getString("NombreCompleto");
+            }
+        }
+    } catch (SQLException e) {
+        System.out.println("❌ Error al obtener el nombre del instructor seleccionado.");
+        e.printStackTrace();
+    }
+
+    // Consulta para obtener todos los instructores disponibles
+    String sqlInstructores = "SELECT i.ID_Instructor, CONCAT(p.Nombre, ' ', p.Apellido_paterno, ' ', p.Apellido_materno) AS NombreCompleto " +
+                             "FROM instructor i " +
+                             "INNER JOIN persona p ON i.ID_Persona = p.ID_Persona";
+
+    DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+    HashMap<String, Integer> instructorMap = new HashMap<>();
+
+    try (PreparedStatement stmt = conn.prepareStatement(sqlInstructores);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            int idInstructor = rs.getInt("ID_Instructor");
+            String nombreCompleto = rs.getString("NombreCompleto");
+
+            // Agregar el nombre al JComboBox
+            model.addElement(nombreCompleto);
+            // Guardar la relación nombre -> ID
+            instructorMap.put(nombreCompleto, idInstructor);
+        }
+
+        InstructorComboBox.setModel(model);
+
+        // Seleccionar el instructor correspondiente
+        if (!nombreInstructorSeleccionado.isEmpty()) {
+            InstructorComboBox.setSelectedItem(nombreInstructorSeleccionado);
+        }
+
+    } catch (SQLException e) {
+        System.out.println("❌ Error al llenar el JComboBox de instructores.");
+        e.printStackTrace();
+    } finally {
+        conexionBD.desconectar();
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -239,6 +357,9 @@ public class EditarPrograma extends javax.swing.JFrame {
         GuardarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         GuardarBoton.setText("Guardar");
         GuardarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GuardarBotonMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 GuardarBotonMouseEntered(evt);
             }
@@ -362,6 +483,63 @@ public class EditarPrograma extends javax.swing.JFrame {
         Validaciones.validarHorario(evt, HorarioCampo);
     }//GEN-LAST:event_HorarioCampoKeyTyped
 
+    private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
+        // TODO add your handling code here:
+         int ID_INSTRUCTOR = obtenerIDInstructor();
+        QuerysProgramas qp = new QuerysProgramas();
+
+        // Llamar al método insertarPrograma con todos los parámetros, incluyendo el ID_INSTRUCTOR obtenido
+        qp.actualizarPrograma(ID_Programa, NombreCampo.getText(), 
+                            FechaInicioCampo.getText(), 
+                            FechaFinCampo.getText(),
+                            Integer.parseInt(CostoCampo.getText().trim()), 
+                            HorarioCampo.getText(), 
+                            DetallesCampo.getText(),
+                            Integer.parseInt(MaximoInscritosCampo.getText().trim()), 
+                            ID_INSTRUCTOR);
+        // Cerrar la ventana actual
+        dispose();
+    }//GEN-LAST:event_GuardarBotonMouseClicked
+
+    public int obtenerIDInstructor() {
+    // Obtener el nombre completo seleccionado en el JComboBox
+    String nombreCompleto = (String) InstructorComboBox.getSelectedItem();
+    
+    // Separar el nombre completo en partes (suponiendo que el formato es "Nombre Apellido1 Apellido2")
+    String[] partes = nombreCompleto.split(" ");
+    
+    // Solo tomamos el primer nombre
+    String nombre = partes[0];  // Nombre sin apellidos
+    
+    // Consulta SQL para obtener el ID_Instructor
+    String sql = "SELECT i.ID_Instructor FROM persona p " +
+                 "INNER JOIN instructor i ON p.ID_Persona = i.ID_Persona " +
+                 "WHERE p.nombre = ?";  // Suponemos que 'nombre' es único, si no, agregar más condiciones
+    
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+        java.sql.Connection conn = conexionBD.getConexion();
+    
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, nombre);  // Establecer el nombre para la consulta
+        
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            // Devolver el ID_Instructor si se encuentra
+            return rs.getInt("ID_Instructor");
+        } else {
+            System.out.println("❌ No se encontró el instructor con nombre: " + nombre);
+            return -1;  // Retorna un valor negativo si no se encuentra
+        }
+    } catch (SQLException e) {
+        System.out.println("❌ Error al obtener el ID_Instructor.");
+        e.printStackTrace();
+        return -1;
+    } finally {
+        conexionBD.desconectar();
+    }
+}
+
     /**
      * @param args the command line arguments
      */
@@ -393,7 +571,7 @@ public class EditarPrograma extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarPrograma().setVisible(true);
+                new EditarPrograma(1).setVisible(true);
             }
         });
     }
@@ -402,23 +580,23 @@ public class EditarPrograma extends javax.swing.JFrame {
     private javax.swing.JLabel CancelarBoton;
     private javax.swing.JPanel CancelarPanel;
     private javax.swing.JLabel Costo;
-    private java.awt.TextField CostoCampo;
+    public java.awt.TextField CostoCampo;
     private javax.swing.JLabel Detalles;
-    private java.awt.TextField DetallesCampo;
+    public java.awt.TextField DetallesCampo;
     private javax.swing.JLabel FechaFin;
-    private java.awt.TextField FechaFinCampo;
+    public java.awt.TextField FechaFinCampo;
     private javax.swing.JLabel FechaInicio;
-    private java.awt.TextField FechaInicioCampo;
+    public java.awt.TextField FechaInicioCampo;
     private javax.swing.JLabel GuardarBoton;
     private javax.swing.JPanel GuardarPanel;
     private javax.swing.JLabel Horario;
-    private java.awt.TextField HorarioCampo;
+    public java.awt.TextField HorarioCampo;
     private javax.swing.JLabel Instructor;
-    private javax.swing.JComboBox<String> InstructorComboBox;
+    public javax.swing.JComboBox<String> InstructorComboBox;
     private javax.swing.JLabel MaximoInscritos;
-    private java.awt.TextField MaximoInscritosCampo;
+    public java.awt.TextField MaximoInscritosCampo;
     private javax.swing.JLabel Nombre;
-    private java.awt.TextField NombreCampo;
+    public java.awt.TextField NombreCampo;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JLabel Titulo;
     // End of variables declaration//GEN-END:variables
