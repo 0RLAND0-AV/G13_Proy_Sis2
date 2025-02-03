@@ -30,6 +30,7 @@ public class AñadirAlumno extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarProgramasEnComboBox();
+        Validaciones.aplicarFormatoFecha(FechaNacimientoCampo);
     }
 
     /**
@@ -53,11 +54,11 @@ public class AñadirAlumno extends javax.swing.JFrame {
         CI = new javax.swing.JLabel();
         FechaNacimiento = new javax.swing.JLabel();
         SubtituloDP = new javax.swing.JLabel();
-        FechaNacimientoCampo = new javax.swing.JTextField();
         CICampo = new javax.swing.JTextField();
         ApellidoMaternoCampo = new javax.swing.JTextField();
         ApellidoPaternoCampo = new javax.swing.JTextField();
         NombreCampo = new javax.swing.JTextField();
+        FechaNacimientoCampo = new javax.swing.JFormattedTextField();
         Titulo = new javax.swing.JLabel();
         Telefono = new javax.swing.JLabel();
         Direccion = new javax.swing.JLabel();
@@ -178,14 +179,6 @@ public class AñadirAlumno extends javax.swing.JFrame {
         SubtituloDP.setText("Datos Personales");
         DatosPersonalesPanel.add(SubtituloDP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 470, 48));
 
-        FechaNacimientoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        FechaNacimientoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                FechaNacimientoCampoKeyTyped(evt);
-            }
-        });
-        DatosPersonalesPanel.add(FechaNacimientoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 200, 30));
-
         CICampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         CICampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -217,6 +210,9 @@ public class AñadirAlumno extends javax.swing.JFrame {
             }
         });
         DatosPersonalesPanel.add(NombreCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 200, 30));
+
+        FechaNacimientoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        DatosPersonalesPanel.add(FechaNacimientoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 200, 30));
 
         PanelPrincipal.add(DatosPersonalesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 470, 330));
 
@@ -419,11 +415,6 @@ public class AñadirAlumno extends javax.swing.JFrame {
         Validaciones.SoloTexto(NombreCampo, "Jose, Maria, etc.");
     }//GEN-LAST:event_NombreCampoKeyTyped
 
-    private void FechaNacimientoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FechaNacimientoCampoKeyTyped
-        // TODO add your handling code here:
-        Validaciones.validarFecha(evt, FechaNacimientoCampo);
-    }//GEN-LAST:event_FechaNacimientoCampoKeyTyped
-
     private void ApellidoPaternoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidoPaternoCampoKeyTyped
         // TODO add your handling code here:
         Validaciones.SoloTexto(ApellidoPaternoCampo, "Paredes, Gomes, Mamani, etc.");
@@ -564,7 +555,7 @@ private int obtenerIDPrograma() {
     private javax.swing.JLabel Direccion;
     private javax.swing.JTextField DireccionCampo;
     private javax.swing.JLabel FechaNacimiento;
-    private javax.swing.JTextField FechaNacimientoCampo;
+    private javax.swing.JFormattedTextField FechaNacimientoCampo;
     private javax.swing.JLabel FotografiaCampo;
     private javax.swing.JPanel FotografiaPanel;
     private javax.swing.JLabel GuardarBoton;

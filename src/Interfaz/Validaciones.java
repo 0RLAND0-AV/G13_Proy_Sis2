@@ -8,14 +8,19 @@ import java.awt.Image;
 import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.text.ParseException;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 /**
  *
  * @author Frank
@@ -54,103 +59,35 @@ public class Validaciones {
     }   
 */
 // Validar que el horario tenga el formato correcto
-   public static void validarHorario(KeyEvent evt, JTextField txt) {
-        String texto = txt.getText();
-        char c = evt.getKeyChar();
-
-        // No mostrar mensaje de error al borrar
-        if (c == KeyEvent.VK_BACK_SPACE && texto.length() > 0) {
-            return; // Permite borrar sin mostrar errores
-        }
+   public static void validarFecha(KeyEvent evt, JTextField txt) {
+     //hola :'v  
+   }
         
-        if ((c != ':' && !Character.isDigit(c)) || texto.length() > 7) {
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "Solo se permiten números y ':' en formato hh:mm:ss.");
-            return;
-        }
-
-        if (texto.length() == 2 || texto.length() == 5) {
-            if (c != ':') {
-                evt.consume();
-                JOptionPane.showMessageDialog(null, "El guion ':' debe ir en la posición correcta (hh:mm:ss).");
-            }
-        }
-
-        if (texto.length() == 3 || texto.length() == 6) {
-            if ((texto.length() == 3 && Integer.parseInt(texto.substring(0, 2)) > 23) ||
-                (texto.length() == 6 && Integer.parseInt(texto.substring(3, 5)) > 59) ||
-                (texto.length() == 8 && Integer.parseInt(texto.substring(6)) > 59)) {
-                evt.consume();
-                JOptionPane.showMessageDialog(null, "Horas deben estar entre 00-23, minutos y segundos entre 00-59.");
-            }
-        }
-    }   
-
-// Validar que una fecha ingresada tenga el formato correcto
-     public static void validarFecha(KeyEvent evt, JTextField txt) {
-         SoloNumeros(txt, "yyyy-mm-dd");
-         String texto = txt.getText();
-        char c = evt.getKeyChar();
-        int num = texto.length();
-            if (c == KeyEvent.VK_BACK_SPACE) {
-            txt.setForeground(Color.BLACK);
-        return;
-        }        
-        switch (num) {
-            case 4 -> {
-                int año = Integer.parseInt(texto);
-                if(año<=1950 || año>=2025){
-                    txt.setForeground(Color.red);
-                    evt.consume();
-                    return;
-                }   txt.setText(txt.getText()+"-");
-            }
-            case 7 -> {
-                int mes = Integer.parseInt(texto.substring(5, 7));
-                if(mes<=0 || mes>=13){
-                    txt.setForeground(Color.red);
-                    evt.consume();
-                    return;
-                }   txt.setText(txt.getText()+"-");
-            }
-            case 10 -> {
-                int dia = Integer.parseInt(texto.substring(8, 10));
-                if(dia<=0 || dia>=32){
-                    txt.setForeground(Color.red);
-                    evt.consume();
-                    return;
-                }   evt.consume();
-                
-            }
-            default -> {
-            }
-        }
-     }   
     
      public static void AñadirFotogra(JLabel foto){
-                 JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes", "jpg", "png", "jpeg"));
-        int seleccion = fileChooser.showOpenDialog(foto);
-    
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-        File archivo = fileChooser.getSelectedFile();
-        ImageIcon imagenOriginal = new ImageIcon(archivo.getAbsolutePath());
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes", "jpg", "png", "jpeg"));
+            int seleccion = fileChooser.showOpenDialog(foto);
 
-        // Obtener las dimensiones del JLabel
-        int anchoLabel = foto.getWidth();
-        int altoLabel = foto.getHeight();
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+            File archivo = fileChooser.getSelectedFile();
+            ImageIcon imagenOriginal = new ImageIcon(archivo.getAbsolutePath());
 
-        // Escalar la imagen al tamaño del JLabel
-        Image imgEscalada = imagenOriginal.getImage().getScaledInstance(anchoLabel, altoLabel, Image.SCALE_SMOOTH);
-        
-        // Asignar la imagen escalada al JLabel
-        foto.setIcon(new ImageIcon(imgEscalada));
-        foto.revalidate();
-        foto.repaint();
+            // Obtener las dimensiones del JLabel
+            int anchoLabel = foto.getWidth();
+            int altoLabel = foto.getHeight();
+
+            // Escalar la imagen al tamaño del JLabel
+            Image imgEscalada = imagenOriginal.getImage().getScaledInstance(anchoLabel, altoLabel, Image.SCALE_SMOOTH);
+
+            // Asignar la imagen escalada al JLabel
+            foto.setIcon(new ImageIcon(imgEscalada));
+            foto.revalidate();
+            foto.repaint();
+        }
     }
-    }
 
-         // Método genérico para validar que el campo solo tenga texto
+    // Método para validar que el campo solo tenga texto
     public static void SoloTexto(JTextField textField, String mensajeEjemplo) {
         
         textField.getDocument().addDocumentListener(new DocumentListener() {
@@ -188,7 +125,7 @@ public class Validaciones {
         });
     }
     
-    // Método genérico para validar que el campo solo tenga números
+    // Método para validar que el campo solo tenga números
     public static void SoloNumeros(JTextField textField, String mensajeEjemplo) {
         textField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -225,6 +162,97 @@ public class Validaciones {
         });
     }
     
+    public static void aplicarFormatoFecha(JFormattedTextField field) {
+        try {
+            MaskFormatter formatter = new MaskFormatter("####-##-##");
+            formatter.setPlaceholderCharacter(' ');
+            formatter.setValidCharacters("0123456789");
+            field.setFormatterFactory(new DefaultFormatterFactory(formatter));
+
+            // Agregar listener para validar automáticamente al escribir los 10 caracteres
+            field.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+                public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                    validarFecha(field);
+                }
+                public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                    validarFecha(field);
+                }
+                public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                    validarFecha(field);
+                }
+            });
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+    private static void validarFecha(JFormattedTextField field) {
+        String fecha = field.getText().trim();
+
+        if (fecha.length() != 10) {
+            field.setForeground(Color.BLACK); // Mientras no complete los 10 caracteres, se mantiene normal
+            return;
+        }
+        String[] partes = fecha.split("-");
+        try {
+            int año = Integer.parseInt(partes[0]);
+            int mes = Integer.parseInt(partes[1]);
+            int dia = Integer.parseInt(partes[2]);
+            boolean fechaValida = año >= 1900 && año <= 2200 && mes >= 1 && mes <= 12 && dia >= 1 && dia <= 31;
+            if (fechaValida) {
+                field.setForeground(Color.BLACK);
+            } else {
+                field.setForeground(Color.RED);
+            }
+        } catch (NumberFormatException e) {
+            field.setForeground(Color.RED);
+        }
+    }
     
+    public static void aplicarFormatoHora(JFormattedTextField field) {
+        try {
+            MaskFormatter formatter = new MaskFormatter("##:##");
+            formatter.setPlaceholderCharacter(' ');
+            formatter.setValidCharacters("0123456789");
+            field.setFormatterFactory(new DefaultFormatterFactory(formatter));
+
+            // Agregar listener para validar automáticamente cuando el usuario escriba
+            field.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+                public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                    validarHora(field);
+                }
+                public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                    validarHora(field);
+                }
+                public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                    validarHora(field);
+                }
+            });
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+    private static void validarHora(JFormattedTextField field) {
+        String hora = field.getText().trim();
+
+        if (hora.length() != 5) {
+            field.setForeground(Color.BLACK); // Mientras no complete los 5 caracteres, se mantiene normal
+            return;
+        }
+        String[] partes = hora.split(":");
+        try {
+            int horaInt = Integer.parseInt(partes[0]);
+            int minutosInt = Integer.parseInt(partes[1]);
+            boolean horaValida = horaInt >= 0 && horaInt <= 23 && minutosInt >= 0 && minutosInt <= 59;
+            if (horaValida) {
+                field.setForeground(Color.BLACK);
+            } else {
+                field.setForeground(Color.RED);
+            }
+        } catch (NumberFormatException e) {
+            field.setForeground(Color.RED);
+        }
+    }
 }
 

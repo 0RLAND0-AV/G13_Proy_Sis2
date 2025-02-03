@@ -28,7 +28,7 @@ public class EditarAlumno extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.ID_Alumno=ID_Alumno;
         cargarDatosAlumno();
-
+        Validaciones.aplicarFormatoFecha(FechaNacimientoCampo);
     }
 
 private void cargarProgramas(java.sql.Connection conn) {
@@ -173,7 +173,7 @@ private String getNombreProgramaById(int idPrograma) {
         ApellidoPaternoCampo = new javax.swing.JTextField();
         ApellidoMaternoCampo = new javax.swing.JTextField();
         CICampo = new javax.swing.JTextField();
-        FechaNacimientoCampo = new javax.swing.JTextField();
+        FechaNacimientoCampo = new javax.swing.JFormattedTextField();
         Titulo = new javax.swing.JLabel();
         Telefono = new javax.swing.JLabel();
         Direccion = new javax.swing.JLabel();
@@ -617,7 +617,7 @@ private int obtenerIDPrograma() {
     private javax.swing.JLabel Direccion;
     private javax.swing.JTextField DireccionCampo;
     private javax.swing.JLabel FechaNacimiento;
-    private javax.swing.JTextField FechaNacimientoCampo;
+    private javax.swing.JFormattedTextField FechaNacimientoCampo;
     private javax.swing.JPanel Fotografia;
     private javax.swing.JLabel FotografiaCampo;
     private javax.swing.JLabel GuardarBoton;

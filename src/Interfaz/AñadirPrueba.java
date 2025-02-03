@@ -18,6 +18,8 @@ public class AñadirPrueba extends javax.swing.JFrame {
     public AñadirPrueba() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Validaciones.aplicarFormatoFecha(FechaCampo);
+        Validaciones.aplicarFormatoHora(HoraCampo);
     }
 
     /**
@@ -43,8 +45,8 @@ public class AñadirPrueba extends javax.swing.JFrame {
         GuardarBoton = new javax.swing.JLabel();
         ProgramaComboBox1 = new javax.swing.JComboBox<>();
         LugarCampo = new javax.swing.JTextField();
-        HoraCampo = new javax.swing.JTextField();
-        FechaCampo = new javax.swing.JTextField();
+        FechaCampo = new javax.swing.JFormattedTextField();
+        HoraCampo = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -189,11 +191,11 @@ public class AñadirPrueba extends javax.swing.JFrame {
         LugarCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         PanelPrincipal.add(LugarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 580, 30));
 
-        HoraCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        PanelPrincipal.add(HoraCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, 210, 30));
-
         FechaCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         PanelPrincipal.add(FechaCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 210, 30));
+
+        HoraCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        PanelPrincipal.add(HoraCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, 210, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -306,11 +308,11 @@ public class AñadirPrueba extends javax.swing.JFrame {
     private javax.swing.JLabel CancelarBoton;
     private javax.swing.JPanel CancelarPanel;
     private javax.swing.JLabel Fecha;
-    private javax.swing.JTextField FechaCampo;
+    private javax.swing.JFormattedTextField FechaCampo;
     private javax.swing.JLabel GuardarBoton;
     private javax.swing.JPanel GuardarPanel;
     private javax.swing.JLabel Hora;
-    private javax.swing.JTextField HoraCampo;
+    private javax.swing.JFormattedTextField HoraCampo;
     private javax.swing.JLabel Lugar;
     private javax.swing.JTextField LugarCampo;
     private javax.swing.JPanel PanelPrincipal;

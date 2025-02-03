@@ -298,7 +298,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JTextField" name="FechaNacimientoCampo">
+            <Component class="javax.swing.JFormattedTextField" name="FechaNacimientoCampo">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>

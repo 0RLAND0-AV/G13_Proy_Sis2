@@ -4,6 +4,7 @@
  */
 package Interfaz;
 
+import ControladorBD.QuerysEspecialidad;
 import java.awt.Color;
 
 /**
@@ -63,6 +64,7 @@ public class AñadirEspecialidad extends javax.swing.JFrame {
         PanelPrincipal.add(Detalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 100, 50));
 
         nivelEspecialidadComboBox.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        nivelEspecialidadComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Principiante", "Intermedio", "Avanzado" }));
         nivelEspecialidadComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nivelEspecialidadComboBoxActionPerformed(evt);
@@ -114,6 +116,9 @@ public class AñadirEspecialidad extends javax.swing.JFrame {
         GuardarBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         GuardarBoton.setText("Guardar");
         GuardarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GuardarBotonMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 GuardarBotonMouseEntered(evt);
             }
@@ -212,6 +217,14 @@ public class AñadirEspecialidad extends javax.swing.JFrame {
         // TODO add your handling code here:
         Validaciones.SoloTexto(NombreCampo, "Jose, Maria, etc.");
     }//GEN-LAST:event_NombreCampoKeyTyped
+
+    private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
+        // TODO add your handling code here:
+        QuerysEspecialidad qe = new QuerysEspecialidad();
+        String seleccionado = (String) nivelEspecialidadComboBox.getSelectedItem();
+        qe.insertarEspecialidad(NombreCampo.getText(), DetallesCampo.getText(), seleccionado);
+        dispose();
+    }//GEN-LAST:event_GuardarBotonMouseClicked
 
     /**
      * @param args the command line arguments

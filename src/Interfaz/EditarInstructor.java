@@ -26,6 +26,7 @@ public class EditarInstructor extends javax.swing.JFrame {
         
         cargarDatosInstructor(); // Llenar los campos con los datos del programa
         //cargarEspecialidades();  // Llenar el ComboBox con los instructores
+        Validaciones.aplicarFormatoFecha(FechaNacimientoCampo);
     }
     
     
@@ -166,7 +167,7 @@ private String getNombreEspecialidadById(int idEspecialidad) {
         NombreCampo = new javax.swing.JTextField();
         CICampo = new javax.swing.JTextField();
         ApellidoMaternoCampo = new javax.swing.JTextField();
-        FechaNacimientoCampo = new javax.swing.JTextField();
+        FechaNacimientoCampo = new javax.swing.JFormattedTextField();
         Titulo = new javax.swing.JLabel();
         Telefono = new javax.swing.JLabel();
         Direccion = new javax.swing.JLabel();
@@ -346,11 +347,6 @@ private String getNombreEspecialidadById(int idEspecialidad) {
         DatosPersonalesPanel.add(ApellidoMaternoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 200, 30));
 
         FechaNacimientoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        FechaNacimientoCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FechaNacimientoCampoActionPerformed(evt);
-            }
-        });
         DatosPersonalesPanel.add(FechaNacimientoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 200, 30));
 
         PanelPrincipal.add(DatosPersonalesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 470, 330));
@@ -557,10 +553,6 @@ private String getNombreEspecialidadById(int idEspecialidad) {
         // TODO add your handling code here:
     }//GEN-LAST:event_ApellidoMaternoCampoActionPerformed
 
-    private void FechaNacimientoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaNacimientoCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FechaNacimientoCampoActionPerformed
-
     private void CorreoElectronicoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorreoElectronicoCampoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CorreoElectronicoCampoActionPerformed
@@ -679,7 +671,7 @@ private int obtenerIDEspecialidad() {
     private javax.swing.JLabel Especialidad;
     private javax.swing.JPanel EspecialidadPanel;
     private javax.swing.JLabel FechaNacimiento;
-    private javax.swing.JTextField FechaNacimientoCampo;
+    private javax.swing.JFormattedTextField FechaNacimientoCampo;
     private javax.swing.JPanel Fotografia;
     private javax.swing.JLabel FotografiaCampo;
     private javax.swing.JLabel GuardarBoton;

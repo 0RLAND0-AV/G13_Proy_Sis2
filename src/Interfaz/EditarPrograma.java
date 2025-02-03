@@ -29,6 +29,9 @@ public class EditarPrograma extends javax.swing.JFrame {
         
         cargarDatosPrograma(); // Llenar los campos con los datos del programa
         //cargarInstructores();  // Llenar el ComboBox con los instructores
+        Validaciones.aplicarFormatoFecha(FechaFinCampo);
+        Validaciones.aplicarFormatoFecha(FechaInicioCampo);
+        Validaciones.aplicarFormatoHora(HorarioCampo);
     }
 
     private void cargarDatosPrograma() {
@@ -163,13 +166,13 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
         GuardarPanel = new javax.swing.JPanel();
         GuardarBoton = new javax.swing.JLabel();
         NombreCampo = new javax.swing.JTextField();
-        FechaFinCampo = new javax.swing.JTextField();
         CostoCampo = new javax.swing.JTextField();
-        HorarioCampo = new javax.swing.JTextField();
         MaximoInscritosCampo = new javax.swing.JTextField();
-        FechaInicioCampo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         DetallesCampo = new javax.swing.JTextArea();
+        FechaFinCampo = new javax.swing.JFormattedTextField();
+        FechaInicioCampo = new javax.swing.JFormattedTextField();
+        HorarioCampo = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -308,9 +311,6 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
         });
         PanelPrincipal.add(NombreCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 210, 30));
 
-        FechaFinCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        PanelPrincipal.add(FechaFinCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 210, 30));
-
         CostoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         CostoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -318,9 +318,6 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
             }
         });
         PanelPrincipal.add(CostoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, 210, 30));
-
-        HorarioCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        PanelPrincipal.add(HorarioCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 210, 30));
 
         MaximoInscritosCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         MaximoInscritosCampo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -330,20 +327,21 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
         });
         PanelPrincipal.add(MaximoInscritosCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 140, 210, 30));
 
-        FechaInicioCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        FechaInicioCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FechaInicioCampoActionPerformed(evt);
-            }
-        });
-        PanelPrincipal.add(FechaInicioCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 210, 30));
-
         DetallesCampo.setColumns(20);
         DetallesCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         DetallesCampo.setRows(5);
         jScrollPane1.setViewportView(DetallesCampo);
 
         PanelPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, 550, 160));
+
+        FechaFinCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        PanelPrincipal.add(FechaFinCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 210, 30));
+
+        FechaInicioCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        PanelPrincipal.add(FechaInicioCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 210, 30));
+
+        HorarioCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        PanelPrincipal.add(HorarioCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 210, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -444,10 +442,6 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
         // TODO add your handling code here:
     }//GEN-LAST:event_PanelPrincipalMouseClicked
 
-    private void FechaInicioCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaInicioCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FechaInicioCampoActionPerformed
-
     private void NombreCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreCampoKeyTyped
         // TODO add your handling code here:
         Validaciones.SoloTexto(NombreCampo, "kun fu, Karte, Jujitsu, etc.");
@@ -507,13 +501,13 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
     private javax.swing.JLabel Detalles;
     private javax.swing.JTextArea DetallesCampo;
     private javax.swing.JLabel FechaFin;
-    private javax.swing.JTextField FechaFinCampo;
+    private javax.swing.JFormattedTextField FechaFinCampo;
     private javax.swing.JLabel FechaInicio;
-    private javax.swing.JTextField FechaInicioCampo;
+    private javax.swing.JFormattedTextField FechaInicioCampo;
     private javax.swing.JLabel GuardarBoton;
     private javax.swing.JPanel GuardarPanel;
     private javax.swing.JLabel Horario;
-    private javax.swing.JTextField HorarioCampo;
+    private javax.swing.JFormattedTextField HorarioCampo;
     private javax.swing.JLabel Instructor;
     public javax.swing.JComboBox<String> InstructorComboBox;
     private javax.swing.JLabel MaximoInscritos;

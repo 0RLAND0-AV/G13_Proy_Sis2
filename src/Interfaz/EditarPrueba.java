@@ -18,6 +18,8 @@ public class EditarPrueba extends javax.swing.JFrame {
     public EditarPrueba() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Validaciones.aplicarFormatoFecha(FechaCampo);
+        Validaciones.aplicarFormatoHora(HoraCampo);
     }
 
     /**
@@ -43,8 +45,8 @@ public class EditarPrueba extends javax.swing.JFrame {
         GuardarBoton = new javax.swing.JLabel();
         ProgramaComboBox1 = new javax.swing.JComboBox<>();
         LugarCampo = new javax.swing.JTextField();
-        FechaCampo = new javax.swing.JTextField();
-        HoraCampo = new javax.swing.JTextField();
+        FechaCampo = new javax.swing.JFormattedTextField();
+        HoraCampo = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -198,11 +200,6 @@ public class EditarPrueba extends javax.swing.JFrame {
         PanelPrincipal.add(FechaCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 210, 30));
 
         HoraCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        HoraCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HoraCampoActionPerformed(evt);
-            }
-        });
         PanelPrincipal.add(HoraCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, 210, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -281,10 +278,6 @@ public class EditarPrueba extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_LugarCampoKeyTyped
 
-    private void HoraCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HoraCampoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_HoraCampoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -325,11 +318,11 @@ public class EditarPrueba extends javax.swing.JFrame {
     private javax.swing.JLabel CancelarBoton;
     private javax.swing.JPanel CancelarPanel;
     private javax.swing.JLabel Fecha;
-    private javax.swing.JTextField FechaCampo;
+    private javax.swing.JFormattedTextField FechaCampo;
     private javax.swing.JLabel GuardarBoton;
     private javax.swing.JPanel GuardarPanel;
     private javax.swing.JLabel Hora;
-    private javax.swing.JTextField HoraCampo;
+    private javax.swing.JFormattedTextField HoraCampo;
     private javax.swing.JLabel Luagar;
     private javax.swing.JTextField LugarCampo;
     private javax.swing.JPanel PanelPrincipal;
