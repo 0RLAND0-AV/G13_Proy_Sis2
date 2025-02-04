@@ -26,12 +26,12 @@ public class EditarPrograma extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.ID_Programa = ID_Programa; // Guardar el ID en la variable
-        
-        cargarDatosPrograma(); // Llenar los campos con los datos del programa
-        //cargarInstructores();  // Llenar el ComboBox con los instructores
         Validaciones.aplicarFormatoFecha(FechaFinCampo);
         Validaciones.aplicarFormatoFecha(FechaInicioCampo);
         Validaciones.aplicarFormatoHora(HorarioCampo);
+        cargarDatosPrograma(); // Llenar los campos con los datos del programa
+        //cargarInstructores();  // Llenar el ComboBox con los instructores
+        
     }
 
     private void cargarDatosPrograma() {

@@ -27,8 +27,8 @@ public class EditarAlumno extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.ID_Alumno=ID_Alumno;
-        cargarDatosAlumno();
         Validaciones.aplicarFormatoFecha(FechaNacimientoCampo);
+        cargarDatosAlumno();
     }
 
 private void cargarProgramas(java.sql.Connection conn) {

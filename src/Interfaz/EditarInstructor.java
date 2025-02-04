@@ -23,10 +23,10 @@ public class EditarInstructor extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.ID_Instructor = ID_Instructor; // Guardar el ID en la variable
-        
+        Validaciones.aplicarFormatoFecha(FechaNacimientoCampo);
         cargarDatosInstructor(); // Llenar los campos con los datos del programa
         //cargarEspecialidades();  // Llenar el ComboBox con los instructores
-        Validaciones.aplicarFormatoFecha(FechaNacimientoCampo);
+        
     }
     
     
@@ -76,7 +76,7 @@ private void cargarDatosInstructor() {
         try (ResultSet rs = stmt.executeQuery()) {
             if (rs.next()) {
                 // Llenar los JTextField con los datos obtenidos
-                ApellidoPaternoCampo.setText(rs.getString("Nombre"));
+                NombreCampo.setText(rs.getString("Nombre"));
                 ApellidoPaternoCampo.setText(rs.getString("Apellido_paterno"));
                 ApellidoMaternoCampo.setText(rs.getString("Apellido_materno"));
                 TelefonoCampo.setText(rs.getString("Telefono"));
@@ -347,6 +347,11 @@ private String getNombreEspecialidadById(int idEspecialidad) {
         DatosPersonalesPanel.add(ApellidoMaternoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 200, 30));
 
         FechaNacimientoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        FechaNacimientoCampo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FechaNacimientoCampoMouseClicked(evt);
+            }
+        });
         DatosPersonalesPanel.add(FechaNacimientoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 200, 30));
 
         PanelPrincipal.add(DatosPersonalesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 470, 330));
@@ -585,6 +590,11 @@ private String getNombreEspecialidadById(int idEspecialidad) {
         // TODO add your handling code here:
         Validaciones.SoloNumeros(TelefonoCampo, "63422343");
     }//GEN-LAST:event_TelefonoCampoKeyTyped
+
+    private void FechaNacimientoCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FechaNacimientoCampoMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_FechaNacimientoCampoMouseClicked
 
     /**
      * @param args the command line arguments
