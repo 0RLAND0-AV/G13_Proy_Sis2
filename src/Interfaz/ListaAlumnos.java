@@ -31,13 +31,13 @@ public class ListaAlumnos extends javax.swing.JFrame {
 
         PanelPrincipal = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
-        Nombre = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaProgramas = new javax.swing.JTable();
         SalirPanel = new javax.swing.JPanel();
         SalirBoton = new javax.swing.JLabel();
         Titulo1 = new javax.swing.JLabel();
         NombreCampo = new javax.swing.JTextField();
+        busqueda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,11 +48,6 @@ public class ListaAlumnos extends javax.swing.JFrame {
         Titulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Titulo.setText("Programa");
         PanelPrincipal.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 400, 30));
-
-        Nombre.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        Nombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Nombre.setText("o");
-        PanelPrincipal.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 30, 50));
 
         TablaProgramas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,6 +125,14 @@ public class ListaAlumnos extends javax.swing.JFrame {
         });
         PanelPrincipal.add(NombreCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 310, 40));
 
+        busqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/simbolo-de-interfaz-cuadrada-de-busqueda-de-datos-con-una-herramienta-de-lupa (1).png"))); // NOI18N
+        busqueda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                busquedaMouseClicked(evt);
+            }
+        });
+        PanelPrincipal.add(busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 50, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,6 +162,11 @@ public class ListaAlumnos extends javax.swing.JFrame {
     private void NombreCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreCampoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NombreCampoActionPerformed
+
+    private void busquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busquedaMouseClicked
+        // TODO add your handling code here:
+        Validaciones.filtrarTabla(TablaProgramas, NombreCampo);
+    }//GEN-LAST:event_busquedaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -199,7 +207,6 @@ public class ListaAlumnos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Nombre;
     private javax.swing.JTextField NombreCampo;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JLabel SalirBoton;
@@ -207,6 +214,7 @@ public class ListaAlumnos extends javax.swing.JFrame {
     private javax.swing.JTable TablaProgramas;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Titulo1;
+    private javax.swing.JButton busqueda;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

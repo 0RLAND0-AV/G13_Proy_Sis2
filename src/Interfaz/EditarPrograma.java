@@ -405,6 +405,12 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
     }//GEN-LAST:event_GuardarBotonMouseExited
 
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
+        if(Integer.parseInt(FechaInicioCampo.getText().substring(0, 4)+FechaInicioCampo.getText().substring(5, 7)+FechaInicioCampo.getText().substring(8, 10))>= 
+           Integer.parseInt(FechaFinCampo.getText().substring(0, 4)+FechaFinCampo.getText().substring(5, 7)+FechaFinCampo.getText().substring(8, 10))){
+            FechaFinCampo.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            FechaFinCampo.setForeground(Color.red);
+            FechaFinCampo.setToolTipText("Fecha fin tiene que ser mayor a Fecha inicio");
+        }
         if (NombreCampo.getText().equals("") || MaximoInscritosCampo.getText().equals("") ||
             FechaInicioCampo.getText().equals("    -  -  ") || FechaFinCampo.getText().equals("    -  -  ") ||
             CostoCampo.getText().equals("") || HorarioCampo.getText().equals("  :  ") || DetallesCampo.getText().equals("")){
@@ -424,6 +430,7 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
                             DetallesCampo.getText(),
                             Integer.parseInt(MaximoInscritosCampo.getText().trim()), 
                             ID_INSTRUCTOR);
+        JOptionPane.showMessageDialog(null, "✅ Programa editado correctamente.");
         dispose();
         }
         

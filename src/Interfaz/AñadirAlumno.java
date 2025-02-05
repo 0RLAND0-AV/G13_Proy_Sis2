@@ -400,6 +400,7 @@ public class AñadirAlumno extends javax.swing.JFrame {
             int ID_Programa= obtenerIDPrograma();
             QuerysAlumnos qi= new QuerysAlumnos();
             qi.insertarAlumno(NombreCampo.getText(), ApellidoPaternoCampo.getText(), ApellidoMaternoCampo.getText(), TelefonoCampo.getText(), CICampo.getText(), FechaNacimientoCampo.getText(), DireccionCampo.getText(), CorreoElectronicoCampo.getText(),ID_Programa);
+            
             dispose();
         }
     }//GEN-LAST:event_GuardarBotonMouseClicked

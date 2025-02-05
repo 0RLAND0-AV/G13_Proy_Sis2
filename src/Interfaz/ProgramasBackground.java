@@ -54,8 +54,6 @@ public class ProgramasBackground extends javax.swing.JPanel {
         programatxt = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaProgramas = new javax.swing.JTable();
-        ListaAlumnosPanle = new javax.swing.JPanel();
-        ListaAlumnosBoton = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -215,43 +213,6 @@ public class ProgramasBackground extends javax.swing.JPanel {
         jScrollPane1.setViewportView(TablaProgramas);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 123, 807, 442));
-
-        ListaAlumnosPanle.setBackground(new java.awt.Color(80, 200, 120));
-
-        ListaAlumnosBoton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        ListaAlumnosBoton.setForeground(new java.awt.Color(255, 255, 255));
-        ListaAlumnosBoton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ListaAlumnosBoton.setText("LISTA ALUMNOS");
-        ListaAlumnosBoton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ListaAlumnosBotonMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ListaAlumnosBotonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                ListaAlumnosBotonMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout ListaAlumnosPanleLayout = new javax.swing.GroupLayout(ListaAlumnosPanle);
-        ListaAlumnosPanle.setLayout(ListaAlumnosPanleLayout);
-        ListaAlumnosPanleLayout.setHorizontalGroup(
-            ListaAlumnosPanleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ListaAlumnosPanleLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ListaAlumnosBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        ListaAlumnosPanleLayout.setVerticalGroup(
-            ListaAlumnosPanleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ListaAlumnosPanleLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ListaAlumnosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        add(ListaAlumnosPanle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 610, 160, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void EliminarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarBotonMouseEntered
@@ -321,19 +282,6 @@ public class ProgramasBackground extends javax.swing.JPanel {
         ventanaEmergente.setVisible(true);
     }
     }//GEN-LAST:event_EditarBotonMouseClicked
-
-    private void ListaAlumnosBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListaAlumnosBotonMouseClicked
-        ListaAlumnos LM = new ListaAlumnos();
-        LM.setVisible(true);
-    }//GEN-LAST:event_ListaAlumnosBotonMouseClicked
-
-    private void ListaAlumnosBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListaAlumnosBotonMouseEntered
-        ListaAlumnosPanle.setBackground(new Color (32,67,114));
-    }//GEN-LAST:event_ListaAlumnosBotonMouseEntered
-
-    private void ListaAlumnosBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListaAlumnosBotonMouseExited
-        ListaAlumnosPanle.setBackground(new Color (80,200,120));
-    }//GEN-LAST:event_ListaAlumnosBotonMouseExited
 
     public void actualizarTablaProgramas() {
     System.out.println("🔄 Actualizando tabla de programas...");
@@ -421,8 +369,6 @@ private String determinarEstado(String fechaFin) {
     private javax.swing.JPanel EditarPanel;
     private javax.swing.JLabel EliminarBoton;
     private javax.swing.JPanel EliminarPanel;
-    private javax.swing.JLabel ListaAlumnosBoton;
-    private javax.swing.JPanel ListaAlumnosPanle;
     private javax.swing.JTable TablaProgramas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

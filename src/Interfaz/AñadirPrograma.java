@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.sql.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 /**
@@ -292,6 +293,12 @@ public class AñadirPrograma extends javax.swing.JFrame {
     }//GEN-LAST:event_GuardarBotonMouseExited
 
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
+        if(Integer.parseInt(FechaInicioCampo.getText().substring(0, 4)+FechaInicioCampo.getText().substring(5, 7)+FechaInicioCampo.getText().substring(8, 10)) >= 
+           Integer.parseInt(FechaFinCampo.getText().substring(0, 4)+FechaFinCampo.getText().substring(5, 7)+FechaFinCampo.getText().substring(8, 10))){
+            FechaFinCampo.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            FechaFinCampo.setForeground(Color.red);
+            FechaFinCampo.setToolTipText("Fecha fin tiene que ser mayor a Fecha inicio");
+        }
         if (NombreCampo.getText().equals("") || MaximoInscritosCampo.getText().equals("") ||
             FechaInicioCampo.getText().equals("    -  -  ") || FechaFinCampo.getText().equals("    -  -  ") ||
             CostoCampo.getText().equals("") || HorarioCampo.getText().equals("  :  ") || DetallesCampo.getText().equals("")){
@@ -312,7 +319,7 @@ public class AñadirPrograma extends javax.swing.JFrame {
                                     DetallesCampo.getText(),
                                     Integer.parseInt(MaximoInscritosCampo.getText().trim()), 
                                     ID_INSTRUCTOR);
-        dispose();
+                dispose();
             } else {
                 // Si el ID_Instructor no es válido, mostrar un mensaje de error
                 //JOptionPane.showMessageDialog(null, "❌ Instructor no encontrado. Verifique el nombre.", "Error", JOptionPane.ERROR_MESSAGE);

@@ -55,8 +55,8 @@ public class CronogramaBackground extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaCronogramas = new javax.swing.JTable();
         BuscadorAlumnos = new javax.swing.JTextField();
-        Busqueda = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        busqueda = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(209, 209, 209));
         setMinimumSize(new java.awt.Dimension(900, 600));
@@ -223,14 +223,22 @@ public class CronogramaBackground extends javax.swing.JPanel {
         BuscadorAlumnos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         add(BuscadorAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 250, 50));
 
-        Busqueda.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        Busqueda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Busqueda.setText("o");
-        add(Busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 51, 50));
-
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todo", "Prueba", "Examen" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todo", "Practica", "Examen" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 90, 130, 30));
+
+        busqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/simbolo-de-interfaz-cuadrada-de-busqueda-de-datos-con-una-herramienta-de-lupa (1).png"))); // NOI18N
+        busqueda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                busquedaMouseClicked(evt);
+            }
+        });
+        add(busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 50, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void EliminarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarBotonMouseClicked
@@ -366,18 +374,27 @@ public void actualizarTablaCronogramas() {
     }
 }
 
+    private void busquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busquedaMouseClicked
+        // TODO add your handling code here:
+        Validaciones.filtrarTabla(TablaCronogramas, BuscadorAlumnos);
+    }//GEN-LAST:event_busquedaMouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AgregarBoton;
     private javax.swing.JPanel AgregarPanel;
     private javax.swing.JTextField BuscadorAlumnos;
-    private javax.swing.JLabel Busqueda;
     private javax.swing.JLabel EditarBoton;
     private javax.swing.JPanel EditarPanel;
     private javax.swing.JLabel EliminarBoton;
     private javax.swing.JPanel EliminarPanel;
     private javax.swing.JLabel Intructorestxt;
     private javax.swing.JTable TablaCronogramas;
+    private javax.swing.JButton busqueda;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

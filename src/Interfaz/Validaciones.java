@@ -14,56 +14,23 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 /**
  *
  * @author Frank
  */
-public class Validaciones {
-    /*// Permitir solo letras y espacios
-    public static void soloLetras(KeyEvent evt) {     
-        char c = evt.getKeyChar();
-        
-        // No mostrar mensaje de error al borrar
-        if (c == KeyEvent.VK_BACK_SPACE ) {
-           // txt.setForeground(Color.BLACK);
-            return ; // Permite borrar sin mostrar errores
-        }
-        
-        if (!Character.isLetter(c) && c != ' ') {
-            evt.consume();
-          //  txt.setForeground(Color.red);
-        }
-
-    }
-
-    // Permitir solo números enteros positivos
-    public static void soloNumeros(KeyEvent evt) {
-        char c = evt.getKeyChar();
-        
-        // No mostrar mensaje de error al borrar
-        if (c == KeyEvent.VK_BACK_SPACE ) {
-            return; // Permite borrar sin mostrar errores
-        }
-        
-        if (!Character.isDigit(c)) {
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "Solo se permiten números");
-        }
-    }   
-*/
-// Validar que el horario tenga el formato correcto
-    public static void validarFecha(KeyEvent evt, JTextField txt) {
-     //hola :'v  
-   }
-        
-    
+public class Validaciones {     
     public static void AñadirFotogra(JLabel foto){
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes", "jpg", "png", "jpeg"));
@@ -191,6 +158,7 @@ public class Validaciones {
 
         if (fecha.length() != 10) {
             field.setForeground(Color.BLACK); // Mientras no complete los 10 caracteres, se mantiene normal
+            field.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
             return;
         }
         String[] partes = fecha.split("-");
@@ -201,12 +169,14 @@ public class Validaciones {
             boolean fechaValida = año >= 1900 && año <= 2200 && mes >= 1 && mes <= 12 && dia >= 1 && dia <= 31;
             if (fechaValida) {
                 field.setForeground(Color.BLACK);
-                
+                field.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
             } else {
                 field.setForeground(Color.RED);
+                field.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             }
         } catch (NumberFormatException e) {
             field.setForeground(Color.RED);
+            field.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
         }
     }
     
@@ -248,12 +218,28 @@ public class Validaciones {
             boolean horaValida = horaInt >= 0 && horaInt <= 23 && minutosInt >= 0 && minutosInt <= 59;
             if (horaValida) {
                 field.setForeground(Color.BLACK);
+                field.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
             } else {
                 field.setForeground(Color.RED);
+                field.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             }
         } catch (NumberFormatException e) {
             field.setForeground(Color.RED);
+            field.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+        }
+    }    
+    public static void filtrarTabla(JTable tabla, JTextField buscador) {
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(tabla.getModel());
+        tabla.setRowSorter(sorter);
+
+        String textoFiltro = buscador.getText().trim();
+        if (textoFiltro.length() == 0) {
+            sorter.setRowFilter(null); // Sin filtro
+        } else {
+            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textoFiltro)); // Filtrar ignorando mayúsculas/minúsculas
         }
     }
+
+    
 }
 
