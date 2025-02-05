@@ -4,7 +4,12 @@
  */
 package Interfaz;
 
+import ControladorBD.ConexionBD;
+import ControladorBD.QuerysCronograma;
 import java.awt.Color;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,12 +21,82 @@ public class EditarPrueba extends javax.swing.JFrame {
     /**
      * Creates new form AñadirPrueba
      */
-    public EditarPrueba() {
+    private int ID_Cronograma;
+    
+    public EditarPrueba(int ID_Cronograma) {
         initComponents();
         this.setLocationRelativeTo(null);
         Validaciones.aplicarFormatoFecha(FechaCampo);
         Validaciones.aplicarFormatoHora(HoraCampo);
+        this.ID_Cronograma = ID_Cronograma; // Guardar el ID en la variable
+        cargarProgramasEnComboBox();
+        cargarDatosCronograma();
     }
+private void cargarDatosCronograma() {
+        ConexionBD conexionBD = new ConexionBD();
+        conexionBD.conectar();
+        java.sql.Connection conn = conexionBD.getConexion();
+
+        if (conn == null) {
+            System.out.println("❌ Error: No se pudo conectar a la BD.");
+            return;
+        }
+
+        // Consulta para obtener los datos del cronograma y el nombre del programa asociado
+        String sql = "SELECT c.Lugar, c.Fecha, c.Hora, c.Tipo, p.Nombre " +
+             "FROM cronograma c " +
+             "LEFT JOIN programa p ON c.ID_Programa = p.ID_Programa " +
+             "WHERE TRIM(c.ID_Cronograma) = ?";
+
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, ID_Cronograma);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    // Llenar los campos con los datos obtenidos
+                    LugarCampo.setText(rs.getString("Lugar"));
+                    FechaCampo.setText(rs.getString("Fecha"));
+                    HoraCampo.setText(rs.getString("Hora"));
+                    //cargarProgramasEnComboBox();
+                    
+                    // Seleccionar el tipo en el ComboBox
+                    TipoComboBox.setSelectedItem(rs.getString("Tipo"));
+                    
+                    // Seleccionar el programa en el ComboBox
+                    ProgramaComboBox1.setSelectedItem(rs.getString("Nombre"));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("❌ Error al obtener los datos del cronograma.");
+            e.printStackTrace();
+        } finally {
+            conexionBD.desconectar();
+        }
+    }
+
+public void cargarProgramasEnComboBox() {
+    // Limpiar el ComboBox antes de agregar nuevos elementos
+    ProgramaComboBox1.removeAllItems();
+
+    // Consulta SQL para obtener los nombres de los programas
+    String sql = "SELECT Nombre FROM programa";
+
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+    java.sql.Connection conn = conexionBD.getConexion();
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+        while (rs.next()) {
+            String nombrePrograma = rs.getString("Nombre");
+            ProgramaComboBox1.addItem(nombrePrograma); // Agregar el nombre del programa al ComboBox
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        conexionBD.desconectar();
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -257,6 +332,12 @@ public class EditarPrueba extends javax.swing.JFrame {
         }else {
             dispose();
         }
+                String tipo = obtenerTipoSeleccionado();
+        int ID_Programa = obtenerIDProgramaSeleccionado();
+        QuerysCronograma qc = new QuerysCronograma();
+        qc.actualizarCronograma(ID_Cronograma, LugarCampo.getText(), FechaCampo.getText(), HoraCampo.getText(), tipo ,ID_Programa);
+        CronogramaBackground cb = new CronogramaBackground();
+        cb.actualizarTablaCronogramas();
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
     private void GuardarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseEntered
@@ -340,22 +421,69 @@ public class EditarPrueba extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarPrueba().setVisible(true);
+                new EditarPrueba(1).setVisible(true);
             }
         });
     }
+
+public int obtenerIDProgramaSeleccionado() {
+    // Obtener el nombre del programa seleccionado en el JComboBox
+    String nombrePrograma = (String) ProgramaComboBox1.getSelectedItem();
+
+    if (nombrePrograma == null) {
+        System.out.println("❌ No hay un programa seleccionado.");
+        return -1; // Retornar -1 si no hay selección
+    }
+
+    // Consulta SQL para obtener el ID_Programa según el nombre
+    String sql = "SELECT ID_Programa FROM programa WHERE Nombre = ?";
+
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+        java.sql.Connection conn = conexionBD.getConexion();
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, nombrePrograma); // Establecer el nombre en la consulta
+
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return rs.getInt("ID_Programa"); // Retornar el ID del programa encontrado
+        } else {
+            System.out.println("❌ No se encontró el programa: " + nombrePrograma);
+            return -1; // Retorna -1 si no se encuentra
+        }
+    } catch (SQLException e) {
+        System.out.println("❌ Error al obtener el ID_Programa.");
+        e.printStackTrace();
+        return -1;
+    } finally {
+        conexionBD.desconectar();
+    }
+}
+public String obtenerTipoSeleccionado() {
+    // Obtener el elemento seleccionado en el ComboBox
+    String tipoSeleccionado = (String) TipoComboBox.getSelectedItem();
+
+    // Verificar si hay una selección válida
+    if (tipoSeleccionado == null) {
+        System.out.println("❌ No hay un tipo seleccionado.");
+        return ""; // Retorna una cadena vacía si no hay selección
+    }
+
+    return tipoSeleccionado; // Retorna la opción seleccionada
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CancelarBoton;
     private javax.swing.JPanel CancelarPanel;
     private javax.swing.JLabel Fecha;
-    private javax.swing.JFormattedTextField FechaCampo;
+    public javax.swing.JFormattedTextField FechaCampo;
     private javax.swing.JLabel GuardarBoton;
     private javax.swing.JPanel GuardarPanel;
     private javax.swing.JLabel Hora;
-    private javax.swing.JFormattedTextField HoraCampo;
+    public javax.swing.JFormattedTextField HoraCampo;
     private javax.swing.JLabel Luagar;
-    private javax.swing.JTextField LugarCampo;
+    public javax.swing.JTextField LugarCampo;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JLabel Programa;
     public javax.swing.JComboBox<String> ProgramaComboBox1;

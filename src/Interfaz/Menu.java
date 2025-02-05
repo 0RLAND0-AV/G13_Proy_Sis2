@@ -452,7 +452,7 @@ public class Menu extends javax.swing.JFrame {
         CronogramaBackground pb = new CronogramaBackground();
         pb.setSize(900, 720);
         pb.setLocation(0, 0);
-
+        pb.actualizarTablaCronogramas();
         
         PanelCambiante.removeAll();
         PanelCambiante.add(pb, BorderLayout.CENTER);

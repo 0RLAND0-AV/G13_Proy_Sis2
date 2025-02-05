@@ -5,6 +5,7 @@
 package Interfaz;
 
 import ControladorBD.QuerysAlumnos;
+import ControladorBD.QuerysCronograma;
 import ControladorBD.QuerysInstructores;
 import ControladorBD.QuerysProgramas;
 import java.awt.Color;
@@ -42,7 +43,10 @@ public class AlertaEliminar extends javax.swing.JFrame {
                  ElimA.eliminarAlumno(numero);
              }else if(a.equals("Programa")){
                  QuerysProgramas ElimP = new QuerysProgramas();
-                 ElimP.eliminarPrograma(numero);}  
+                 ElimP.eliminarPrograma(numero);
+             }else if(a.equals("Cronograma")){
+                 QuerysCronograma ElimC = new QuerysCronograma();
+                 ElimC.eliminarCronograma(numero);} 
         }
     }
  

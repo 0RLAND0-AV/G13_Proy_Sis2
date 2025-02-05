@@ -6,6 +6,7 @@ package Interfaz;
 
 import java.awt.Color;
 import ControladorBD.ConexionBD;
+import ControladorBD.QuerysCronograma;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,7 +32,7 @@ public class CronogramaBackground extends javax.swing.JPanel {
     public CronogramaBackground() {
         initComponents();
         //iniciarActualizacionAutomatica();
-        
+        //this.actualizarTablaCronogramas()
     
     }
 
@@ -100,6 +101,11 @@ public class CronogramaBackground extends javax.swing.JPanel {
         add(EliminarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 615, -1, -1));
 
         EditarPanel.setBackground(new java.awt.Color(80, 200, 120));
+        EditarPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditarPanelMouseClicked(evt);
+            }
+        });
 
         EditarBoton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         EditarBoton.setForeground(new java.awt.Color(255, 255, 255));
@@ -246,13 +252,24 @@ public class CronogramaBackground extends javax.swing.JPanel {
     }
     
     private void EditarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarBotonMouseClicked
-        EditarPrueba ap = new EditarPrueba();  
+        
+            List<Integer> selectedIds = getSelectedIds(TablaCronogramas);
+
+    if (selectedIds.isEmpty()) { 
+        JOptionPane.showMessageDialog(null, "⚠️ No has seleccionado ningún registro.", "Error", JOptionPane.WARNING_MESSAGE);
+    } else if (selectedIds.size() > 1) { 
+        JOptionPane.showMessageDialog(null, "⚠️ Solo puedes editar un registro a la vez.", "Error", JOptionPane.WARNING_MESSAGE);
+    } else { 
+        int ID_Cronograma = selectedIds.get(0);      
+        EditarPrueba ap = new EditarPrueba(ID_Cronograma);  
         ap.setVisible(true);
+    }
     }//GEN-LAST:event_EditarBotonMouseClicked
 
     private void AgregarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarBotonMouseClicked
         AñadirPrueba ap = new AñadirPrueba();
         ap.setVisible(true);
+        ap.cargarProgramasEnComboBox();
     }//GEN-LAST:event_AgregarBotonMouseClicked
 
     private void AgregarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarBotonMouseEntered
@@ -279,7 +296,76 @@ public class CronogramaBackground extends javax.swing.JPanel {
         EliminarPanel.setBackground(new Color (80,200,120));
     }//GEN-LAST:event_EliminarBotonMouseExited
 
- 
+    private void EditarPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditarPanelMouseClicked
+        // TODO add your handling code here:
+    List<Integer> selectedIds = getSelectedIds(TablaCronogramas);
+
+    if (selectedIds.isEmpty()) { 
+        JOptionPane.showMessageDialog(null, "⚠️ No has seleccionado ningún registro.", "Error", JOptionPane.WARNING_MESSAGE);
+    } else if (selectedIds.size() > 1) { 
+        JOptionPane.showMessageDialog(null, "⚠️ Solo puedes editar un registro a la vez.", "Error", JOptionPane.WARNING_MESSAGE);
+    } else { 
+        int ID_Cronograma = selectedIds.get(0);      
+        EditarPrueba ap = new EditarPrueba(ID_Cronograma);  
+        ap.setVisible(true);
+    }
+    }//GEN-LAST:event_EditarPanelMouseClicked
+
+public void actualizarTablaCronogramas() {
+    System.out.println("🔄 Actualizando tabla de cronogramas...");
+
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+    Connection conn = conexionBD.getConexion();
+
+    if (conn == null) {
+        System.out.println("❌ Error: No se pudo establecer conexión con la BD.");
+        return;
+    }
+
+    DefaultTableModel model = (DefaultTableModel) TablaCronogramas.getModel();
+    model.setRowCount(0); // Limpiar la tabla antes de llenarla
+    System.out.println("🗑️ Tabla vaciada.");
+
+    String sql = "SELECT ID_Cronograma, Lugar, Fecha, Hora, Tipo FROM cronograma";
+
+    List<Object[]> datosCronograma = new ArrayList<>();
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        System.out.println("📊 Consulta ejecutada.");
+
+        int contador = 0;
+        while (rs.next()) {
+            int idCronograma = rs.getInt("ID_Cronograma");
+            String lugar = rs.getString("Lugar");
+            String fecha = rs.getString("Fecha");
+            String hora = rs.getString("Hora");
+            String tipo = rs.getString("Tipo");
+
+            // Última columna es "null" porque no la usaremos
+            Object[] fila = { idCronograma, lugar, fecha, hora, tipo, null };
+            datosCronograma.add(fila);
+            contador++;
+        }
+
+        System.out.println("✅ Total de registros obtenidos: " + contador);
+
+    } catch (SQLException e) {
+        System.out.println("❌ Error al ejecutar la consulta.");
+        e.printStackTrace();
+    } finally {
+        conexionBD.desconectar();
+        System.out.println("🔌 Desconectado de la BD.");
+    }
+
+    // Llenar la tabla con los datos obtenidos
+    for (Object[] cronograma : datosCronograma) {
+        model.addRow(cronograma);
+    }
+}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AgregarBoton;

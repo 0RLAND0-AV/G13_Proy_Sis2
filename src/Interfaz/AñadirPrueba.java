@@ -4,8 +4,13 @@
  */
 package Interfaz;
 
-import ControladorBD.QuerysInstructores;
+import com.sun.jdi.connect.spi.Connection;
+import java.sql.*;
+import ControladorBD.ConexionBD;
+import ControladorBD.QuerysCronograma;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -206,6 +211,11 @@ public class AñadirPrueba extends javax.swing.JFrame {
                 FechaCampoMouseClicked(evt);
             }
         });
+        FechaCampo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FechaCampoActionPerformed(evt);
+            }
+        });
         PanelPrincipal.add(FechaCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 210, 30));
 
         HoraCampo.setToolTipText("Ingrese el horario de la Prueba");
@@ -257,7 +267,13 @@ public class AñadirPrueba extends javax.swing.JFrame {
                  JOptionPane.showMessageDialog(null, "Por favor verifique los campos de color rojo");
         }else {
             dispose();
-        } 
+        }
+        String tipo = obtenerTipoSeleccionado();
+        int ID_Programa = obtenerIDProgramaSeleccionado();
+        QuerysCronograma qc = new QuerysCronograma();
+        qc.insertarCronograma(LugarCampo.getText(), FechaCampo.getText(), HoraCampo.getText(), tipo ,ID_Programa );
+        CronogramaBackground cb = new CronogramaBackground();
+        cb.actualizarTablaCronogramas();
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
     private void GuardarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseEntered
@@ -310,6 +326,10 @@ public class AñadirPrueba extends javax.swing.JFrame {
         HoraCampo.setToolTipText("El formato es HH:MM, Ejemplo: 20:30");
     }//GEN-LAST:event_HoraCampoMouseClicked
 
+    private void FechaCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaCampoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FechaCampoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -344,6 +364,76 @@ public class AñadirPrueba extends javax.swing.JFrame {
             }
         });
     }
+public void cargarProgramasEnComboBox() {
+    // Limpiar el ComboBox antes de agregar nuevos elementos
+    ProgramaComboBox1.removeAllItems();
+
+    // Consulta SQL para obtener los nombres de los programas
+    String sql = "SELECT Nombre FROM programa";
+
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+    java.sql.Connection conn = conexionBD.getConexion();
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+        while (rs.next()) {
+            String nombrePrograma = rs.getString("Nombre");
+            ProgramaComboBox1.addItem(nombrePrograma); // Agregar el nombre del programa al ComboBox
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        conexionBD.desconectar();
+    }
+}
+
+public int obtenerIDProgramaSeleccionado() {
+    // Obtener el nombre del programa seleccionado en el JComboBox
+    String nombrePrograma = (String) ProgramaComboBox1.getSelectedItem();
+
+    if (nombrePrograma == null) {
+        System.out.println("❌ No hay un programa seleccionado.");
+        return -1; // Retornar -1 si no hay selección
+    }
+
+    // Consulta SQL para obtener el ID_Programa según el nombre
+    String sql = "SELECT ID_Programa FROM programa WHERE Nombre = ?";
+
+    ConexionBD conexionBD = new ConexionBD();
+    conexionBD.conectar();
+        java.sql.Connection conn = conexionBD.getConexion();
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, nombrePrograma); // Establecer el nombre en la consulta
+
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return rs.getInt("ID_Programa"); // Retornar el ID del programa encontrado
+        } else {
+            System.out.println("❌ No se encontró el programa: " + nombrePrograma);
+            return -1; // Retorna -1 si no se encuentra
+        }
+    } catch (SQLException e) {
+        System.out.println("❌ Error al obtener el ID_Programa.");
+        e.printStackTrace();
+        return -1;
+    } finally {
+        conexionBD.desconectar();
+    }
+}
+public String obtenerTipoSeleccionado() {
+    // Obtener el elemento seleccionado en el ComboBox
+    String tipoSeleccionado = (String) TipoComboBox.getSelectedItem();
+
+    // Verificar si hay una selección válida
+    if (tipoSeleccionado == null) {
+        System.out.println("❌ No hay un tipo seleccionado.");
+        return ""; // Retorna una cadena vacía si no hay selección
+    }
+
+    return tipoSeleccionado; // Retorna la opción seleccionada
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CancelarBoton;
@@ -353,7 +443,7 @@ public class AñadirPrueba extends javax.swing.JFrame {
     private javax.swing.JLabel GuardarBoton;
     private javax.swing.JPanel GuardarPanel;
     private javax.swing.JLabel Hora;
-    private javax.swing.JFormattedTextField HoraCampo;
+    public javax.swing.JFormattedTextField HoraCampo;
     private javax.swing.JLabel Lugar;
     private javax.swing.JTextField LugarCampo;
     private javax.swing.JPanel PanelPrincipal;

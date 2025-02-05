@@ -75,6 +75,8 @@ public class EditarPrograma extends javax.swing.JFrame {
         conexionBD.desconectar();
     }
 }
+    
+    
 private void llenarInstructorComboBox(int idInstructorSeleccionado) {
     ConexionBD conexionBD = new ConexionBD();
     conexionBD.conectar();
