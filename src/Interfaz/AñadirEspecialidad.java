@@ -153,6 +153,7 @@ public class AñadirEspecialidad extends javax.swing.JFrame {
         PanelPrincipal.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 290, 50));
 
         NombreCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        NombreCampo.setToolTipText("Ingrese el nombre de la Especialidad");
         NombreCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NombreCampoActionPerformed(evt);

@@ -243,6 +243,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Ingrese el nombre del Alumno"/>
               </Properties>
               <Events>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NombreCampoKeyTyped"/>
@@ -258,6 +259,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Ingrese el apellido paterno del Alumno"/>
               </Properties>
               <Events>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ApellidoPaternoCampoKeyTyped"/>
@@ -273,6 +275,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Ingrese el apellido materno del Alumno"/>
               </Properties>
               <Events>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ApellidoMaternoCampoKeyTyped"/>
@@ -288,6 +291,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Ingrese el ci del Alumno"/>
               </Properties>
               <Events>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CICampoKeyTyped"/>
@@ -300,10 +304,14 @@
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="FechaNacimientoCampo">
               <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Ingrese la fecha de nacimiento del Alumno"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="FechaNacimientoCampoMouseClicked"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="260" y="270" width="200" height="30"/>
@@ -400,8 +408,10 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Ingrese el correo electr&#xf3;nico del Alumno"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CorreoElectronicoCampoMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CorreoElectronicoCampoActionPerformed"/>
               </Events>
               <Constraints>
@@ -415,6 +425,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Ingrese la direcci&#xf3;n del Alumno"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -427,6 +438,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Ingrese el tel&#xe9;fono del Alumno"/>
               </Properties>
               <Events>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TelefonoCampoKeyTyped"/>

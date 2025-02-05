@@ -251,6 +251,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Ingrese el apellido paterno del Instructor"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ApellidoPaternoCampoActionPerformed"/>
@@ -267,6 +268,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Ingrese el nombre del Instructor"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NombreCampoActionPerformed"/>
@@ -283,6 +285,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Ingrese el ci del Instructor"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CICampoActionPerformed"/>
@@ -299,6 +302,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Ingrese el apellido materno del Instructor"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ApellidoMaternoCampoActionPerformed"/>
@@ -312,6 +316,7 @@
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="FechaNacimientoCampo">
               <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Ingrese la fecha de nacimiento del Instructor"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
@@ -415,6 +420,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Ingrese el tel&#xe9;fono del Instructor"/>
               </Properties>
               <Events>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TelefonoCampoKeyTyped"/>
@@ -430,8 +436,10 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Ingrese el correo electr&#xf3;nico del Instructor"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CorreoElectronicoCampoMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CorreoElectronicoCampoActionPerformed"/>
               </Events>
               <Constraints>
@@ -445,6 +453,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Ingrese la direcci&#xf3;n del Instructor"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DireccionCampoActionPerformed"/>

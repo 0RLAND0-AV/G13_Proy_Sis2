@@ -304,6 +304,7 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
         PanelPrincipal.add(GuardarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 540, -1, -1));
 
         NombreCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        NombreCampo.setToolTipText("Ingrese el nombre del Programa");
         NombreCampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 NombreCampoKeyTyped(evt);
@@ -312,6 +313,7 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
         PanelPrincipal.add(NombreCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 210, 30));
 
         CostoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        CostoCampo.setToolTipText("Ingrese el costo del Programa");
         CostoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 CostoCampoKeyTyped(evt);
@@ -320,6 +322,7 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
         PanelPrincipal.add(CostoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, 210, 30));
 
         MaximoInscritosCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        MaximoInscritosCampo.setToolTipText("Ingrese el número máximo de alumnos del Programa");
         MaximoInscritosCampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 MaximoInscritosCampoKeyTyped(evt);
@@ -334,13 +337,31 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
 
         PanelPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, 550, 160));
 
+        FechaFinCampo.setToolTipText("Ingrese la fecha de finalización del Programa");
         FechaFinCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        FechaFinCampo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FechaFinCampoMouseClicked(evt);
+            }
+        });
         PanelPrincipal.add(FechaFinCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 210, 30));
 
+        FechaInicioCampo.setToolTipText("Ingrese la fecha de inicio del Programa");
         FechaInicioCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        FechaInicioCampo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FechaInicioCampoMouseClicked(evt);
+            }
+        });
         PanelPrincipal.add(FechaInicioCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 210, 30));
 
+        HorarioCampo.setToolTipText("Ingrese la hora en la que se dará el Programa");
         HorarioCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        HorarioCampo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HorarioCampoMouseClicked(evt);
+            }
+        });
         PanelPrincipal.add(HorarioCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 210, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -463,6 +484,21 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
         // TODO add your handling code here:
         Validaciones.SoloNumeros(CostoCampo, "250, 500, 1000, etc.");
     }//GEN-LAST:event_CostoCampoKeyTyped
+
+    private void FechaInicioCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FechaInicioCampoMouseClicked
+        // TODO add your handling code here:
+        FechaInicioCampo.setToolTipText("El formato es YYYY-MM-DD, Ejemplo: 2021-11-23");
+    }//GEN-LAST:event_FechaInicioCampoMouseClicked
+
+    private void FechaFinCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FechaFinCampoMouseClicked
+        // TODO add your handling code here:
+        FechaFinCampo.setToolTipText("El formato es YYYY-MM-DD, Ejemplo: 2021-11-23");
+    }//GEN-LAST:event_FechaFinCampoMouseClicked
+
+    private void HorarioCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HorarioCampoMouseClicked
+        // TODO add your handling code here:
+        HorarioCampo.setToolTipText("El formato es HH:MM, Ejemplo: 20:30");
+    }//GEN-LAST:event_HorarioCampoMouseClicked
 
     /**
      * @param args the command line arguments

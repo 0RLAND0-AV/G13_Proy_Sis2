@@ -191,6 +191,7 @@ public class AñadirPrueba extends javax.swing.JFrame {
         PanelPrincipal.add(ProgramaComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 330, 210, 30));
 
         LugarCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LugarCampo.setToolTipText("Ingrese el lugar en el que se realizara la Prueba");
         LugarCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LugarCampoActionPerformed(evt);
@@ -198,10 +199,22 @@ public class AñadirPrueba extends javax.swing.JFrame {
         });
         PanelPrincipal.add(LugarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 580, -1));
 
+        FechaCampo.setToolTipText("Ingrese la fecha de la Prueba");
         FechaCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        FechaCampo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FechaCampoMouseClicked(evt);
+            }
+        });
         PanelPrincipal.add(FechaCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 210, 30));
 
+        HoraCampo.setToolTipText("Ingrese el horario de la Prueba");
         HoraCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        HoraCampo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HoraCampoMouseClicked(evt);
+            }
+        });
         PanelPrincipal.add(HoraCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, 210, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -286,6 +299,16 @@ public class AñadirPrueba extends javax.swing.JFrame {
     private void LugarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LugarCampoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LugarCampoActionPerformed
+
+    private void FechaCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FechaCampoMouseClicked
+        // TODO add your handling code here:
+        FechaCampo.setToolTipText("El formato es YYYY-MM-DD, Ejemplo: 2021-11-23");
+    }//GEN-LAST:event_FechaCampoMouseClicked
+
+    private void HoraCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoraCampoMouseClicked
+        // TODO add your handling code here:
+        HoraCampo.setToolTipText("El formato es HH:MM, Ejemplo: 20:30");
+    }//GEN-LAST:event_HoraCampoMouseClicked
 
     /**
      * @param args the command line arguments

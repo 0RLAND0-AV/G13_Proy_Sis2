@@ -294,6 +294,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Ingrese el nombre del Programa"/>
           </Properties>
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NombreCampoKeyTyped"/>
@@ -309,6 +310,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Ingrese el n&#xfa;mero m&#xe1;ximo de alumnos del Programa"/>
           </Properties>
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MaximoInscritosCampoKeyTyped"/>
@@ -324,6 +326,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Ingrese el costo del Programa"/>
           </Properties>
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CostoCampoKeyTyped"/>
@@ -359,10 +362,14 @@
         </Container>
         <Component class="javax.swing.JFormattedTextField" name="HorarioCampo">
           <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Ingrese la hora en la que se dar&#xe1; el Programa"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="HorarioCampoMouseClicked"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="290" y="290" width="210" height="30"/>
@@ -371,10 +378,14 @@
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="FechaFinCampo">
           <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Ingrese la fecha de finalizaci&#xf3;n del Programa"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="FechaFinCampoMouseClicked"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="290" y="240" width="210" height="30"/>
@@ -383,10 +394,14 @@
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="FechaInicioCampo">
           <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Ingrese la fecha de inicio del Programa"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="FechaInicioCampoMouseClicked"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="290" y="190" width="210" height="30"/>

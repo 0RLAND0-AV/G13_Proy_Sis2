@@ -175,6 +175,7 @@ public class AñadirAlumno extends javax.swing.JFrame {
         DatosPersonalesPanel.add(SubtituloDP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 470, 48));
 
         CICampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        CICampo.setToolTipText("Ingrese el ci del Alumno");
         CICampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 CICampoKeyTyped(evt);
@@ -183,6 +184,7 @@ public class AñadirAlumno extends javax.swing.JFrame {
         DatosPersonalesPanel.add(CICampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 200, 30));
 
         ApellidoMaternoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ApellidoMaternoCampo.setToolTipText("Ingrese el apellido materno del Alumno");
         ApellidoMaternoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 ApellidoMaternoCampoKeyTyped(evt);
@@ -191,6 +193,7 @@ public class AñadirAlumno extends javax.swing.JFrame {
         DatosPersonalesPanel.add(ApellidoMaternoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 200, 30));
 
         ApellidoPaternoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ApellidoPaternoCampo.setToolTipText("Ingrese el apellido paterno del Alumno");
         ApellidoPaternoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 ApellidoPaternoCampoKeyTyped(evt);
@@ -199,6 +202,7 @@ public class AñadirAlumno extends javax.swing.JFrame {
         DatosPersonalesPanel.add(ApellidoPaternoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 200, 30));
 
         NombreCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        NombreCampo.setToolTipText("Ingrese el nombre del Alumno");
         NombreCampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 NombreCampoKeyTyped(evt);
@@ -206,7 +210,13 @@ public class AñadirAlumno extends javax.swing.JFrame {
         });
         DatosPersonalesPanel.add(NombreCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 200, 30));
 
+        FechaNacimientoCampo.setToolTipText("Ingrese la fecha de nacimiento del Alumno");
         FechaNacimientoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        FechaNacimientoCampo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FechaNacimientoCampoMouseClicked(evt);
+            }
+        });
         DatosPersonalesPanel.add(FechaNacimientoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 200, 30));
 
         PanelPrincipal.add(DatosPersonalesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 470, 330));
@@ -237,9 +247,16 @@ public class AñadirAlumno extends javax.swing.JFrame {
         DatosContactoPanel.add(SubTituloDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 470, 48));
 
         CorreoElectronicoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        CorreoElectronicoCampo.setToolTipText("Ingrese el correo electrónico del Alumno");
+        CorreoElectronicoCampo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CorreoElectronicoCampoMouseClicked(evt);
+            }
+        });
         DatosContactoPanel.add(CorreoElectronicoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 200, 30));
 
         DireccionCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        DireccionCampo.setToolTipText("Ingrese la dirección del Alumno");
         DireccionCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DireccionCampoActionPerformed(evt);
@@ -248,6 +265,7 @@ public class AñadirAlumno extends javax.swing.JFrame {
         DatosContactoPanel.add(DireccionCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 200, 30));
 
         TelefonoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        TelefonoCampo.setToolTipText("Ingrese el teléfono del Alumno");
         TelefonoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 TelefonoCampoKeyTyped(evt);
@@ -439,6 +457,16 @@ public class AñadirAlumno extends javax.swing.JFrame {
         // TODO add your handling code here:
         Validaciones.SoloNumeros(TelefonoCampo, "63422343");
     }//GEN-LAST:event_TelefonoCampoKeyTyped
+
+    private void FechaNacimientoCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FechaNacimientoCampoMouseClicked
+        // TODO add your handling code here:
+        FechaNacimientoCampo.setToolTipText("El formato es YYYY-MM-DD, Ejemplo: 2021-11-23");
+    }//GEN-LAST:event_FechaNacimientoCampoMouseClicked
+
+    private void CorreoElectronicoCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CorreoElectronicoCampoMouseClicked
+        // TODO add your handling code here:
+        CorreoElectronicoCampo.setToolTipText("Ejemplo: joseRamires1@gmail.com");
+    }//GEN-LAST:event_CorreoElectronicoCampoMouseClicked
 
     /**
      * @param args the command line arguments

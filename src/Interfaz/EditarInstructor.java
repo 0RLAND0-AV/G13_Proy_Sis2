@@ -296,6 +296,7 @@ private String getNombreEspecialidadById(int idEspecialidad) {
         DatosPersonalesPanel.add(SubtituloDP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 470, 48));
 
         ApellidoPaternoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ApellidoPaternoCampo.setToolTipText("Ingrese el apellido paterno del Instructor");
         ApellidoPaternoCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ApellidoPaternoCampoActionPerformed(evt);
@@ -309,6 +310,7 @@ private String getNombreEspecialidadById(int idEspecialidad) {
         DatosPersonalesPanel.add(ApellidoPaternoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 200, 30));
 
         NombreCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        NombreCampo.setToolTipText("Ingrese el nombre del Instructor");
         NombreCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NombreCampoActionPerformed(evt);
@@ -322,6 +324,7 @@ private String getNombreEspecialidadById(int idEspecialidad) {
         DatosPersonalesPanel.add(NombreCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 200, 30));
 
         CICampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        CICampo.setToolTipText("Ingrese el ci del Instructor");
         CICampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CICampoActionPerformed(evt);
@@ -335,6 +338,7 @@ private String getNombreEspecialidadById(int idEspecialidad) {
         DatosPersonalesPanel.add(CICampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 200, 30));
 
         ApellidoMaternoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ApellidoMaternoCampo.setToolTipText("Ingrese el apellido materno del Instructor");
         ApellidoMaternoCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ApellidoMaternoCampoActionPerformed(evt);
@@ -347,6 +351,7 @@ private String getNombreEspecialidadById(int idEspecialidad) {
         });
         DatosPersonalesPanel.add(ApellidoMaternoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 200, 30));
 
+        FechaNacimientoCampo.setToolTipText("Ingrese la fecha de nacimiento del Instructor");
         FechaNacimientoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         FechaNacimientoCampo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -383,6 +388,7 @@ private String getNombreEspecialidadById(int idEspecialidad) {
         DatosContactoPanel.add(SubTituloDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 470, 48));
 
         TelefonoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        TelefonoCampo.setToolTipText("Ingrese el teléfono del Instructor");
         TelefonoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 TelefonoCampoKeyTyped(evt);
@@ -391,6 +397,12 @@ private String getNombreEspecialidadById(int idEspecialidad) {
         DatosContactoPanel.add(TelefonoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 200, 30));
 
         CorreoElectronicoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        CorreoElectronicoCampo.setToolTipText("Ingrese el correo electrónico del Instructor");
+        CorreoElectronicoCampo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CorreoElectronicoCampoMouseClicked(evt);
+            }
+        });
         CorreoElectronicoCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CorreoElectronicoCampoActionPerformed(evt);
@@ -399,6 +411,7 @@ private String getNombreEspecialidadById(int idEspecialidad) {
         DatosContactoPanel.add(CorreoElectronicoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 200, 30));
 
         DireccionCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        DireccionCampo.setToolTipText("Ingrese la dirección del Instructor");
         DireccionCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DireccionCampoActionPerformed(evt);
@@ -604,8 +617,13 @@ private String getNombreEspecialidadById(int idEspecialidad) {
 
     private void FechaNacimientoCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FechaNacimientoCampoMouseClicked
         // TODO add your handling code here:
-        
+        FechaNacimientoCampo.setToolTipText("El formato es YYYY-MM-DD, Ejemplo: 2021-11-23");
     }//GEN-LAST:event_FechaNacimientoCampoMouseClicked
+
+    private void CorreoElectronicoCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CorreoElectronicoCampoMouseClicked
+        // TODO add your handling code here:
+        CorreoElectronicoCampo.setToolTipText("Ejemplo: joseRamires1@gmail.com");
+    }//GEN-LAST:event_CorreoElectronicoCampoMouseClicked
 
     /**
      * @param args the command line arguments

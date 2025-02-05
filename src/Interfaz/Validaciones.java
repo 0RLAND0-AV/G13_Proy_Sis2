@@ -201,6 +201,7 @@ public class Validaciones {
             boolean fechaValida = año >= 1900 && año <= 2200 && mes >= 1 && mes <= 12 && dia >= 1 && dia <= 31;
             if (fechaValida) {
                 field.setForeground(Color.BLACK);
+                
             } else {
                 field.setForeground(Color.RED);
             }
