@@ -30,7 +30,7 @@ public class InstructoresBackground extends javax.swing.JPanel {
      */
     public InstructoresBackground() {
         initComponents();
-        //iniciarActualizacionAutomatica();
+        iniciarActualizacionAutomatica();
         
     
     }
@@ -333,7 +333,7 @@ public class InstructoresBackground extends javax.swing.JPanel {
             public void run() {
                 actualizarTablaInstructores();
             }
-        }, 0, 8000);
+        }, 0, 3000);
     }
 
 public void actualizarTablaInstructores() {

@@ -33,6 +33,7 @@ public class ProgramasBackground extends javax.swing.JPanel {
     public ProgramasBackground() {
         initComponents();
         actualizarTablaProgramas();
+        iniciarActualizacionAutomatica();
     }
 
     /**
@@ -283,6 +284,15 @@ public class ProgramasBackground extends javax.swing.JPanel {
     }
     }//GEN-LAST:event_EditarBotonMouseClicked
 
+        private void iniciarActualizacionAutomatica() {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                actualizarTablaProgramas();
+            }
+        }, 0, 3000);
+    }
     public void actualizarTablaProgramas() {
     System.out.println("🔄 Actualizando tabla de programas...");
 

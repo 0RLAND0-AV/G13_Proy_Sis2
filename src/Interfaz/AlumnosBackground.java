@@ -27,7 +27,7 @@ public class AlumnosBackground extends javax.swing.JPanel {
      */
     public AlumnosBackground() {
         initComponents();
-        //iniciarActualizacionAutomatica();
+        iniciarActualizacionAutomatica();
     }
 
     /**
@@ -295,7 +295,7 @@ public class AlumnosBackground extends javax.swing.JPanel {
             public void run() {
                 actualizarTablaAlumnos();
             }
-        }, 0, 1000);
+        }, 0, 3000);
     }
 
     public void actualizarTablaAlumnos() {

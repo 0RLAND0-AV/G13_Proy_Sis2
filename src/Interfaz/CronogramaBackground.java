@@ -31,7 +31,7 @@ public class CronogramaBackground extends javax.swing.JPanel {
      */
     public CronogramaBackground() {
         initComponents();
-        //iniciarActualizacionAutomatica();
+        iniciarActualizacionAutomatica();
         //this.actualizarTablaCronogramas()
     
     }
@@ -319,6 +319,15 @@ public class CronogramaBackground extends javax.swing.JPanel {
     }
     }//GEN-LAST:event_EditarPanelMouseClicked
 
+        private void iniciarActualizacionAutomatica() {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                actualizarTablaCronogramas();
+            }
+        }, 0, 3000);
+    }
 public void actualizarTablaCronogramas() {
     System.out.println("🔄 Actualizando tabla de cronogramas...");
 
