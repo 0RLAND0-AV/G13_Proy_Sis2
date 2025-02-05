@@ -5,6 +5,7 @@
 package Interfaz;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -234,8 +235,15 @@ public class EditarPrueba extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelarBotonMouseExited
 
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
-        // TODO add your handling code here:
-        dispose();
+        if (LugarCampo.getText().equals("") || FechaCampo.getText().equals("    -  -  ") || 
+            HoraCampo.getText().equals("  :  ")){
+            JOptionPane.showMessageDialog(null, "Pot favor rellene todos los campos");
+        }else if(LugarCampo.getForeground().equals(Color.RED) || FechaCampo.getForeground().equals(Color.RED) || 
+                HoraCampo.getForeground().equals(Color.RED)){
+                JOptionPane.showMessageDialog(null, "Por favor verifique los campos de color rojo");
+        }else {
+            dispose();
+        }
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
     private void GuardarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseEntered

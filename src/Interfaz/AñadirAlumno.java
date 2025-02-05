@@ -20,12 +20,7 @@ public class AñadirAlumno extends javax.swing.JFrame {
 
     /**
      * Creates new form AAA
-     */
-    
-
-    
-    
-    
+     */  
     public AñadirAlumno() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -374,11 +369,21 @@ public class AñadirAlumno extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelarBoton1MouseExited
 
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
-        // TODO add your handling code here:
-        int ID_Programa= obtenerIDPrograma();
-        QuerysAlumnos qi= new QuerysAlumnos();
-        qi.insertarAlumno(NombreCampo.getText(), ApellidoPaternoCampo.getText(), ApellidoMaternoCampo.getText(), TelefonoCampo.getText(), CICampo.getText(), FechaNacimientoCampo.getText(), DireccionCampo.getText(), CorreoElectronicoCampo.getText(),ID_Programa);
-        dispose();
+        if (NombreCampo.getText().equals("") || ApellidoPaternoCampo.getText().equals("") ||
+            ApellidoMaternoCampo.getText().equals("") || CICampo.getText().equals("") ||
+            FechaNacimientoCampo.getText().equals("    -  -  ") || TelefonoCampo.getText().equals("") ||
+            DireccionCampo.getText().equals("") || CorreoElectronicoCampo.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Pot favor rellene todos los campos");
+        }else if(NombreCampo.getForeground().equals(Color.RED) || ApellidoPaternoCampo.getForeground().equals(Color.RED) ||
+                 ApellidoMaternoCampo.getForeground().equals(Color.RED) || CICampo.getForeground().equals(Color.RED) ||
+                 FechaNacimientoCampo.getForeground().equals(Color.RED) || TelefonoCampo.getForeground().equals(Color.RED)){
+                 JOptionPane.showMessageDialog(null, "Por favor verifique los campos de color rojo");
+        }else {
+            int ID_Programa= obtenerIDPrograma();
+            QuerysAlumnos qi= new QuerysAlumnos();
+            qi.insertarAlumno(NombreCampo.getText(), ApellidoPaternoCampo.getText(), ApellidoMaternoCampo.getText(), TelefonoCampo.getText(), CICampo.getText(), FechaNacimientoCampo.getText(), DireccionCampo.getText(), CorreoElectronicoCampo.getText(),ID_Programa);
+            dispose();
+        }
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
     private void GuardarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseEntered
@@ -411,8 +416,8 @@ public class AñadirAlumno extends javax.swing.JFrame {
     }//GEN-LAST:event_DireccionCampoActionPerformed
 
     private void NombreCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreCampoKeyTyped
-        // TODO add your handling code here:
         Validaciones.SoloTexto(NombreCampo, "Jose, Maria, etc.");
+        
     }//GEN-LAST:event_NombreCampoKeyTyped
 
     private void ApellidoPaternoCampoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidoPaternoCampoKeyTyped

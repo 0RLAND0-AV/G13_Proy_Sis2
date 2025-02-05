@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.sql.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -270,30 +271,33 @@ public class AñadirPrograma extends javax.swing.JFrame {
     }//GEN-LAST:event_GuardarBotonMouseExited
 
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
-        // TODO add your handling code here:
-        // Obtener el ID_Instructor a partir del nombre seleccionado en el JComboBox
-    int ID_INSTRUCTOR = obtenerIDInstructor();
-
-    // Verificar que se haya obtenido un ID_Instructor válido
-    if (ID_INSTRUCTOR != -1) {
-        // Crear instancia de la clase que maneja la inserción del programa
-        QuerysProgramas qp = new QuerysProgramas();
-
-        // Llamar al método insertarPrograma con todos los parámetros, incluyendo el ID_INSTRUCTOR obtenido
-        qp.insertarPrograma(NombreCampo.getText(), 
-                            FechaInicioCampo.getText(), 
-                            FechaFinCampo.getText(),
-                            Integer.parseInt(CostoCampo.getText().trim()), 
-                            HorarioCampo.getText(), 
-                            DetallesCampo.getText(),
-                            Integer.parseInt(MaximoInscritosCampo.getText().trim()), 
-                            ID_INSTRUCTOR);
-        // Cerrar la ventana actual
+        if (NombreCampo.getText().equals("") || MaximoInscritosCampo.getText().equals("") ||
+            FechaInicioCampo.getText().equals("    -  -  ") || FechaFinCampo.getText().equals("    -  -  ") ||
+            CostoCampo.getText().equals("") || HorarioCampo.getText().equals("  :  ") || DetallesCampo.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Pot favor rellene todos los campos");
+        }else if(NombreCampo.getForeground().equals(Color.RED) || MaximoInscritosCampo.getForeground().equals(Color.RED) ||
+                 FechaInicioCampo.getForeground().equals(Color.RED) || FechaFinCampo.getForeground().equals(Color.RED) ||
+                 CostoCampo.getForeground().equals(Color.RED) || HorarioCampo.getForeground().equals(Color.RED)){
+                 JOptionPane.showMessageDialog(null, "Por favor verifique los campos de color rojo");
+        }else {
+            int ID_INSTRUCTOR = obtenerIDInstructor();
+            if (ID_INSTRUCTOR != -1) {
+                QuerysProgramas qp = new QuerysProgramas();
+                qp.insertarPrograma(NombreCampo.getText(), 
+                                    FechaInicioCampo.getText(), 
+                                    FechaFinCampo.getText(),
+                                    Integer.parseInt(CostoCampo.getText().trim()), 
+                                    HorarioCampo.getText(), 
+                                    DetallesCampo.getText(),
+                                    Integer.parseInt(MaximoInscritosCampo.getText().trim()), 
+                                    ID_INSTRUCTOR);
         dispose();
-    } else {
-        // Si el ID_Instructor no es válido, mostrar un mensaje de error
-        //JOptionPane.showMessageDialog(null, "❌ Instructor no encontrado. Verifique el nombre.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
+            } else {
+                // Si el ID_Instructor no es válido, mostrar un mensaje de error
+                //JOptionPane.showMessageDialog(null, "❌ Instructor no encontrado. Verifique el nombre.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
     private void GuardarPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarPanelMouseClicked

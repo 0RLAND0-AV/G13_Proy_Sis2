@@ -9,6 +9,7 @@ import ControladorBD.QuerysInstructores;
 import java.awt.Color;
 import java.sql.*;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Frank
@@ -523,11 +524,21 @@ private String getNombreEspecialidadById(int idEspecialidad) {
     }//GEN-LAST:event_GuardarBotonMouseExited
 
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
-        // TODO add your handling code here:
-        int ID_Especialidad = obtenerIDEspecialidad();
-                QuerysInstructores qi= new QuerysInstructores();
-        qi.actualizarInstructor(ID_Instructor,ApellidoPaternoCampo.getText(), ApellidoPaternoCampo.getText(), ApellidoMaternoCampo.getText(), TelefonoCampo.getText(), CICampo.getText(), FechaNacimientoCampo.getText(), DireccionCampo.getText(), CorreoElectronicoCampo.getText(),ID_Especialidad);
-        dispose();
+        if (NombreCampo.getText().equals("") || ApellidoPaternoCampo.getText().equals("") ||
+            ApellidoMaternoCampo.getText().equals("") || CICampo.getText().equals("") ||
+            FechaNacimientoCampo.getText().equals("    -  -  ") || TelefonoCampo.getText().equals("") ||
+            DireccionCampo.getText().equals("") || CorreoElectronicoCampo.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Pot favor rellene todos los campos");
+        }else if(NombreCampo.getForeground().equals(Color.RED) || ApellidoPaternoCampo.getForeground().equals(Color.RED) ||
+                 ApellidoMaternoCampo.getForeground().equals(Color.RED) || CICampo.getForeground().equals(Color.RED) ||
+                 FechaNacimientoCampo.getForeground().equals(Color.RED) || TelefonoCampo.getForeground().equals(Color.RED)){
+                 JOptionPane.showMessageDialog(null, "Por favor verifique los campos de color rojo");
+        }else {
+            int ID_Especialidad = obtenerIDEspecialidad();
+            QuerysInstructores qi= new QuerysInstructores();
+            qi.actualizarInstructor(ID_Instructor,ApellidoPaternoCampo.getText(), ApellidoPaternoCampo.getText(), ApellidoMaternoCampo.getText(), TelefonoCampo.getText(), CICampo.getText(), FechaNacimientoCampo.getText(), DireccionCampo.getText(), CorreoElectronicoCampo.getText(),ID_Especialidad);
+            dispose();
+        }       
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
     private void AñadirFotografiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AñadirFotografiaMouseClicked

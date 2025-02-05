@@ -4,7 +4,9 @@
  */
 package Interfaz;
 
+import ControladorBD.QuerysInstructores;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -189,7 +191,12 @@ public class AñadirPrueba extends javax.swing.JFrame {
         PanelPrincipal.add(ProgramaComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 330, 210, 30));
 
         LugarCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        PanelPrincipal.add(LugarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 580, 30));
+        LugarCampo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LugarCampoActionPerformed(evt);
+            }
+        });
+        PanelPrincipal.add(LugarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 580, -1));
 
         FechaCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         PanelPrincipal.add(FechaCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 210, 30));
@@ -229,8 +236,15 @@ public class AñadirPrueba extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelarBotonMouseExited
 
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
-        // TODO add your handling code here:
-        dispose();
+        if (LugarCampo.getText().equals("") || FechaCampo.getText().equals("    -  -  ") || 
+            HoraCampo.getText().equals("  :  ")){
+            JOptionPane.showMessageDialog(null, "Pot favor rellene todos los campos");
+        }else if(LugarCampo.getForeground().equals(Color.RED) || FechaCampo.getForeground().equals(Color.RED) || 
+                HoraCampo.getForeground().equals(Color.RED)){
+                 JOptionPane.showMessageDialog(null, "Por favor verifique los campos de color rojo");
+        }else {
+            dispose();
+        } 
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
     private void GuardarBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseEntered
@@ -268,6 +282,10 @@ public class AñadirPrueba extends javax.swing.JFrame {
     private void ProgramaComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProgramaComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ProgramaComboBox1ActionPerformed
+
+    private void LugarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LugarCampoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LugarCampoActionPerformed
 
     /**
      * @param args the command line arguments

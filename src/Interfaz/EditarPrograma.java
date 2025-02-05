@@ -382,11 +382,17 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
     }//GEN-LAST:event_GuardarBotonMouseExited
 
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
-        // TODO add your handling code here:
-         int ID_INSTRUCTOR = obtenerIDInstructor();
-        QuerysProgramas qp = new QuerysProgramas();
-
-        // Llamar al método insertarPrograma con todos los parámetros, incluyendo el ID_INSTRUCTOR obtenido
+        if (NombreCampo.getText().equals("") || MaximoInscritosCampo.getText().equals("") ||
+            FechaInicioCampo.getText().equals("    -  -  ") || FechaFinCampo.getText().equals("    -  -  ") ||
+            CostoCampo.getText().equals("") || HorarioCampo.getText().equals("  :  ") || DetallesCampo.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Pot favor rellene todos los campos");
+        }else if(NombreCampo.getForeground().equals(Color.RED) || MaximoInscritosCampo.getForeground().equals(Color.RED) ||
+                 FechaInicioCampo.getForeground().equals(Color.RED) || FechaFinCampo.getForeground().equals(Color.RED) ||
+                 CostoCampo.getForeground().equals(Color.RED) || HorarioCampo.getForeground().equals(Color.RED)){
+                 JOptionPane.showMessageDialog(null, "Por favor verifique los campos de color rojo");
+        }else {
+             int ID_INSTRUCTOR = obtenerIDInstructor();
+            QuerysProgramas qp = new QuerysProgramas();
         qp.actualizarPrograma(ID_Programa, NombreCampo.getText(), 
                             FechaInicioCampo.getText(), 
                             FechaFinCampo.getText(),
@@ -395,8 +401,9 @@ private void llenarInstructorComboBox(int idInstructorSeleccionado) {
                             DetallesCampo.getText(),
                             Integer.parseInt(MaximoInscritosCampo.getText().trim()), 
                             ID_INSTRUCTOR);
-        // Cerrar la ventana actual
         dispose();
+        }
+        
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
     public int obtenerIDInstructor() {

@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -357,6 +358,11 @@ private String getNombreProgramaById(int idPrograma) {
         DatosContactoPanel.add(SubTituloDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 470, 48));
 
         CorreoElectronicoCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        CorreoElectronicoCampo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CorreoElectronicoCampoActionPerformed(evt);
+            }
+        });
         DatosContactoPanel.add(CorreoElectronicoCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 200, 30));
 
         DireccionCampo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -488,12 +494,21 @@ private String getNombreProgramaById(int idPrograma) {
     }//GEN-LAST:event_GuardarBotonMouseExited
 
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-        int ID_Programa = obtenerIDPrograma();
-                QuerysAlumnos qi= new QuerysAlumnos();
-        qi.actualizarAlumno(ID_Alumno,NombreCampo.getText(), ApellidoPaternoCampo.getText(), ApellidoMaternoCampo.getText(), TelefonoCampo.getText(), CICampo.getText(), FechaNacimientoCampo.getText(), DireccionCampo.getText(), CorreoElectronicoCampo.getText(),ID_Programa);
-        dispose();
+        if (NombreCampo.getText().equals("") || ApellidoPaternoCampo.getText().equals("") ||
+            ApellidoMaternoCampo.getText().equals("") || CICampo.getText().equals("") ||
+            FechaNacimientoCampo.getText().equals("    -  -  ") || TelefonoCampo.getText().equals("") ||
+            DireccionCampo.getText().equals("") || CorreoElectronicoCampo.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Pot favor rellene todos los campos");
+        }else if(NombreCampo.getForeground().equals(Color.RED) || ApellidoPaternoCampo.getForeground().equals(Color.RED) ||
+                 ApellidoMaternoCampo.getForeground().equals(Color.RED) || CICampo.getForeground().equals(Color.RED) ||
+                 FechaNacimientoCampo.getForeground().equals(Color.RED) || TelefonoCampo.getForeground().equals(Color.RED)){
+                 JOptionPane.showMessageDialog(null, "Por favor verifique los campos de color rojo");
+        }else {
+            int ID_Programa = obtenerIDPrograma();
+            QuerysAlumnos qi= new QuerysAlumnos();
+            qi.actualizarAlumno(ID_Alumno,NombreCampo.getText(), ApellidoPaternoCampo.getText(), ApellidoMaternoCampo.getText(), TelefonoCampo.getText(), CICampo.getText(), FechaNacimientoCampo.getText(), DireccionCampo.getText(), CorreoElectronicoCampo.getText(),ID_Programa);
+            dispose();
+        }
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
     private void AñadirFotografiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AñadirFotografiaMouseClicked
@@ -532,6 +547,10 @@ private String getNombreProgramaById(int idPrograma) {
         // TODO add your handling code here:
         Validaciones.SoloNumeros(TelefonoCampo, "63422343");
     }//GEN-LAST:event_TelefonoCampoKeyTyped
+
+    private void CorreoElectronicoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorreoElectronicoCampoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CorreoElectronicoCampoActionPerformed
 
     /**
      * @param args the command line arguments

@@ -59,12 +59,12 @@ public class Validaciones {
     }   
 */
 // Validar que el horario tenga el formato correcto
-   public static void validarFecha(KeyEvent evt, JTextField txt) {
+    public static void validarFecha(KeyEvent evt, JTextField txt) {
      //hola :'v  
    }
         
     
-     public static void AñadirFotogra(JLabel foto){
+    public static void AñadirFotogra(JLabel foto){
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes", "jpg", "png", "jpeg"));
             int seleccion = fileChooser.showOpenDialog(foto);

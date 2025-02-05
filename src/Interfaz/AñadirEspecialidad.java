@@ -6,6 +6,7 @@ package Interfaz;
 
 import ControladorBD.QuerysEspecialidad;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -219,11 +220,17 @@ public class AñadirEspecialidad extends javax.swing.JFrame {
     }//GEN-LAST:event_NombreCampoKeyTyped
 
     private void GuardarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarBotonMouseClicked
-        // TODO add your handling code here:
-        QuerysEspecialidad qe = new QuerysEspecialidad();
-        String seleccionado = (String) nivelEspecialidadComboBox.getSelectedItem();
-        qe.insertarEspecialidad(NombreCampo.getText(), DetallesCampo.getText(), seleccionado);
-        dispose();
+        if (NombreCampo.getText().equals("") || DetallesCampo.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Pot favor rellene todos los campos");
+        }else if(NombreCampo.getForeground().equals(Color.RED) || DetallesCampo.getForeground().equals(Color.RED)){
+                 JOptionPane.showMessageDialog(null, "Por favor verifique los campos de color rojo");
+        }else {
+            QuerysEspecialidad qe = new QuerysEspecialidad();
+            String seleccionado = (String) nivelEspecialidadComboBox.getSelectedItem();
+            qe.insertarEspecialidad(NombreCampo.getText(), DetallesCampo.getText(), seleccionado);
+            dispose();  
+        }
+        
     }//GEN-LAST:event_GuardarBotonMouseClicked
 
     /**
