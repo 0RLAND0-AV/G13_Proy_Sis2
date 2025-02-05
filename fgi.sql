@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : fgi
+ Source Server         : localhost_3306
  Source Server Type    : MySQL
- Source Server Version : 100432 (10.4.32-MariaDB)
+ Source Server Version : 100411 (10.4.11-MariaDB)
  Source Host           : localhost:3306
  Source Schema         : fgi
 
  Target Server Type    : MySQL
- Target Server Version : 100432 (10.4.32-MariaDB)
+ Target Server Version : 100411 (10.4.11-MariaDB)
  File Encoding         : 65001
 
- Date: 04/02/2025 17:38:24
+ Date: 05/02/2025 09:07:19
 */
 
 SET NAMES utf8mb4;
@@ -28,7 +28,7 @@ CREATE TABLE `alumno`  (
   PRIMARY KEY (`ID_Alumno`) USING BTREE,
   INDEX `Alumno_Persona`(`ID_Persona` ASC) USING BTREE,
   CONSTRAINT `Alumno_Persona` FOREIGN KEY (`ID_Persona`) REFERENCES `persona` (`ID_Persona`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 2214 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2212 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for asignacion
@@ -76,6 +76,20 @@ CREATE TABLE `certificado`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 2011 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
+-- Table structure for cronograma
+-- ----------------------------
+DROP TABLE IF EXISTS `cronograma`;
+CREATE TABLE `cronograma`  (
+  `ID_Cronograma` int NOT NULL AUTO_INCREMENT,
+  `Lugar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `Fecha` date NULL DEFAULT NULL,
+  `Hora` time NULL DEFAULT NULL,
+  `Tipo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `ID_Programa` int NULL DEFAULT NULL,
+  PRIMARY KEY (`ID_Cronograma`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
 -- Table structure for especialidad
 -- ----------------------------
 DROP TABLE IF EXISTS `especialidad`;
@@ -85,7 +99,7 @@ CREATE TABLE `especialidad`  (
   `Descripcion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `Nivel` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`ID_Especialidad`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2008 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2003 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for factura
@@ -129,7 +143,7 @@ CREATE TABLE `instructor`  (
   INDEX `Instructor_Especialidad`(`ID_Especialidad` ASC) USING BTREE,
   CONSTRAINT `Instructor_Especialidad` FOREIGN KEY (`ID_Especialidad`) REFERENCES `especialidad` (`ID_Especialidad`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `Instructor_Persona` FOREIGN KEY (`ID_Persona`) REFERENCES `persona` (`ID_Persona`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 3507 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3505 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for material
@@ -168,9 +182,8 @@ CREATE TABLE `persona`  (
   `Fecha_nacimiento` date NOT NULL,
   `Direccion` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `Correo_electronico` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `Foto` blob NULL,
   PRIMARY KEY (`ID_Persona`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3043 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3039 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for programa
@@ -193,7 +206,7 @@ CREATE TABLE `programa`  (
   INDEX `Programa_Material`(`ID_Material` ASC) USING BTREE,
   CONSTRAINT `Programa_Certificado` FOREIGN KEY (`ID_Certificado`) REFERENCES `certificado` (`ID_Certificado`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `Programa_Material` FOREIGN KEY (`ID_Material`) REFERENCES `material` (`ID_Material`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 4039 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4038 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for prueba

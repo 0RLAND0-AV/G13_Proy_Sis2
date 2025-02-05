@@ -31,7 +31,7 @@ public class CronogramaBackground extends javax.swing.JPanel {
      */
     public CronogramaBackground() {
         initComponents();
-        iniciarActualizacionAutomatica();
+        //iniciarActualizacionAutomatica();
         //this.actualizarTablaCronogramas()
     
     }

@@ -33,7 +33,7 @@ public class ProgramasBackground extends javax.swing.JPanel {
     public ProgramasBackground() {
         initComponents();
         actualizarTablaProgramas();
-        iniciarActualizacionAutomatica();
+        //iniciarActualizacionAutomatica();
     }
 
     /**

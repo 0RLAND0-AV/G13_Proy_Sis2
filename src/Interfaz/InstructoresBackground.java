@@ -30,7 +30,7 @@ public class InstructoresBackground extends javax.swing.JPanel {
      */
     public InstructoresBackground() {
         initComponents();
-        iniciarActualizacionAutomatica();
+        //iniciarActualizacionAutomatica();
         
     
     }

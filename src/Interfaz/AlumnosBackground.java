@@ -27,7 +27,7 @@ public class AlumnosBackground extends javax.swing.JPanel {
      */
     public AlumnosBackground() {
         initComponents();
-        iniciarActualizacionAutomatica();
+        //iniciarActualizacionAutomatica();
     }
 
     /**
