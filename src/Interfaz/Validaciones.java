@@ -239,6 +239,17 @@ public class Validaciones {
             sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textoFiltro)); // Filtrar ignorando mayúsculas/minúsculas
         }
     }
+    public static void filtrarTablaComboBox(JTable tabla, String buscador) {
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(tabla.getModel());
+        tabla.setRowSorter(sorter);
+
+        String textoFiltro = buscador;
+        if (textoFiltro.length() == 0 || textoFiltro.equals("Todo")) {
+            sorter.setRowFilter(null); // Sin filtro
+        } else {
+            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textoFiltro)); // Filtrar ignorando mayúsculas/minúsculas
+        }
+    }
 
     
 }
