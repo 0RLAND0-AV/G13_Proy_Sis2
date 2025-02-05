@@ -49,7 +49,7 @@ public class AlumnosBackground extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaAlumnos = new javax.swing.JTable();
         BuscadorAlumnos = new javax.swing.JTextField();
-        Busqueda = new javax.swing.JLabel();
+        busqueda = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(209, 209, 209));
         setMinimumSize(new java.awt.Dimension(900, 600));
@@ -210,12 +210,15 @@ public class AlumnosBackground extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 780, 442));
 
         BuscadorAlumnos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        add(BuscadorAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 46, 250, 50));
+        add(BuscadorAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 250, 50));
 
-        Busqueda.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        Busqueda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Busqueda.setText("o");
-        add(Busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 30, 51, 50));
+        busqueda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/simbolo-de-interfaz-cuadrada-de-busqueda-de-datos-con-una-herramienta-de-lupa (1).png"))); // NOI18N
+        busqueda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                busquedaMouseClicked(evt);
+            }
+        });
+        add(busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, 50, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void AgreagarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgreagarBotonMouseClicked
@@ -279,6 +282,11 @@ public class AlumnosBackground extends javax.swing.JPanel {
     private void AgreagarBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgreagarBotonMouseExited
         AgregarPanel.setBackground(new Color (80,200,120));
     }//GEN-LAST:event_AgreagarBotonMouseExited
+
+    private void busquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busquedaMouseClicked
+        // TODO add your handling code here:
+        Validaciones.filtrarTabla(TablaAlumnos, BuscadorAlumnos);
+    }//GEN-LAST:event_busquedaMouseClicked
 
     private void iniciarActualizacionAutomatica() {
         Timer timer = new Timer();
@@ -396,12 +404,12 @@ public class AlumnosBackground extends javax.swing.JPanel {
     private javax.swing.JPanel AgregarPanel;
     private javax.swing.JLabel Alumnostxt;
     private javax.swing.JTextField BuscadorAlumnos;
-    private javax.swing.JLabel Busqueda;
     private javax.swing.JLabel EditarBoton;
     private javax.swing.JPanel EditarPanel;
     private javax.swing.JPanel EliminarPanel;
     private javax.swing.JLabel ElimnarBoton;
     private javax.swing.JTable TablaAlumnos;
+    private javax.swing.JButton busqueda;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

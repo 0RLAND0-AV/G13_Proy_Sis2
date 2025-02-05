@@ -550,6 +550,7 @@ private String getNombreEspecialidadById(int idEspecialidad) {
             int ID_Especialidad = obtenerIDEspecialidad();
             QuerysInstructores qi= new QuerysInstructores();
             qi.actualizarInstructor(ID_Instructor,NombreCampo.getText(), ApellidoPaternoCampo.getText(), ApellidoMaternoCampo.getText(), TelefonoCampo.getText(), CICampo.getText(), FechaNacimientoCampo.getText(), DireccionCampo.getText(), CorreoElectronicoCampo.getText(),ID_Especialidad);
+            JOptionPane.showMessageDialog(null, "✅ Instructor editado correctamente.");
             dispose();
         }       
     }//GEN-LAST:event_GuardarBotonMouseClicked

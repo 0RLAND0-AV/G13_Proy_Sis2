@@ -525,6 +525,7 @@ private String getNombreProgramaById(int idPrograma) {
             int ID_Programa = obtenerIDPrograma();
             QuerysAlumnos qi= new QuerysAlumnos();
             qi.actualizarAlumno(ID_Alumno,NombreCampo.getText(), ApellidoPaternoCampo.getText(), ApellidoMaternoCampo.getText(), TelefonoCampo.getText(), CICampo.getText(), FechaNacimientoCampo.getText(), DireccionCampo.getText(), CorreoElectronicoCampo.getText(),ID_Programa);
+            JOptionPane.showMessageDialog(null, "✅ Alumno editado correctamente.");
             dispose();
         }
     }//GEN-LAST:event_GuardarBotonMouseClicked
